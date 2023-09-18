@@ -8,10 +8,6 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
-<<<<<<< Updated upstream
-          
-=======
->>>>>>> Stashed changes
         </p>
         <a
           className="App-link"

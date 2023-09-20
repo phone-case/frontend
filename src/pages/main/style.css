@@ -1,23 +1,34 @@
 .image-slider {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px;
 }
 
-img {
+.img {
   max-width: 100%;
   height: auto;
+  
 }
 
-.prev-button,
+
+
+.prev-button {
+  position: fixed; 
+  left: 10px; /* 좌측 여백 조정 */
+  top: 50%; /* 상단 여백 조정 (중앙 정렬을 위해 50%로 설정) */
+  transform: translateY(-50%); /* 버튼을 수직으로 중앙 정렬 */
+  z-index: 1; /* 버튼을 다른 요소 위로 올립니다. */
+}
+
+
 .next-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
+  position: fixed; 
+  right: 10px; /* 우측 여백 조정 */
+  top: 50%; /* 상단 여백 조정 (중앙 정렬을 위해 50%로 설정) */
+  transform: translateY(-50%); /* 버튼을 수직으로 중앙 정렬 */
+  z-index: 1; /* 버튼을 다른 요소 위로 올립니다. */
 }
 
 .prev-button:hover,

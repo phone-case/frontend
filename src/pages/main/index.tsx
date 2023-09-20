@@ -6,7 +6,7 @@ const ImageSlider = () => {
     './img/phone1.jpg',
     './img/phone2.jpg',
     './img/phone3.png',
-    // 추가 이미지 경로
+    // 이미지 퍼블릭 폴더 img 폴더 안에있음 대용품 넣어둠
   ];
 
 

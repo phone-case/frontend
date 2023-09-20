@@ -2,6 +2,15 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  setInterval(function(){
+    ('#slide2>ul').delay(2500);
+    ('#slide2>ul').animate({marginTop: "-300px"})
+    ('#slide2>ul').delay(2500);
+    ('#slide2>ul').animate({marginTop: "-600px"})
+    ('#slide2>ul').delay(2500);
+    ('#slide2>ul').animate({marginTop: "0px"})
+  });
+  
   return (
     <div className="App">
       <header className="App-header">

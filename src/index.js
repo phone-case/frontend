@@ -9,10 +9,16 @@ root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+);
+setInterval(function(){
+  ('#slide2>ul').delay(10);
+  ('#slide2>ul').animate({marginTop: "-300px"})
+  ('#slide2>ul').delay(10);
+  ('#slide2>ul').animate({marginTop: "-600px"})
+  ('#slide2>ul').delay(10);
+  ('#slide2>ul').animate({marginTop: "0px"})
+});
+
 reportWebVitals();
 

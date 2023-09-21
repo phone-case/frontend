@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <h1>이름 조회</h1>
+      <h1>로그인</h1>
       <div>
         <label htmlFor="id">아이디:</label>
         <input
@@ -47,7 +47,7 @@ function App() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <button onClick={handleSubmit}>조회</button>
+      <button onClick={handleSubmit}>로그인</button>
       <div>
         <p>이름: {name !== null ? name : '조회 결과가 없습니다.'}</p>
       </div>

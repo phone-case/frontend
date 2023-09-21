@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Main from "./pages/main/index"
+import Login from "./pages/login/index"
 import Signup from './pages/signup/index';
 
 const root = ReactDOM.createRoot(
@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Main />
+    <Login />
     <Signup />
   </React.StrictMode>
 );

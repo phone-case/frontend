@@ -10,6 +10,7 @@ const ImageSlider = () => {
   ];
 
 
+  
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

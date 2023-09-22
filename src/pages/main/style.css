@@ -35,3 +35,37 @@
 .next-button:hover {
   background-color: #0056b3;
 }
+
+
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px; /* 필요에 따라 패딩 조절 */
+}
+
+.black-nav {
+  display: flex;
+  width: 100%;
+  color: white;
+  padding-left: 30px;
+  height: 50px; /* 세로 크기 조절 */
+  
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.login-button {
+  
+  position: absolute;
+          top: 25px;
+          right: 60px;
+          display: flex;
+          align-items: center;
+}

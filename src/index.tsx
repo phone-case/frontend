@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './pages/login/index';
+import Login from "./pages/login/index"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -8,6 +8,5 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Login />
-    <Signup />
   </React.StrictMode>
 );

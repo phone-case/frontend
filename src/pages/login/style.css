@@ -1,3 +1,82 @@
-h1 {
-    color: red;
-  }
+/* style.css */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  position: relative; /* 선을 겹치기 위해 부모 요소에 position을 추가합니다. */
+}
+
+.login-text-container {
+  text-align: right;
+  position: absolute; /* 우측 상단으로 이동하기 위해 절대 위치로 설정합니다. */
+  top: 10px; /* 상단 여백 조절 */
+  right: 20px; /* 우측 여백 조절 */
+}
+
+.login-text {
+  font-size: 24px;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid #000;
+  margin: 10px 0; /* 선 아래로 이동 */
+}
+
+/* 나머지 스타일은 이전과 동일합니다. */
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.login-button {
+  background-color: mediumaquamarine;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  flex: 1;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.register-button {
+  background-color: mediumaquamarine;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.register-button:hover {
+  background-color: #555;
+}

@@ -1,3 +1,20 @@
-h1 {
-    color: red;
-  }
+/* style.css */
+/* 기존 스타일 유지 */
+.login-container {
+  /* 기존 스타일 유지 */
+}
+
+.create-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.create-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

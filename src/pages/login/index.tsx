@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './style.css';
+import Header from './../main/Header';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,37 +14,41 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-text-container">
-        <div className="login-text">Login</div>
-        <div className="line"></div>
-      </div>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="ID"
-          className="login-input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="login-input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <div className="button-container">
-          <button type="submit" className="login-button">
-            로그인 
-          </button>
-          <button type="button" className="register-button">
-            회원가입
-          </button>
+    <div>
+      <Header/>
+      <div className="login-container">
+        <div className="login-text-container">
+          <div className="line"></div>
         </div>
-      </form>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="ID"
+            className="login-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="login-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <div className="button-container">
+            <button type="submit" className="login-button">
+              로그인 
+            </button>
+            <Link to="/signup">
+              <button type="button" className="register-button">
+                회원가입
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './style.css'; 
+import './style.css';
+import Header from './Header'
 
 const ImageSlider = () => {
   const images = [
@@ -23,14 +24,17 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="image-slider">
-      <button className="prev-button" onClick={prevSlide}>
-        Previous
-      </button>
-      <img src={images[currentIndex]} alt={`Image ${currentIndex}`} />
-      <button className="next-button" onClick={nextSlide}>
-        Next
-      </button>
+    <div>
+      <Header/>
+      <div className="image-slider">
+        <button className="prev-button" onClick={prevSlide}>
+          Previous
+        </button>
+        <img src={images[currentIndex]} alt={`Image ${currentIndex}`} />
+        <button className="next-button" onClick={nextSlide}>
+          Next
+        </button>
+      </div>
     </div>
   );
 };

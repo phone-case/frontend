@@ -7,7 +7,7 @@ const Header = () => {
     <div className="header">
       <div className="black-nav">
         <div className="logo">폰껍</div>
-        <div className="login-button">
+        <div id="login-button">
           <Link to="/login">Login</Link>
         </div>
       </div>

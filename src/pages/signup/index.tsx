@@ -14,7 +14,6 @@ function App() {
             <p><input type="password" name="password" placeholder="password" /></p>
             <p><input type="confirm_password" name="confirm_password" placeholder="confirm_password" /></p>
             <p><input type="text" name="name" placeholder="name" /></p>
-            <p><input type="text" name="role" placeholder="role" /></p>
             <p><input type="submit" value="create" /></p>
           </form>
         </div>

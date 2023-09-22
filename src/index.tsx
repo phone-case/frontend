@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './pages/main/index';
-import ImageSlider from './pages/main'; // ImageSlider 컴포넌트를 import
-import Header from './pages/main/Header';
-
-
+import App from "./App"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,8 +9,6 @@ const root = ReactDOM.createRoot(
 root.render(
   
   <React.StrictMode>
-    <Header />
-    <ImageSlider />
-
+    <App />
   </React.StrictMode>
 );

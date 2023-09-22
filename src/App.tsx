@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // 'Switch' 대신 'Routes'를 사용합니다.
 
-import Main from './pages/main/index'
+import Main from './pages/main/Header'
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
 

@@ -1,3 +1,71 @@
-h1 {
-    color: red;
-  }
+.image-slider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  
+}
+
+
+
+.prev-button {
+  position: fixed; 
+  left: 10px; /* 좌측 여백 조정 */
+  top: 50%; /* 상단 여백 조정 (중앙 정렬을 위해 50%로 설정) */
+  transform: translateY(-50%); /* 버튼을 수직으로 중앙 정렬 */
+  z-index: 1; /* 버튼을 다른 요소 위로 올립니다. */
+}
+
+
+.next-button {
+  position: fixed; 
+  right: 10px; /* 우측 여백 조정 */
+  top: 50%; /* 상단 여백 조정 (중앙 정렬을 위해 50%로 설정) */
+  transform: translateY(-50%); /* 버튼을 수직으로 중앙 정렬 */
+  z-index: 1; /* 버튼을 다른 요소 위로 올립니다. */
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: #0056b3;
+}
+
+
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px; /* 필요에 따라 패딩 조절 */
+}
+
+.black-nav {
+  display: flex;
+  width: 100%;
+  color: white;
+  padding-left: 30px;
+  height: 50px; /* 세로 크기 조절 */
+  
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.login-button {
+  
+  position: absolute;
+          top: 25px;
+          right: 60px;
+          display: flex;
+          align-items: center;
+}

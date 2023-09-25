@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import Header from './../main/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -39,11 +40,11 @@ function Login() {
           />
           <div className="button-container">
             <button type="submit" className="login-button">
-              로그인 
+              Login 
             </button>
             <Link to="/signup">
               <button type="button" className="register-button">
-                회원가입
+                Register
               </button>
             </Link>
           </div>

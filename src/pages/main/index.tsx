@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
-import Header from './Header'
+import Header from './Header';
 
 const ImageSlider = () => {
   const images = [

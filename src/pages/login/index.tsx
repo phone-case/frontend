@@ -39,11 +39,11 @@ function Login() {
           />
           <div className="button-container">
             <button type="submit" className="login-button">
-              로그인 
+              login 
             </button>
             <Link to="/signup">
               <button type="button" className="register-button">
-                회원가입
+                signup
               </button>
             </Link>
           </div>

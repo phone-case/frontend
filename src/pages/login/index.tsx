@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './style.css';
 import Header from './../main/Header';
+import './style.css';
+import { useUser } from './../main/UserContext';
 
 function Login() {
+  const { setUserName } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState<string | null>(null); // 이름을 저장할 상태
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
+      // 로그인 로직 및 서버 요청 수행
+
+      // 로그인 성공 시 사용자 이름 설정
       const response = await fetch('/api/get_name', {
         method: 'POST',
         headers: {
@@ -22,7 +26,7 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        setName(data.name);
+        setUserName(data.name); // 사용자 이름 설정
         console.log('서버에서 받은 이름:', data.name);
       } else {
         console.error('서버 응답 오류');
@@ -31,6 +35,7 @@ function Login() {
       console.error('요청 실패:', error);
     }
   };
+
 
   return (
     <div>

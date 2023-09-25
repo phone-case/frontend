@@ -1,36 +1,30 @@
 import React, { useState } from 'react';
 import './style.css';
 import Header from './Header';
+import S1 from './s1'; // 슬라이드 1 컴포넌트 가져오기
+import S2 from './s2'; // 슬라이드 2 컴포넌트 가져오기
+import S3 from './s3'; // 슬라이드 3 컴포넌트 가져오기
 
 const ImageSlider = () => {
-  const images = [
-    './img/phone1.jpg',
-    './img/phone2.jpg',
-    './img/phone3.png',
-    // 이미지 퍼블릭 폴더 img 폴더 안에있음 대용품 넣어둠
-  ];
-
-
-  
-
   const [currentIndex, setCurrentIndex] = useState(0);
+  const slides = [<S1 />, <S2 />, <S3 />]; // 슬라이드 컴포넌트 배열
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="image-slider">
         <button className="prev-button" onClick={prevSlide}>
           Previous
         </button>
-        <img src={images[currentIndex]} alt={`Image ${currentIndex}`} />
+        {slides[currentIndex]} {/* 현재 슬라이드 표시 */}
         <button className="next-button" onClick={nextSlide}>
           Next
         </button>

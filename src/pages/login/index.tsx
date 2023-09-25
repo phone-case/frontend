@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate로 변경
 import Header from './../main/Header';
 import './style.css';
 import { useUser } from './../main/UserContext';
@@ -8,6 +8,8 @@ function Login() {
   const { setUserName } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate(); // useNavigate 사용
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,8 +28,14 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        setUserName(data.name); // 사용자 이름 설정
-        console.log('서버에서 받은 이름:', data.name);
+        if (data.name === null) {
+          console.log('아이디 또는 비밀번호가 다릅니다.');
+        } else {
+          setUserName(data.name);
+          console.log('서버에서 받은 이름:', data.name);
+          setLoggedIn(true);
+          navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+        }
       } else {
         console.error('서버 응답 오류');
       }
@@ -35,7 +43,6 @@ function Login() {
       console.error('요청 실패:', error);
     }
   };
-
 
   return (
     <div>

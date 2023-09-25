@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react';
 interface UserContextType {
   userName: string | null;
   setUserName: React.Dispatch<React.SetStateAction<string | null>>;
-  logout: () => void; // logout 함수 추가
+  logout: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);

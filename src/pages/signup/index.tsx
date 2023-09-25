@@ -9,7 +9,7 @@ function App() {
       <Header />
       <div className="create-container">
         <div className="create-form">
-          <form action="http://127.0.0.1:5000/create/" method="POST">
+          <form action="http://127.0.0.1:5000/api/create/" method="POST">
             <p><input type="text" name="title" placeholder="title" /></p>
             <p><input type="password" name="password" placeholder="password" /></p>
             <p><input type="confirm_password" name="confirm_password" placeholder="confirm_password" /></p>

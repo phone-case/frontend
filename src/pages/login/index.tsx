@@ -6,16 +6,35 @@ import Header from './../main/Header';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState<string | null>(null); // 이름을 저장할 상태
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { // e의 타입을 명시적으로 지정
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 여기에서 로그인 로직을 처리하거나 API 호출을 추가할 수 있습니다.
-    console.log(`Email: ${email}, Password: ${password}`);
+
+    try {
+      const response = await fetch('/api/get_name', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setName(data.name);
+        console.log('서버에서 받은 이름:', data.name);
+      } else {
+        console.error('서버 응답 오류');
+      }
+    } catch (error) {
+      console.error('요청 실패:', error);
+    }
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="login-container">
         <div className="login-text-container">
           <div className="line"></div>
@@ -39,7 +58,7 @@ function Login() {
           />
           <div className="button-container">
             <button type="submit" className="login-button">
-              login 
+              login
             </button>
             <Link to="/signup">
               <button type="button" className="register-button">
@@ -52,5 +71,5 @@ function Login() {
     </div>
   );
 }
-        
+
 export default Login;

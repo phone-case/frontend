@@ -1,22 +1,52 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './style.css';
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate로 변경
 import Header from './../main/Header';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './style.css';
+import { useUser } from './../main/UserContext';
 
 function Login() {
+  const { setUserName } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate(); // useNavigate 사용
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { // e의 타입을 명시적으로 지정
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // 여기에서 로그인 로직을 처리하거나 API 호출을 추가할 수 있습니다.
-    console.log(`Email: ${email}, Password: ${password}`);
+
+    try {
+      // 로그인 로직 및 서버 요청 수행
+
+      // 로그인 성공 시 사용자 이름 설정
+      const response = await fetch('/api/get_name', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.name === null) {
+          console.log('아이디 또는 비밀번호가 다릅니다.');
+        } else {
+          setUserName(data.name);
+          console.log('서버에서 받은 이름:', data.name);
+          setLoggedIn(true);
+          navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+        }
+      } else {
+        console.error('서버 응답 오류');
+      }
+    } catch (error) {
+      console.error('요청 실패:', error);
+    }
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className="login-container">
         <div className="login-text-container">
           <div className="line"></div>
@@ -40,11 +70,11 @@ function Login() {
           />
           <div className="button-container">
             <button type="submit" className="login-button">
-              Login 
+              login
             </button>
             <Link to="/signup">
               <button type="button" className="register-button">
-                Register
+                signup
               </button>
             </Link>
           </div>
@@ -53,5 +83,5 @@ function Login() {
     </div>
   );
 }
-        
+
 export default Login;

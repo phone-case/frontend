@@ -20,7 +20,9 @@ const Header = () => {
               {userName} <a href='#' onClick={handleLogout}>로그아웃</a>
             </div>
           ) : (
-            <Link to="/login">Login</Link>
+            <Link to="/login">
+            <img src="./img/loginicon.png" alt="Login" style={{ width: '50px', height: '50px' }} /> {/* 이미지 크기 조절 */}
+            </Link>
           )}
         </div>
       </div>

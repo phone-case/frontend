@@ -4,6 +4,7 @@ import { UserProvider } from './components/UserContext/UserContext';
 import Main from './pages/main/index'
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
+import Create from './pages/create/index';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Main />} /> {/* 'element' 속성을 사용합니다. */}
           <Route path="/login" element={<Login />} /> {/* 'element' 속성을 사용합니다. */}
           <Route path="/signup" element={<Signup />} /> {/* 'element' 속성을 사용합니다. */}
+          <Route path="/create" element={<Create />} />
         </Routes>
       </Router>
     </UserProvider>

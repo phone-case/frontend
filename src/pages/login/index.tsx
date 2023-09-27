@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Header from './../main/Header';
+import Header from '../../components/Header/Header';
 import './style.css';
-import { useUser } from './../main/UserContext';
+import { useUser } from '../../components/UserContext/UserContext';
 
 function Login() {
   const { setUserName } = useUser();

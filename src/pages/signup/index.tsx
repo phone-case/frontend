@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import './style.css';
-import Header from '../main/Header';
+import Header from '../../components/Header/Header';
 
 function App() {
-  const [isIdTaken, setIsIdTaken] = useState(false);
+  const [isIdTaken, setIsIdTaken] = useState(null);
   const [availableId, setAvailableId] = useState('');
   const [isCreateButtonEnabled, setIsCreateButtonEnabled] = useState(false);
+  const [isIdFieldEditable, setIsIdFieldEditable] = useState(true); // Track the editability of the "id" field
 
   const [passwordsMatch, setPasswordsMatch] = useState(true);
-  const [isPasswordEmpty, setIsPasswordEmpty] = useState(true); // 패스워드가 비어있는지 여부
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState(true);
 
   const checkUsername = async () => {
-    const id = (document.querySelector("input[name='id']") as HTMLInputElement)?.value;
+    const idInput = document.querySelector("input[name='id']") as HTMLInputElement;
+    const id = idInput?.value;
+
+    if (!id) {
+      setIsIdTaken(null);
+      setIsCreateButtonEnabled(false);
+      return;
+    }
 
     try {
       const response = await fetch(`http://127.0.0.1:5000/api/check_username/${id}`);
@@ -21,8 +29,10 @@ function App() {
       if (!data.isTaken) {
         setAvailableId(id);
         setIsCreateButtonEnabled(true);
+        setIsIdFieldEditable(false); // Disable the "id" field for editing
       } else {
         setIsCreateButtonEnabled(false);
+        setIsIdFieldEditable(true); // Enable the "id" field for editing if the ID is already taken
       }
     } catch (error) {
       console.error('Error checking username:', error);
@@ -33,6 +43,7 @@ function App() {
     // create 버튼을 클릭할 때 필요한 동작 수행
     // 예: 폼 제출
     // 예: 사용 가능한 아이디로 계정 생성
+    alert('회원가입 되셨습니다.');
   };
 
   const checkPasswordMatch = () => {
@@ -40,12 +51,12 @@ function App() {
     const confirm_password = (document.querySelector("input[name='confirm_password']") as HTMLInputElement)?.value;
 
     setPasswordsMatch(password === confirm_password);
-    setIsPasswordEmpty(password === ''); // 패스워드가 비어있는지 여부 확인
+    setIsPasswordEmpty(password === '');
   };
 
   const getPasswordInputClassName = () => {
     if (isPasswordEmpty) {
-      return 'password-input'; // 패스워드가 비어 있을 때는 클래스만 반환
+      return 'password-input';
     } else if (passwordsMatch) {
       return 'password-input valid';
     } else {
@@ -59,7 +70,14 @@ function App() {
       <div className="create-container">
         <div className="create-form">
           <form action="http://127.0.0.1:5000/api/create/" method="POST">
-            <p><input type="text" name="id" placeholder="id" /></p>
+            <p>
+              <input
+                type="text"
+                name="id"
+                placeholder="id"
+                readOnly={!isIdFieldEditable} // Use readOnly attribute
+              />
+            </p>
             <p><input type="password" name="password" placeholder="password" onChange={checkPasswordMatch} /></p>
             <p><input type="password" name="confirm_password" placeholder="confirm_password" onChange={checkPasswordMatch} className={getPasswordInputClassName()} /></p>
             <p><input type="text" name="name" placeholder="name" /></p>
@@ -68,11 +86,8 @@ function App() {
           
           <button onClick={checkUsername}>Check ID</button>
 
-          {isIdTaken ? (
-            <p>이미 사용 중인 아이디입니다.</p>
-          ) : (
-            <p>사용 가능한 아이디입니다.</p>
-          )}
+          {isIdTaken === true && <p>이미 사용 중인 아이디입니다.</p>}
+          {isIdTaken === false && <p>사용 가능한 아이디입니다.</p>}
         </div>
       </div>
     </div>

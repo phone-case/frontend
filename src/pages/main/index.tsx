@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './style.css';
-import Header from './Header';
-import S1 from './s1'; // 슬라이드 1 컴포넌트 가져오기
-import S2 from './s2'; // 슬라이드 2 컴포넌트 가져오기
-import S3 from './s3'; // 슬라이드 3 컴포넌트 가져오기
+import Header from '../../components/Header/Header';
+import S1 from './../../components/Slide/s1'; // 슬라이드 1 컴포넌트 가져오기
+import S2 from './../../components/Slide/s2'; // 슬라이드 2 컴포넌트 가져오기
+import S3 from './../../components/Slide/s3'; // 슬라이드 3 컴포넌트 가져오기
 
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

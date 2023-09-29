@@ -7,9 +7,6 @@ const S3 = () => {
     <div>
       {/* 슬라이드 내용 */}
       <img src="./img/phone3.PNG" alt="Slide 3" className="slide-image"/>
-<<<<<<< HEAD:src/pages/main/s3.tsx
-
-=======
       <h2>Slide 3</h2>
       <p>This is Slide 3 content.</p>
       <Link to="/create">
@@ -17,7 +14,6 @@ const S3 = () => {
               create
             </button>
       </Link>
->>>>>>> main:src/components/Slide/s3.tsx
     </div>
   );
 };

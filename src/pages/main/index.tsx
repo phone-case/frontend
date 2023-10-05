@@ -12,11 +12,17 @@ import Slider from 'react-slick';
 
 const SlickSlider = () => {
   const settings = {
-    dots: true, // 페이지 번호 표시
+
+    dots: true, // 페이지 위치 아래 점
+    dotsClass : "slick-dots", 	//css 지정
+
     infinite: true, // 무한 루프
-    speed: 500, // 슬라이드 전환 속도 (밀리초)
+    speed: 500, // 슬라이드 전환 속도 
     slidesToShow: 1, // 화면에 보여질 슬라이드 수
     slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 수
+
+    // vertical :true  수직
+    
   };
 
   const sliderRef = useRef<Slider>(null);

@@ -68,4 +68,9 @@ body { /* 빈공간 없앰 */
   height: auto; /* 가로 비율 유지를 위해 높이는 자동 조절됩니다. */
 }
 
-
+.slick-dots{
+  position: fixed;
+  top: 70%;
+  right: 0;
+  transform: translateY(-50%);
+}

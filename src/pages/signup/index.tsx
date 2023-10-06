@@ -3,13 +3,15 @@ import './style.css';
 import Header from '../../components/Header/Header';
 
 function App() {
-  const [isIdTaken, setIsIdTaken] = useState(null);
-  const [availableId, setAvailableId] = useState('');
-  const [isCreateButtonEnabled, setIsCreateButtonEnabled] = useState(false);
-  const [isIdFieldEditable, setIsIdFieldEditable] = useState(true); // Track the editability of the "id" field
+  const [isIdTaken, setIsIdTaken] = useState<boolean | null>(null);
+  const [availableId, setAvailableId] = useState<string>('');
+  const [isCreateButtonEnabled, setIsCreateButtonEnabled] = useState<boolean>(false);
+  const [isIdFieldEditable, setIsIdFieldEditable] = useState<boolean>(true);
 
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
-  const [isPasswordEmpty, setIsPasswordEmpty] = useState(true);
+  const [passwordsMatch, setPasswordsMatch] = useState<boolean>(true);
+  const [isPasswordEmpty, setIsPasswordEmpty] = useState<boolean>(true);
+
+  const [name, setName] = useState<string>('');
 
   const checkUsername = async () => {
     const idInput = document.querySelector("input[name='id']") as HTMLInputElement;
@@ -28,11 +30,11 @@ function App() {
       setIsIdTaken(data.isTaken);
       if (!data.isTaken) {
         setAvailableId(id);
-        setIsCreateButtonEnabled(true);
-        setIsIdFieldEditable(false); // Disable the "id" field for editing
+        setIsCreateButtonEnabled(!isPasswordEmpty && passwordsMatch && !!name && !isIdTaken); // Enable if password, name, and ID are valid
+        setIsIdFieldEditable(false);
       } else {
         setIsCreateButtonEnabled(false);
-        setIsIdFieldEditable(true); // Enable the "id" field for editing if the ID is already taken
+        setIsIdFieldEditable(true);
       }
     } catch (error) {
       console.error('Error checking username:', error);
@@ -40,9 +42,6 @@ function App() {
   };
 
   const handleCreateButtonClick = () => {
-    // create 버튼을 클릭할 때 필요한 동작 수행
-    // 예: 폼 제출
-    // 예: 사용 가능한 아이디로 계정 생성
     alert('회원가입 되셨습니다.');
   };
 
@@ -52,9 +51,18 @@ function App() {
 
     setPasswordsMatch(password === confirm_password);
     setIsPasswordEmpty(password === '');
+
+    setIsCreateButtonEnabled(!isPasswordEmpty && passwordsMatch && !!name && !isIdTaken);
   };
 
-  const getPasswordInputClassName = () => {
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = e.target.value;
+    setName(newName);
+
+    setIsCreateButtonEnabled(!isPasswordEmpty && passwordsMatch && !!newName && !isIdTaken);
+  };
+
+  const getPasswordInputClassName = (): string => {
     if (isPasswordEmpty) {
       return 'password-input';
     } else if (passwordsMatch) {
@@ -75,13 +83,13 @@ function App() {
                 type="text"
                 name="id"
                 placeholder="id"
-                readOnly={!isIdFieldEditable} // Use readOnly attribute
+                readOnly={!isIdFieldEditable}
               />
             </p>
             <p><input type="password" name="password" placeholder="password" onChange={checkPasswordMatch} /></p>
             <p><input type="password" name="confirm_password" placeholder="confirm_password" onChange={checkPasswordMatch} className={getPasswordInputClassName()} /></p>
-            <p><input type="text" name="name" placeholder="name" /></p>
-            <p><input type="submit" value="create" disabled={!isCreateButtonEnabled || !passwordsMatch} onClick={handleCreateButtonClick} /></p>
+            <p><input type="text" name="name" placeholder="name" value={name} onChange={handleNameChange} /></p>
+            <p><input type="submit" value="create" disabled={!isCreateButtonEnabled} onClick={handleCreateButtonClick} /></p>
           </form>
           
           <button onClick={checkUsername}>Check ID</button>

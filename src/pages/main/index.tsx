@@ -43,7 +43,7 @@ const SlickSlider = () => {
   return (
       <div onWheel={handleWheel}>
         <Header/>
-        <div>
+        <div className="fullscreen-slider">
           <Slider {...settings} ref={sliderRef}>
             <S1 />
             <S2 />

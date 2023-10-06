@@ -11,9 +11,9 @@ function App() {
     <UserProvider>
       <Router>
         <Routes> {/* 'Switch' 대신 'Routes'를 사용합니다. */}
-          <Route path="/" element={<Main />} /> {/* 'element' 속성을 사용합니다. */}
-          <Route path="/login" element={<Login />} /> {/* 'element' 속성을 사용합니다. */}
-          <Route path="/signup" element={<Signup />} /> {/* 'element' 속성을 사용합니다. */}
+          <Route path="/" element={<Main />} /> 
+          <Route path="/login" element={<Login />} /> 
+          <Route path="/signup" element={<Signup />} /> 
           <Route path="/create" element={<Create />} />
         </Routes>
       </Router>

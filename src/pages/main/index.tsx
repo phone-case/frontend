@@ -14,11 +14,13 @@ const SlickSlider = () => {
   const settings = {
 
 
-    infinite: true, // 무한 루프
+    infinite: false, // 무한 루프
     speed: 500, // 슬라이드 전환 속도 
     slidesToShow: 1, // 화면에 보여질 슬라이드 수
     slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 수
     accessibility: true, //키보드로 이동가능하게 하는건데 안됨 수발
+    
+    arrows: false, //옆으로 이동하는 화살표 표시 여부임
     
   };
 

@@ -19,9 +19,7 @@ const SlickSlider = () => {
     infinite: true, // 무한 루프
     speed: 500, // 슬라이드 전환 속도 
     slidesToShow: 1, // 화면에 보여질 슬라이드 수
-    slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 수
-
-    // vertical :true  수직
+    slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 
     
   };
 

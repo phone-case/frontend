@@ -13,26 +13,33 @@ import Slider from 'react-slick';
 const SlickSlider = () => {
   const settings = {
 
-    dots: true, // 페이지 위치 아래 점
-    dotsClass : "slick-dots", 	//css 지정
 
     infinite: true, // 무한 루프
     speed: 500, // 슬라이드 전환 속도 
     slidesToShow: 1, // 화면에 보여질 슬라이드 수
-    slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 
+    slidesToScroll: 1, // 슬라이드를 넘길 때 이동할 슬라이드 수
+    accessibility: true,
     
   };
 
   const sliderRef = useRef<Slider>(null);
 
-  const goToSlide = (slideIndex: number) => {
-    sliderRef.current!.slickGoTo(slideIndex);
+
+  const handleWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    // 마우스 휠 이벤트 핸들러
+    if (e.deltaY > 0) {
+      // 아래로 스크롤할 때
+      sliderRef.current?.slickNext(); // 다음 슬라이드로 이동
+    } else {
+      // 위로 스크롤할 때
+      sliderRef.current?.slickPrev(); // 이전 슬라이드로 이동
+    }
   };
   
   
 
   return (
-      <div>
+      <div onWheel={handleWheel}>
         <Header/>
         <div>
           <Slider {...settings} ref={sliderRef}>

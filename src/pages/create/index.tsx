@@ -8,7 +8,6 @@ const Create = () => {
   return (
     <div>
       {/* <Header /> */}
-      
       <div>
         <ChatBox />
       </div>

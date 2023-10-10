@@ -6,16 +6,18 @@
     background-size: cover;
     background-position: center;
     
-    margin-top: 200px; /* 위쪽 여백 설정 */
+
 }
 
 .s0-slider0-ww { /*슬라이더 위치임*/
+
+    margin-top: 200px; /* 위쪽 여백 설정 클래스 네임 정해주고 해야할듯 */
 
 
     display: flex;
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
-    max-width: 400px; /* 최대 가로 너비 설정 */
+    max-width: 100%; /* 최대 가로 너비 설정 */
     margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 가운데 정렬 */
     justify-content: center;
     align-items: center;

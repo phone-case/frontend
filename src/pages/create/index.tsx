@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
+import ChatBox from '../../components/ChatBox/chat';
 import './style.css'
+
 
 const Create: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -48,7 +50,7 @@ const Create: React.FC = () => {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div>
         <h1>Image Upload</h1>
         <input type="file" accept="image/*" onChange={handleImageChange} />
@@ -60,6 +62,7 @@ const Create: React.FC = () => {
         />
         {imagePreview && <img src={imagePreview} alt="Preview" />}
         <button onClick={handleSubmit}>Upload</button>
+        <ChatBox />
       </div>
     </div>
   );

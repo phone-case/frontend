@@ -1,12 +1,19 @@
 import React, { createContext, useContext, useState } from 'react';
 
+
+
 interface UserContextType {
   userName: string | null;
   setUserName: React.Dispatch<React.SetStateAction<string | null>>;
   logout: () => void;
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UserContext = createContext<UserContextType>({
+  userName: null,
+  setUserName: () => {},
+  logout: () => {},
+});
+
 
 export function useUser(): UserContextType {
   const context = useContext(UserContext);

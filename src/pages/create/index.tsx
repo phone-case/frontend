@@ -62,7 +62,7 @@ const Create: React.FC = () => {
         />
         {imagePreview && <img src={imagePreview} alt="Preview" />}
         <button onClick={handleSubmit}>Upload</button>
-        <ChatBox />
+        {/* <ChatBox /> */}
       </div>
     </div>
   );

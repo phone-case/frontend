@@ -1,13 +1,16 @@
 // s1.tsx
 import React from 'react';
+import S0 from '../Case-slider/s0';
+import '../Slide/s1.css';
 
 const S1 = () => {
   return (
-    <div>
-      {/* 이미지 슬라이드 내용 */}
-      <img src="./img/phone1.jpg" alt="Slide 1" className="slide-image" />
-
-    </div>
+      <div className="s1">
+        <div className="s1-background">
+          <S0 /> 
+        </div>
+        
+      </div>
   );
 };
 

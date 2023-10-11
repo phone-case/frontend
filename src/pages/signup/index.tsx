@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.css';
+import styles from './style.module.css';
 import Header from '../../components/Header/Header';
 
 function App() {
@@ -75,8 +75,8 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="create-container">
-        <div className="create-form">
+      <div className={styles["create-container"]}>
+        <div className={styles["create-form"]}>
           <form action="http://127.0.0.1:5000/api/create/" method="POST">
             <p>
               <input
@@ -93,7 +93,7 @@ function App() {
 
             
           </form>
-          <div className="check-form">
+          <div className={styles["check-form"]}>
             <button onClick={checkUsername}>Check ID</button>
 
             {isIdTaken === true && <p>이미 사용 중인 아이디입니다.</p>}

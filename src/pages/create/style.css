@@ -1,24 +1,5 @@
 body { /* 빈공간 없앰 */
   margin: 0; 
   padding: 0; 
-  
 }
 
-
-.create-container {
-  display: flex;
-
-}
-
-.create-left {
-  flex: 1;
-  padding: 20px;
-
-}
-
-.create-right {
-  flex: 1;
-  padding: 20px;
-
-  
-}

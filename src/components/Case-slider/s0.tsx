@@ -29,16 +29,15 @@ const S0 = () => {
     slidesToShow: 4,  // 화면에 보여질 슬라이드 수
     slidesToScroll: 4, // 슬라이드를 넘길 때 이동할 슬라이드 수
     dots: true,
-
+    
     arrows: false, //옆으로 이동하는 화살표 표시 여부임
-
     
   };
 
   return (
     <div className="s0">
       <div className='s0-slider0-ww'>
-        <Slider {...settings}>
+        <Slider className='s0-slider'{...settings}>
           {slides.map((slide) => (
             <div key={slide.id} className="s0-slide-content">
               <img src={slide.image} alt={`Slide ${slide.id}`} className="s0-slide-image" />

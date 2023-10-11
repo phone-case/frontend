@@ -50,7 +50,7 @@ const Create: React.FC = () => {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header /> 
       <div>
         <h1>Image Upload</h1>
         <input type="file" accept="image/*" onChange={handleImageChange} />

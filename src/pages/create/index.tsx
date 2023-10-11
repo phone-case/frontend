@@ -8,10 +8,17 @@ import './style.css'
 const Create: React.FC = () => {
 
   return (
+  <div>
     <div>
       <Header />
-      <ImagesUpload />
     </div>
+    <div>
+      <ImagesUpload/>
+    </div>
+    <div>
+      <ChatBox />
+    </div>
+  </div>
   );
 };
 

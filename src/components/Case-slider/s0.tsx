@@ -31,6 +31,8 @@ const S0 = () => {
     dots: true,
 
     arrows: false, //옆으로 이동하는 화살표 표시 여부임
+
+    
   };
 
   return (

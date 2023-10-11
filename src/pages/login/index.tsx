@@ -46,36 +46,35 @@ function Login() {
       <Header />
       <div className="login-container">
         <div className="login-text-container">
-          <div className="line"></div>
-        </div>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="ID"
-            className="login-input"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="login-input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <div className="button-container">
-            <button type="submit" className="login-button">
-              login
-            </button>
-            <Link to="/signup">
-              <button type="button" className="register-button">
-                signup
+          <form className="login-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="ID"
+              className="login-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <div className="button-container">
+              <button type="submit" className="login-button">
+                login
               </button>
-            </Link>
-          </div>
-        </form>
+              <Link to="/signup">
+                <button type="button" className="register-button">
+                  signup
+                </button>
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

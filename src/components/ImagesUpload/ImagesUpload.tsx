@@ -46,7 +46,6 @@ const Create: React.FC = () => {
 
   return (
     <div>
-      <h1>Image Upload</h1>
       <input type="file" accept="image/*" onChange={handleImageChange} />
       <input
         type="text"

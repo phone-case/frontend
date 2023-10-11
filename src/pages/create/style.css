@@ -3,3 +3,78 @@ body { /* 빈공간 없앰 */
   padding: 0; 
 }
 
+.mid {
+  display: flex;
+  flex-direction: row; /* 가로 정렬을 위해 flex 방향을 수정합니다. */
+  align-items: center;
+  justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
+  height: 100vh;
+  
+}
+
+.left-box{
+  width: 35%;
+  float: left;
+  margin-left: 6%;
+  margin-top: 2%;
+  border: 3px solid blue;
+}
+
+.image-box {
+  background-image: url('./../../../public/img/phone1.jpg');
+  background-size: 100% 100%; /* 너비를 100%로 설정하여 원본 이미지 비율 유지 */
+  width: 100%; 
+  padding-bottom: 100%;
+}
+
+.right-box{
+  width: 30%;
+  margin-right: 7%;
+  float: right;
+  height: 50%;
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column; /* 내용을 수직으로 정렬 */
+  justify-content: center; /* 수직 가운데 정렬 */
+  align-items: center; /* 수평 가운데 정렬 */
+  text-align: center; /* 텍스트 수평 가운데 정렬 */
+  height: 100%; 
+  vertical-align: middle;
+}
+
+.text {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  color: black;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  overflow: hidden;
+  line-height: 1.6; /* 텍스트의 높이를 조절 */
+  vertical-align: middle; /* 수직 가운데 정렬을 중앙으로 변경합니다. */
+  text-align: center; /* 수평 가운데 정렬 */
+  box-sizing: border-box; /* 크기에 경계선과 여백 포함 */
+  margin: 0; /* 마진 제거 */
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+
+
+

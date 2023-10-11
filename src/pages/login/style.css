@@ -1,4 +1,6 @@
 /* style.css */
+
+/* 스타일링된 컨테이너 */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -7,85 +9,72 @@
   height: 100vh;
   background-color: #f2f2f2;
   position: relative;
-  border-radius: 10px; /* 모든 모서리를 10px만큼 둥글게 만듭니다. */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.login-text-container {
-  text-align: right;
-  position: absolute; /* 우측 상단으로 이동하기 위해 절대 위치로 설정합니다. */
-  top: 10px; /* 상단 여백 조절 */
-  right: 20px; /* 우측 여백 조절 */
-}
-
-.login-text {
-  font-size: 24px;
-}
-
-.line {
-  width: 100%;
-  border-bottom: 1px solid #000;
-  margin: 10px 0; /* 선 아래로 이동 */
-}
-
-/* 나머지 스타일은 이전과 동일합니다. */
-
-
+/* 로그인 폼 스타일 */
 .login-form {
+  width: 600px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 auto; /* 가로 가운데 정렬 */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-input {
-  width: 100%;
-  padding: 50px; /* 내부 패딩을 늘려 크기를 조절합니다. */
-  margin-bottom: 20px; /* 아래 여백을 늘립니다. */
+.login-button-container {
+  width: 600px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0 auto; /* 가로 가운데 정렬 */
+  text-align: center; /* 내부 텍스트를 가로 가운데 정렬 */
+}
+
+
+
+/* 로그인 입력 필드 스타일 */
+.login-form input {
+  width: 75%;
+  padding: 10px;
+  margin-top: 20px ;
+  margin-bottom: 10px;
   border: none;
-  border-radius: 50px; /* 둥글게 만들기 위해 border-radius 값을 늘립니다. */
+  border-radius: 20px;
   font-size: 16px;
-  outline: none; /* 포커스 효과 제거 */
-  border:1px solid#000;
+  outline: none;
+  border: 1px solid #ccc;
 }
 
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-/* style.css */
-.login-button {
+/* 로그인 버튼 스타일 */
+.login-form button.login-button{
   background-color: mediumaquamarine;
   color: #fff;
   border: none;
-  border-radius: 60px; /* 둥글게 만들기 위해 border-radius 값을 늘립니다. */
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 20px; /* 버튼의 글자 크기를 늘립니다. */
-  padding:30px 190px; /* 버튼의 내부 패딩을 조절하여 크기를 조절합니다. */
-  width: 100%; /* 버튼이 폼의 100%를 채우도록 설정합니다. */
-  border:1px solid#000;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 75%;
 }
 
-.login-button:hover {
-  background-color: black;
-}
-
-.register-button {
+.login-form button.register-button{
   background-color: mediumaquamarine;
   color: #fff;
   border: none;
-  border-radius: 60px; /* 둥글게 만들기 위해 border-radius 값을 늘립니다. */
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 20px; /* 버튼의 글자 크기를 늘립니다. */
-  padding: 40px 170px; /* 버튼의 내부 패딩을 조절하여 크기를 조절합니다. */
-  width: 100%; /* 버튼이 폼의 100%를 채우도록 설정합니다. */
-  margin-top: 5px; /* 회원 가입 버튼과의 간격을 추가합니다. */
-  margin-left: 20px;
-  border:1px solid#000;
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 10px 20px;
+  width: 75%;
 }
 
-.register-button:hover {
+.login-form button.register-button:hover {
   background-color: black;
 }
-

@@ -90,12 +90,15 @@ function App() {
             <p><input type="password" name="confirm_password" placeholder="confirm_password" onChange={checkPasswordMatch} className={getPasswordInputClassName()} /></p>
             <p><input type="text" name="name" placeholder="name" value={name} onChange={handleNameChange} /></p>
             <p><input type="submit" value="create" disabled={!isCreateButtonEnabled} onClick={handleCreateButtonClick} /></p>
-          </form>
-          
-          <button onClick={checkUsername}>Check ID</button>
 
-          {isIdTaken === true && <p>이미 사용 중인 아이디입니다.</p>}
-          {isIdTaken === false && <p>사용 가능한 아이디입니다.</p>}
+            
+          </form>
+          <div className="check-form">
+            <button onClick={checkUsername}>Check ID</button>
+
+            {isIdTaken === true && <p>이미 사용 중인 아이디입니다.</p>}
+            {isIdTaken === false && <p>사용 가능한 아이디입니다.</p>}
+            </div>
         </div>
       </div>
     </div>

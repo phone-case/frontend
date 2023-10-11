@@ -1,6 +1,6 @@
 
 .s1 {
-    position: relative; /* 배경 이미지를 포함하기 위해 부모 요소에 relative 포지션을 설정합니다. */
+    position: relative; 
   }
   
   /* .s1-background {

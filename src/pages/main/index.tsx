@@ -21,7 +21,7 @@ const SlickSlider = () => {
     accessibility: true, //키보드로 이동가능하게 하는건데 안됨 수발
     
     arrows: false, //옆으로 이동하는 화살표 표시 여부임
-    
+    swipe:false,
   };
 
   const sliderRef = useRef<Slider>(null);

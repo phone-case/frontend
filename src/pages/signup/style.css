@@ -90,7 +90,7 @@
   text-align: center;
 }
 
-/* 비밀번호 일치 상태 스타일 */
+/* 비밀번호 일치 상태 스타일 */ 
 .create-form input[type="password"].valid {
   border: 1px solid green;
 }

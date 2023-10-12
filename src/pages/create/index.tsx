@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
-import './style.css'
-
+import './style.css';
 
 const Create: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [imageName, setImageName] = useState<string>('');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -19,7 +19,17 @@ const Create: React.FC = () => {
         setImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
+      // 파일 선택 후 모달 닫기
+      setIsModalOpen(false);
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleSubmit = async () => {
@@ -50,30 +60,31 @@ const Create: React.FC = () => {
   return (
     <div>
       <div className='header-div'>
-        <Header/>
+        <Header />
       </div>
       <div className='mid'>
         <div className='left-box'>
           <div className='image-box'>
             {imagePreview && <img src={imagePreview} alt="Preview" />}
           </div>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <button onClick={openModal}>이미지 불러오기</button>
           <button onClick={handleSubmit}>Upload</button>
         </div>
         <div className='right-box'>
-        {/*<input
-          type="text"
-          placeholder="Image Name"
-          value={imageName}
-          onChange={(e) => setImageName(e.target.value)}
-        />*/}
           <div className="chat-box">
-          <textarea id='textarea'
-            className='text'
-          ></textarea>
+            <textarea id='textarea' className='text'></textarea>
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>이미지 불러오기</h2>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <button onClick={closeModal}>닫기</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Main from './pages/main/index'
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
 import Create from './pages/create/index';
+import Design from './pages/design/index';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/signup" element={<Signup />} /> 
           <Route path="/create" element={<Create />} />
+          <Route path="/design" element={<Design />} />
         </Routes>
       </Router>
     </UserProvider>

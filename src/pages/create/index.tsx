@@ -55,7 +55,7 @@ const Create: React.FC = () => {
       <div className='mid'>
         <div className='left-box'>
           <div className='image-box'>
-            
+            {imagePreview && <img src={imagePreview} alt="Preview" />}
           </div>
           <input type="file" accept="image/*" onChange={handleImageChange} />
           <button onClick={handleSubmit}>Upload</button>
@@ -73,8 +73,6 @@ const Create: React.FC = () => {
           ></textarea>
           </div>
         </div>
-        
-        {imagePreview && <img src={imagePreview} alt="Preview" />}
       </div>
     </div>
   );

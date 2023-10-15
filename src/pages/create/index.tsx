@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect  } from 'react';
 import Header from '../../components/Header/Header';
 import './style.css';
 
@@ -7,6 +7,23 @@ const Create: React.FC = () => {
   const [imageName, setImageName] = useState<string>('');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const contentEditableRef = useRef<HTMLDivElement>(null);
+  const [isPlaceholderVisible, setPlaceholderVisible] = useState(false);
+
+  useEffect(() => {
+    if (contentEditableRef.current) {
+      const text = contentEditableRef.current.innerText;
+      setPlaceholderVisible(text === '');
+    }
+  }, []);
+
+  const handleInput = () => {
+    if (contentEditableRef.current) {
+      const text = contentEditableRef.current.innerText;
+      setPlaceholderVisible(text === '');
+    }
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -71,9 +88,21 @@ const Create: React.FC = () => {
           <button onClick={handleSubmit}>Upload</button>
         </div>
         <div className='right-box'>
-          <div className="chat-box">
-            <textarea id='textarea' className='text'></textarea>
-          </div>
+        <form onSubmit={handleSubmit}>
+            <div className="chat-box">
+              <div
+                className="text"
+                ref={contentEditableRef}
+                contentEditable={true}
+                onInput={handleInput}
+              >
+                {isPlaceholderVisible && '시작하세요...'}
+              </div>
+              <div className='button-box'>
+                <button type="submit">전송</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       {isModalOpen && (

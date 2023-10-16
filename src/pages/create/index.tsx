@@ -96,11 +96,11 @@ const Create: React.FC = () => {
                 contentEditable={true}
                 onInput={handleInput}
               >
-                {isPlaceholderVisible && '시작하세요...'}
+                {isPlaceholderVisible && '섹스 하고싶다~'}
               </div>
             </div>
             <div className='button-box'>
-                <button type="submit">전송</button>
+                <button type="submit"></button>
               </div>
           </form>
         </div>

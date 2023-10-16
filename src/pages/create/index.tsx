@@ -98,10 +98,10 @@ const Create: React.FC = () => {
               >
                 {isPlaceholderVisible && '시작하세요...'}
               </div>
-              <div className='button-box'>
+            </div>
+            <div className='button-box'>
                 <button type="submit">전송</button>
               </div>
-            </div>
           </form>
         </div>
       </div>

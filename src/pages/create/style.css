@@ -180,4 +180,11 @@ transform: translate(-50%, -50%);
   background-color: #0056b3;
 }
 
+.modal button:disabled {
+  background-color: lightgray;
+  color: gray;
+}
 
+.modal button:disabled:hover {
+  cursor: default;
+}

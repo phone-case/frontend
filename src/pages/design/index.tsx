@@ -31,8 +31,8 @@ function Design() {
               </div> 
                 ) : (
               <div className='case-image-box'>
-                <img className='case-image' src='/case.jpg' alt='카메라없는 이미지' />
-                <img className='case-camera-image' src='/case-camera.jpg' alt='카메라' />
+                <img className='case-image' src='/img/case.jpg' alt='카메라없는 이미지' />
+                <img className='case-camera-image' src='/img/case-camera.jpg' alt='카메라' />
               </div>
             )}
           </div>

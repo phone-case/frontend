@@ -51,7 +51,7 @@ function Design() {
                 />
                 <img
                   className="case-camera-image"
-                  src="/img/case-camera.jpg"
+                  src="/img/case-camera.png"
                   alt="카메라"
                 />
               </div>

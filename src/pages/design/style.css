@@ -56,16 +56,17 @@
 }
 
 .case-image {
+  position: relative; 
   z-index: 1;
-  
 }
 
 .case-camera-image {
+  position: relative; 
   z-index: 3;
-  border: 3px solid rgb(0, 251, 255);
-  
 }
 
 .select-img {
+  position: relative; 
   z-index: 2;
 }
+

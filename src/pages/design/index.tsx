@@ -22,15 +22,22 @@ function Design() {
         accept="image/*"
         onChange={handleImageChange}
       />
-      {selectedImage && (
-        <div className='design-mid'>
-          <div className='design-box'>
-            <div className='design-image-box'>
+      <div className='design-mid'>
+        <div className='design-box'>
+          <div className='design-image-box'>
+            {selectedImage ? (
+              <div className='select-img'>
                 <img src={URL.createObjectURL(selectedImage)} alt="선택한 그림" />
-            </div>
+              </div> 
+                ) : (
+              <div className='case-image-box'>
+                <img className='case-image' src='/case.jpg' alt='카메라없는 이미지' />
+                <img className='case-camera-image' src='/case-camera.jpg' alt='카메라' />
+              </div>
+            )}
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

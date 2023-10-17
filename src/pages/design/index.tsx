@@ -1,9 +1,12 @@
 import React, { useState, ChangeEvent } from 'react';
-import './style.css';
+import Draggable from 'react-draggable';
+import { Resizable } from 'react-resizable';
 
+import './style.css';
 
 function Design() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
 
   // 이미지를 선택
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +17,7 @@ function Design() {
     }
   };
 
-
+  
   return (
     <div>
       <input
@@ -22,17 +25,35 @@ function Design() {
         accept="image/*"
         onChange={handleImageChange}
       />
-      <div className='design-mid'>
-        <div className='design-box'>
-          <div className='design-image-box'>
+      <div className="design-mid">
+        <div className="design-box">
+          <div className="design-image-box">
             {selectedImage ? (
-              <div className='select-img'>
-                <img src={URL.createObjectURL(selectedImage)} alt="선택한 그림" />
-              </div> 
-                ) : (
-              <div className='case-image-box'>
-                <img className='case-image' src='/img/case.jpg' alt='카메라없는 이미지' />
-                <img className='case-camera-image' src='/img/case-camera.jpg' alt='카메라' />
+              <Draggable>
+                    <Resizable
+                      width={200}
+                      height={200}
+                    >
+                  <div className="select-img">
+                    <img
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="선택한 그림"
+                    />
+                  </div>
+                </Resizable>
+              </Draggable>
+            ) : (
+              <div className="case-image-box">
+                <img
+                  className="case-image"
+                  src="/img/case.jpg"
+                  alt="카메라없는 이미지"
+                />
+                <img
+                  className="case-camera-image"
+                  src="/img/case-camera.jpg"
+                  alt="카메라"
+                />
               </div>
             )}
           </div>

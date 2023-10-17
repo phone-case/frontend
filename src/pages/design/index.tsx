@@ -31,8 +31,8 @@ function Design() {
             {selectedImage ? (
               <Draggable>
                     <Resizable
-                      width={300} //처음뜰때 이미지 크기임
-                      height={300}
+                      width={100} //처음뜰때 이미지 크기임
+                      height={100}
                     >
                   <div className="select-img">
                     <img

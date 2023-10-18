@@ -84,8 +84,11 @@ const Create: React.FC = () => {
           <div className='image-box'>
             {imagePreview && <img src={imagePreview} alt="Preview" />}
           </div>
-          <button onClick={openModal}>이미지 불러오기</button>
-          <button onClick={handleSubmit}>Upload</button>
+          <hr />
+          <div className="button-container">
+            <button className='image' onClick={openModal}>이미지 불러오기</button>
+            <button className='upload' onClick={handleSubmit}>Upload</button>
+          </div>
         </div>
         <div className='right-box'>
         <form onSubmit={handleSubmit}>
@@ -96,7 +99,7 @@ const Create: React.FC = () => {
                 contentEditable={true}
                 onInput={handleInput}
               >
-                {isPlaceholderVisible && '섹스 하고싶다~'}
+                {isPlaceholderVisible && '입력하세요.'}
               </div>
             </div>
             <div className='button-box'>

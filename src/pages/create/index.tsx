@@ -165,7 +165,7 @@ const Create: React.FC = () => {
                 contentEditable={true}
                 onInput={handleInput}
               >
-                {isPlaceholderVisible && '섹스 하고싶다~'}
+                {isPlaceholderVisible && '입력하세요.'}
               </div>
             </div>
             <div className='button-box'>

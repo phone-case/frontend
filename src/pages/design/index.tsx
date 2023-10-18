@@ -28,12 +28,13 @@ function Design() {
       <div className="design-mid">
         <div className="design-box">
           <div className="design-image-box">
+
             {selectedImage ? (
-              <Draggable>
-                    <Resizable
-                      width={100} //처음뜰때 이미지 크기임
-                      height={100}
-                    >
+              <Draggable bounds="parent"> 
+                <Resizable
+                  width={200} // 초기 너비
+                  height={200} // 초기 높이
+                >
                   <div className="select-img">
                     <img
                       src={URL.createObjectURL(selectedImage)}
@@ -42,20 +43,8 @@ function Design() {
                   </div>
                 </Resizable>
               </Draggable>
-            ) : (
-              <div className="case-image-box">
-                <img
-                  className="case-image"
-                  src="/img/case.jpg"
-                  alt="카메라없는 이미지"
-                />
-                <img
-                  className="case-camera-image"
-                  src="/img/case-camera.png"
-                  alt="카메라"
-                />
-              </div>
-            )}
+            ) : null}
+            
           </div>
         </div>
       </div>

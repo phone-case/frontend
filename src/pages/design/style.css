@@ -1,6 +1,6 @@
 .design-mid {
   display: flex;
-  flex-direction: row; /* 가로 정렬을 위해 flex 방향을 수정합니다. */
+  flex-direction: flex; /* 가로 정렬을 위해 flex 방향을 수정합니다. */
   align-items: center;
   justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
   height: 100vh;
@@ -12,6 +12,7 @@
   float: left;
   margin-left: 6%;
   margin-top: 2%;
+
   border: 3px solid blue;
 }
 
@@ -26,9 +27,6 @@
 }
 
 .design-image-box img {
-
-  max-width: 100px;
-  max-height: 100px;
   position: absolute;
   border: 4px solid green;
   

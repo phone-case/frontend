@@ -5,6 +5,8 @@ import Draggable from 'react-draggable';
 
 function Design() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [size, setSize] = useState({ width: 100, height: 100 }); // 초기 크기 설정
+
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -13,11 +15,17 @@ function Design() {
     }
   };
 
-  const handleResize = (e: React.SyntheticEvent, data: any) => {
+  const handleResize = (
+    e: React.SyntheticEvent,
+    data: { size: { width: number; height: number } }
+  ) => {
     // Handle resize here
   };
 
-  const handleDrag = (e: any, data: any) => {
+  const handleDrag = (
+    e: Event,
+    data: { x: number; y: number; deltaX: number; deltaY: number }
+  ) => {
     // Handle drag here
   };
 
@@ -38,9 +46,13 @@ function Design() {
                 bounds="parent"> 
 
                   <Resizable
-                    width={200} // 초기 너비
-                    height={200} // 초기 높이
-                  
+                    width={size.width}
+                    height={size.height}
+                    onResize={handleResize}
+
+                    // 추가 옵션들
+                    minConstraints={[50, 50]}  // 크기의 최소 제한
+                    maxConstraints={[500, 500]}  // 크기의 최대 제한
                   >
                     <div className="select-img">
                       <img

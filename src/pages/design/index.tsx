@@ -1,20 +1,24 @@
 import React, { useState, ChangeEvent } from 'react';
-import Draggable from 'react-draggable';
-import { Resizable } from 'react-resizable';
-
 import './style.css';
+import { Resizable } from 'react-resizable';
+import Draggable from 'react-draggable';
 
 function Design() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  
 
-  // 이미지를 선택
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      // 선택한 이미지를 상태에 설정
       setSelectedImage(selectedFile);
     }
+  };
+
+  const handleResize = (e: React.SyntheticEvent, data: any) => {
+    // Handle resize here
+  };
+
+  const handleDrag = (e: any, data: any) => {
+    // Handle drag here
   };
 
   
@@ -31,10 +35,8 @@ function Design() {
 
               {selectedImage ? (
                 <Draggable 
-                bounds="parent" //움직일수있는 범위 정함
-                
-                > 
-                  
+                bounds="parent"> 
+
                   <Resizable
                     width={200} // 초기 너비
                     height={200} // 초기 높이

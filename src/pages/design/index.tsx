@@ -8,6 +8,8 @@ function Design() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isResizing, setIsResizing] = useState(false);
+  const [imageSize, setImageSize] = useState({ width: 200, height: 200 }); // 초기 크기 설정
+
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -22,6 +24,11 @@ function Design() {
     }
   };
 
+  const handleResize = (e: Event, direction: string, ref: HTMLElement, d: { width: number, height: number }) => {
+    // 이미지 크기 조절 로직
+    setImageSize({ width: imageSize.width + d.width, height: imageSize.height + d.height });
+  };
+  
   return (
     <div>
       <input
@@ -35,7 +42,6 @@ function Design() {
             {selectedImage ? (
               <Draggable bounds="parent" onDrag={handleDrag}>
                 <Resizable
-                  size={{ width: 200, height: 200 }}
                   enable={{
                     top: false, right: true, bottom: false, left: false,
                     topRight: false, bottomRight: true, bottomLeft: false, topLeft: false,

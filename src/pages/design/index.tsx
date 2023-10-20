@@ -1,12 +1,12 @@
 import React, { useState, ChangeEvent } from 'react';
 import './style.css';
-import { Resizable } from 'react-resizable';
-import Draggable from 'react-draggable';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 function Design() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [size, setSize] = useState({ width: 100, height: 100 }); // 초기 크기 설정
-
+  const [crop, setCrop] = useState({ aspect: 1 });
+  const [completedCrop, setCompletedCrop] = useState(null);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -15,21 +15,18 @@ function Design() {
     }
   };
 
-  const handleResize = (
-    e: React.SyntheticEvent,
-    data: { size: { width: number; height: number } }
-  ) => {
-    // Handle resize here
+  const handleCropChange = (newCrop) => {
+    setCrop(newCrop);
   };
 
-  const handleDrag = (
-    e: Event,
-    data: { x: number; y: number; deltaX: number; deltaY: number }
-  ) => {
-    // Handle drag here
+  const handleImageLoaded = (image) => {
+    // Do something when the image is loaded
   };
 
-  
+  const handleCompleteCrop = (crop) => {
+    setCompletedCrop(crop);
+  };
+
   return (
     <div>
       <input
@@ -37,36 +34,21 @@ function Design() {
         accept="image/*"
         onChange={handleImageChange}
       />
-        <div className="design-mid">
-          <div className="design-box">
-            <div className="design-image-box">
-
-              {selectedImage ? (
-                <Draggable 
-                bounds="parent"> 
-
-                  <Resizable
-                    width={size.width}
-                    height={size.height}
-                    onResize={handleResize}
-
-                    // 추가 옵션들
-                    minConstraints={[50, 50]}  // 크기의 최소 제한
-                    maxConstraints={[500, 500]}  // 크기의 최대 제한
-                  >
-                    <div className="select-img">
-                      <img
-                        src={URL.createObjectURL(selectedImage)}
-                        alt="선택한 그림"
-                      />
-                    </div>
-                  </Resizable>
-                </Draggable>
-              ) : null}
-              
-            </div>
+      <div className="design-mid">
+        <div className="design-box">
+          <div className="design-image-box">
+            {selectedImage ? (
+              <ReactCrop
+                src={URL.createObjectURL(selectedImage)}
+                crop={crop}
+                onImageLoaded={handleImageLoaded}
+                onComplete={handleCompleteCrop}
+                onChange={handleCropChange}
+              />
+            ) : null}
           </div>
         </div>
+      </div>
     </div>
   );
 }

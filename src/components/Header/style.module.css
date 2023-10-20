@@ -29,7 +29,6 @@
 
 
 .login-button {
-
   position: absolute;
   top: 8px;
   right: 20px;
@@ -38,4 +37,12 @@
   /* background-color: aquamarine; */
 }
 
-
+.logout{
+  background-color: mediumaquamarine;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px 15px;
+}

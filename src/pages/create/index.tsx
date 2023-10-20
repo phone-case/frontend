@@ -251,7 +251,13 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
-              <button type="submit"></button>
+            {!imagePreview ? (
+            <div>
+              <button type="submit" className='noimage'></button>
+            </div>
+            ) : (
+              <button type="submit" className='image-change'></button>
+            )}
             </div>
           </form>
         </div>

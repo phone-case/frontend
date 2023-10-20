@@ -124,7 +124,7 @@ hr{
   height:100%;
 
 }
-.button-box button{
+.noimage{
   border: 2px solid #ffffff;
   font-size: 110px;
   padding: 30px 60px;
@@ -134,8 +134,27 @@ hr{
 }
 
 
-.button-box button::before {
+.noimage::before {
 content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+position: absolute;
+left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
+transform: translate(-50%, -50%);
+color:mediumaquamarine;
+}
+
+.image-change{
+  border: 2px solid #ffffff;
+  font-size: 110px;
+  padding: 30px 60px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.image-change::before {
+content: '＆'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
 position: absolute;
 left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
 top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */

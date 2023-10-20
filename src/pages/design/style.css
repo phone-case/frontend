@@ -1,1 +1,21 @@
- 
+.select-img{
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+} 
+
+.select-img img{
+
+  width: 100%;
+  height: 100%;
+
+} 
+
+.drag-handle{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: aqua;
+  cursor: move;
+}

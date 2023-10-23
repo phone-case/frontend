@@ -35,10 +35,9 @@ function Design() {
             {selectedImage ? (
               <Draggable bounds="parent" onDrag={handleDrag}>
                 <Resizable
-                  size={{ width: 200, height: 200 }}
                   enable={{
                     top: false, right: true, bottom: false, left: false,
-                    topRight: false, bottomRight: true, bottomLeft: false, topLeft: false,
+                    topRight: false, bottomRight: true, bottomLeft: true, topLeft: true,
                   }}
                 >
                   <div className="select-img">

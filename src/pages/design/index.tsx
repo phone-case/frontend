@@ -3,16 +3,19 @@ import { Resizable } from 're-resizable';
 import Draggable from 'react-draggable';
 import './style.css';
 
-
 function Design() {
   // 이미지 파일을 저장
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   // 이미지의 위치를 저장
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  
+
   // 리사이징 중인지 여부를 저장
   const [isResizing, setIsResizing] = useState(false);
+
+  // 드래그 활성/비활성 상태 추가
+  const [isDraggingEnabled, setIsDraggingEnabled] = useState(false); 
+
 
   // 이미지 선택 시 호출
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,6 +32,18 @@ function Design() {
     }
   };
 
+  // 드래그 핸들러 클릭 시 드래그 활성화
+  const handleMouseDown = () => {
+    setIsDraggingEnabled(true); 
+  };
+
+  // 드래그 핸들러 마우스 업 시 드래그 비활성화
+  const handleMouseUp = () => {
+    setIsDraggingEnabled(false); 
+  };
+
+
+
   return (
     <div>
       <input
@@ -41,32 +56,37 @@ function Design() {
         <div className='design-box'>
           <div className='design-img-box'>
             {selectedImage ? (
-              <Draggable 
-                bounds="parent" 
-                onDrag={handleDrag}>
-                
-                  <Resizable
-                    enable={{
-                      top: false, 
-                      right: true, 
-                      bottom: false, 
-                      left: false,
-                      topRight: false, 
-                      bottomRight: true, 
-                      bottomLeft: true, 
-                      topLeft: true,
-                    }}
+              <Draggable
+                bounds="parent"
+                onDrag={handleDrag}
+                disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
+                onStop={handleMouseUp} // 마우스업 드래그 비활성화
+              >
+                <Resizable
+                  enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
+                    top: false, 
+                    right: true, 
+                    bottom: false, 
+                    left: false,
+                    topRight: false, 
+                    bottomRight: true, 
+                    bottomLeft: false, 
+                    topLeft: true,
+                  }}
+                >
+                  <div className="select-img"
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
                   >
-                    <div className="select-img">
-                      <img
-                        src={URL.createObjectURL(selectedImage)}
-                        alt="선택한 그림"
-                      />
-                      <div className="drag-handle"/>
-                    </div>
-                  </Resizable>
+                    <img
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="선택한 그림"
+                    />
+                    <div className="drag-handle"/>
+                  </div>
+                </Resizable>
               </Draggable>
-                ) : null}
+            ) : null}
           </div>
         </div> 
       </div>

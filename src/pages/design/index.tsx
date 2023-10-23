@@ -16,6 +16,10 @@ function Design() {
   // 드래그 활성/비활성 상태 추가
   const [isDraggingEnabled, setIsDraggingEnabled] = useState(false); 
 
+  // 이미지 파일 경로 상태 추가
+  const [backgroundImage, setBackgroundImage] = useState(''); 
+
+
 
   // 이미지 선택 시 호출
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,11 +45,24 @@ function Design() {
   const handleMouseUp = () => {
     setIsDraggingEnabled(false); 
   };
+  
+  // 버튼 클릭 시 해당 이미지 파일 경로를 설정
+  const handleButtonClick = (imageFileName: string) => {
+    
+    if (imageFileName === '갤럭시') {
+      setBackgroundImage('/img/test1.jpg'); 
+    } else if (imageFileName === '아이폰') {
+      setBackgroundImage('/img/test2.jpg'); 
+    }
+  };
 
-
-
+  
   return (
     <div>
+      <div>
+        <button onClick={() => handleButtonClick('갤럭시')}>갤럭시</button>
+        <button onClick={() => handleButtonClick('아이폰')}>아이폰</button>
+      </div>
       <input
         type="file"
         accept="image/*"
@@ -54,13 +71,15 @@ function Design() {
 
       <div className="design-mid">
         <div className='design-box'>
-          <div className='design-img-box'>
+          <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})` }}>
             {selectedImage ? (
               <Draggable
                 bounds="parent"
                 onDrag={handleDrag}
                 disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
                 onStop={handleMouseUp} // 마우스업 드래그 비활성화
+                onStart={handleMouseDown} //마우스 다운 드래그 활성환
+                grid={[10, 10]} //선택한 이미지 이속업!
               >
                 <Resizable
                   enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활

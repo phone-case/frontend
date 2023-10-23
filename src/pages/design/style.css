@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-
 } 
 
 .select-img img{
@@ -10,7 +9,8 @@
   height: 100%;
 } 
 
-.drag-handle{
+/* 이미지 선택하면 파란색뜨는 그거 */
+.drag-handle{     
   position: absolute;
   width: 20px;
   height: 20px;

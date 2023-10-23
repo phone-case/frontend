@@ -29,6 +29,7 @@ function Design() {
         accept="image/*"
         onChange={handleImageChange}
       />
+
       <div className="design-mid">
         <div className='design-box'>
           <div className='design-img-box'>
@@ -36,8 +37,14 @@ function Design() {
               <Draggable bounds="parent" onDrag={handleDrag}>
                 <Resizable
                   enable={{
-                    top: false, right: true, bottom: false, left: false,
-                    topRight: false, bottomRight: true, bottomLeft: true, topLeft: true,
+                    top: false, 
+                    right: true, 
+                    bottom: false, 
+                    left: false,
+                    topRight: false, 
+                    bottomRight: true, 
+                    bottomLeft: true, 
+                    topLeft: true,
                   }}
                 >
                   <div className="select-img">

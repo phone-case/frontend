@@ -233,12 +233,19 @@ const Create: React.FC = () => {
       </div>
       <div className='mid'>
         <div className='left-box'>
+<<<<<<< Updated upstream
         <div className='image-box'>
           {imagePreview && <img src={imagePreview} alt="Preview" />}
         </div>
-
-        <button onClick={openImageModal}>이미지 불러오기</button>
-        <button onClick={openUploadModal} disabled={!imagePreview}>이미지 저장하기</button>
+=======
+          <div className='image-box'>
+            {imagePreview && <img src={imagePreview} alt="Preview" />}
+          </div>
+          <div className='button-container'>
+            <button onClick={openImageModal}>이미지 불러오기</button>
+            <button onClick={openUploadModal} disabled={!image}>이미지 저장하기</button>
+          </div>
+>>>>>>> Stashed changes
         </div>
         <div className='right-box'>
           <form onSubmit={handleTextSubmit}>
@@ -251,13 +258,21 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
-              <button type="submit">전송</button>
+<<<<<<< Updated upstream
+              <button type="submit"><span></span></button>
+=======
+              <button type="submit"></button>
+>>>>>>> Stashed changes
             </div>
           </form>
+          <div className='button-container'>
+            <button onClick={openImageModal}><span>이미지 불러오기</span></button>
+            <button onClick={openUploadModal} disabled={!imagePreview}><span>이미지 저장하기</span></button>
+          </div>
         </div>
         <Link to="/design">
           <button type="button" className="register-button">
-            디자인하러 가기
+            <span>디자인하러 가기</span>
           </button>
         </Link>
       </div>
@@ -266,11 +281,13 @@ const Create: React.FC = () => {
         <div className="modal">
           <div className="modal-content">
             <h2>이미지 불러오기</h2>
-            <button onClick={openPcLoadModal}>내PC에서 불러오기</button>
+            <button onClick={openPcLoadModal}><span>내PC에서 불러오기</span></button>
             &nbsp;
-            <button onClick={openServerLoadModal}>서버에서 불러오기</button>
+            <button onClick={openServerLoadModal}><span>서버에서 불러오기</span></button>
             <br /> <br />
-            <button onClick={closeImageModal}>닫기</button>
+          <div className='dick'>
+            <button onClick={closeImageModal}><span>닫기</span></button>
+          </div>
           </div>
         </div>
       )}
@@ -280,7 +297,9 @@ const Create: React.FC = () => {
           <div className="modal-content">
             <h2>내PC에서 불러오기</h2>
             <input type="file" accept="image/*" onChange={handleImageChange} />
+          <div className='pussy'>
             <button onClick={closePcLoadModal}>닫기</button>
+          </div>
           </div>
         </div>
       )}
@@ -306,7 +325,9 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>입력하신 이름의 이미지가 있습니다.</p>}
             {isIdTaken === false && <p>입력하신 이름의 이미지가 없습니다.</p>}
+          <div className='sex'>
             <button onClick={closeServerLoadModal}>닫기</button>
+          </div>
           </div>
         </div>
       )}

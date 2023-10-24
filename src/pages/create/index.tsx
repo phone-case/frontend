@@ -233,9 +233,19 @@ const Create: React.FC = () => {
       </div>
       <div className='mid'>
         <div className='left-box'>
+<<<<<<< Updated upstream
         <div className='image-box'>
           {imagePreview && <img src={imagePreview} alt="Preview" />}
         </div>
+=======
+          <div className='image-box'>
+            {imagePreview && <img src={imagePreview} alt="Preview" />}
+          </div>
+          <div className='button-container'>
+            <button onClick={openImageModal}>이미지 불러오기</button>
+            <button onClick={openUploadModal} disabled={!image}>이미지 저장하기</button>
+          </div>
+>>>>>>> Stashed changes
         </div>
         <div className='right-box'>
           <form onSubmit={handleTextSubmit}>
@@ -248,7 +258,11 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
+<<<<<<< Updated upstream
               <button type="submit"><span></span></button>
+=======
+              <button type="submit"></button>
+>>>>>>> Stashed changes
             </div>
           </form>
           <div className='button-container'>

@@ -68,7 +68,7 @@ function Login() {
                 login
               </button>
               <Link to="/signup">
-                <button type="button" className="register-button">
+                <button type="button" className="signup-button">
                   signup
                 </button>
               </Link>

@@ -26,7 +26,7 @@ body { /* 빈공간 없앰 */
   display: flex;
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
-  position: relative;
+  position: relative;;
 }
 
 .image-box img {
@@ -47,52 +47,57 @@ body { /* 빈공간 없앰 */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px; /* 버튼 사이에 간격을 주고 싶다면 이 부분을 조절하세요. */
+  position: fixed;
+  left:  0;
+  bottom: 0;
+  margin-bottom: 6%;
+  margin-left: 14%;
+  transform: translateX(50%);
+
 }
 .button-container button{
-  margin: 0 10px;;
+  margin: 0 10px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
   border-radius: 20px;
-}
-.button-container button:hover{
-  background: mediumaquamarine;
-  color:#fff;
-}
-.button-container button:before{
-  position: absolute;
-  content: '';
-  display: inline-block;
-  top: -180px;
-  left: 0;
-  width: 30px;
-  height: 100%;
-  background-color: #fff;
-  animation: shiny-btn1 3s ease-in-out infinite;
-}
-.button-container button:active{
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-  -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-inset -4px -4px 6px 0 rgba(255,255,255,.2),
-inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-}
-
-
-@-webkit-keyframes shiny-btn1 {
-  0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-  80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-  81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-  100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
-  }
-
-hr{
-  width: 100%;
   border: none;
-  border-top: 3px solid #ccc;
-  margin: 10px 0;
+
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  color: #fff;
+  background-color: #222;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
 }
+.button-container button span {
+  position: relative; 
+  z-index: 1;
+}
+
+.button-container button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: mediumaquamarine;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.button-container button:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+
 
 .right-box {
   width: 65%;
@@ -124,22 +129,31 @@ hr{
   height:100%;
 
 }
-.noimage{
-  border: 2px solid #ffffff;
+
+.button-box button{
+  border: 2px solid white;
   font-size: 110px;
   padding: 30px 60px;
   position: relative;
-  background-color: transparent;
+  background-color: white;
   cursor: pointer;
 }
 
 
-.noimage::before {
+.button-box button:before {
 content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
 position: absolute;
 left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
 top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
 transform: translate(-50%, -50%);
+color:black;
+}
+.button-box button:hover:after{
+  content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+  position: absolute;
+  left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+  top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
+  transform: translate(-50%, -50%);
 color:mediumaquamarine;
 }
 
@@ -203,6 +217,56 @@ color:mediumaquamarine;
   content: "시작하세요...";
   color: #ccc;
 }
+.register-button {
+  position: fixed;
+  bottom: 15%;
+  right: 0;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  overflow: hidden;
+  
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  color: #fff;
+  background-color: #222;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  
+}
+
+
+.register-button span {
+  position: relative; 
+  z-index: 1;
+}
+
+.register-button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 420%;
+  width: 120%;
+  background: mediumaquamarine;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.register-button:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
 
 .modal {
   display: flex;
@@ -225,6 +289,7 @@ color:mediumaquamarine;
   width: 80%;
   max-width: 400px; /* 모달 최대 너비 조절 */
   text-align: center;
+  border: none;
 }
 
 .modal h2 {
@@ -238,18 +303,6 @@ color:mediumaquamarine;
   margin-bottom: 20px;
 }
 
-.modal button {
-  background-color: #0074d9;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.modal button:hover {
-  background-color: #0056b3;
-}
 
 .modal button:disabled {
   background-color: lightgray;
@@ -258,4 +311,119 @@ color:mediumaquamarine;
 
 .modal button:disabled:hover {
   cursor: default;
+}
+
+.modal button {
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  background-color: #4dccc6;
+  background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  line-height: 42px;
+}
+.modal button:hover{
+  background-color: #89d8d3;
+  background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.modal button span {
+  border:none;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.modal button:before,
+.modal button:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.modal button:before {
+  height: 0%;
+  width: .1px;
+}
+.modal button:after {
+  width: 0%;
+  height: .1px;
+}
+.modal button:hover:before {
+  height: 100%;
+}
+.modal button:hover:after {
+  width: 100%;
+}
+.modal button span:before,
+.modal button span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.modal button span:before {
+  width: .1px;
+  height: 0%;
+}
+.modal button span:after {
+  width: 0%;
+  height: .1px;
+}
+.modal button span:hover:before {
+  height: 100%;
+}
+.modal button span:hover:after {
+  width: 100%;
+}
+
+.dick button{
+  background:mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
+}
+.dick button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
+}
+
+.pussy button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
+}
+.pussy button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
+}
+.sex button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
+}
+.sex button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 5px 20px;
 }

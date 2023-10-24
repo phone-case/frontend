@@ -191,7 +191,7 @@ const Create: React.FC = () => {
       const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
       const imageFile = new File([response.data], fileName, { type: response.data.type });
       setImage(imageFile);
-      
+
     } catch (error) {
       console.error('이미지 불러오기에 실패했습니다.', error);
     }
@@ -284,9 +284,6 @@ const Create: React.FC = () => {
           {responseData && responseData.length > 0 &&(
             <button onClick={openImageClickModal}>이미지 선택하기</button>
           )}
-              <button type="submit"></button>
-            </div>
-          </form>
           <div className='button-container'>
             <button onClick={openImageModal}><span>이미지 불러오기</span></button>
             <button onClick={openUploadModal} disabled={!imagePreview}><span>이미지 저장하기</span></button>
@@ -313,6 +310,7 @@ const Create: React.FC = () => {
           <button onClick={closeImageClickModal}>닫기</button>
         </div>
       )}
+
       {isImageModalOpen && (
         <div className="modal">
           <div className="modal-content">

@@ -15,6 +15,8 @@ const Create: React.FC = () => {
   const [isPcLoadModalOpen, setIsPcLoadModalOpen] = useState(false);
   const [isServerLoadModalOpen, setIsServerLoadModalOpen] = useState(false);
 
+  const [isImageClickModalOpen, setIsImageClickModalOpen] = useState(false);
+
   const [content, setContent] = useState<string>('');
 
   const [customFilename, setCustomFilename] = useState<string>('');
@@ -26,6 +28,9 @@ const Create: React.FC = () => {
   const contentEditableRef = useRef<HTMLDivElement>(null);
   const [isPlaceholderVisible, setPlaceholderVisible] = useState(false);
 
+  const [responseData, setResponseData] = useState<string[]>([]);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+
   
   useEffect(() => {
     if (contentEditableRef.current) {
@@ -33,13 +38,6 @@ const Create: React.FC = () => {
       setPlaceholderVisible(text === '');
     }
   }, []);
-
-  const handleInput = () => {
-    if (contentEditableRef.current) {
-      const text = contentEditableRef.current.innerText;
-      setPlaceholderVisible(text === '');
-    }
-  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -109,6 +107,15 @@ const Create: React.FC = () => {
     setIsServerLoadModalOpen(false);
   };
 
+  const openImageClickModal = () => {
+    setIsImageClickModalOpen(true);
+  };
+
+
+  const closeImageClickModal = () => {
+    setIsImageClickModalOpen(false);
+  };
+
   const handleDownload = () => {
     if (imagePreview) {
       const filename = customFilename || imageName; // Use custom filename if provided, else use the original image name
@@ -163,13 +170,30 @@ const Create: React.FC = () => {
         const response = await axios.post('/api/submit_text', { content: text });
   
         if (response.status === 200) {
-          console.log(response.data.message); // 성공 메시지 또는 다른 응답 데이터 처리
+          const data = response.data;
+          console.log(data);
+          setResponseData(data);
         } else {
           console.error('폼 데이터 제출에 실패했습니다.');
         }
       } catch (error) {
         console.error('오류 발생:', error);
       }
+    }
+  };
+
+  const handleImageClick = async (imageUrl: string) => {
+    try {
+      const response = await axios.get(imageUrl, { responseType: 'blob' });
+      const blobUrl = URL.createObjectURL(response.data);
+      setImagePreview(blobUrl);
+
+      const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
+      const imageFile = new File([response.data], fileName, { type: response.data.type });
+      setImage(imageFile);
+      
+    } catch (error) {
+      console.error('이미지 불러오기에 실패했습니다.', error);
     }
   };
 
@@ -260,6 +284,9 @@ const Create: React.FC = () => {
             )}
             </div>
           </form>
+          {responseData && responseData.length > 0 &&(
+            <button onClick={openImageClickModal}>이미지 선택하기</button>
+          )}
         </div>
         <Link to="/design">
           <button type="button" className="register-button">
@@ -268,6 +295,20 @@ const Create: React.FC = () => {
         </Link>
       </div>
 
+      {isImageClickModalOpen && (
+        <div className="image-list">
+          {responseData.map((url, index) => (
+            <button onClick={() => handleImageClick(url)}>
+              <img
+                key={index}
+                src={url}
+                alt={`Image ${index + 1}`}
+              />
+            </button>
+          ))}
+          <button onClick={closeImageClickModal}>닫기</button>
+        </div>
+      )}
       {isImageModalOpen && (
         <div className="modal">
           <div className="modal-content">

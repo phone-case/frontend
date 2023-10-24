@@ -9,7 +9,6 @@ body { /* 빈공간 없앰 */
   align-items: center;
   justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
   height: 100vh;
-  
 }
 
 .left-box{
@@ -45,25 +44,22 @@ body { /* 빈공간 없앰 */
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  position: fixed;
-  left:  0;
-  bottom: 0;
-  margin-bottom: 6%;
-  margin-left: 14%;
-  transform: translateX(50%);
-
+  position: absolute;
+  margin-top: 5px;
+  
+  
 }
-.button-container button{
+.button-container button {
   margin: 0 10px;
   padding: 10px 20px;
   font-size: 15px;
   overflow: hidden;
+  float: right;
   transition: all 0.3s ease;
   border-radius: 20px;
   border: none;
-
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -71,10 +67,11 @@ body { /* 빈공간 없앰 */
   position: relative;
   color: #fff;
   background-color: #222;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
 }
+
 .button-container button span {
-  position: relative; 
+  position: relative;
   z-index: 1;
 }
 
@@ -92,15 +89,24 @@ body { /* 빈공간 없앰 */
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
 
-.button-container button:hover:after {
+/* 활성화 상태일 때 hover 효과 유지 */
+.button-container button:not(:disabled):hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
+.button-container button:disabled {
+  background-color: #CCCCCC;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+
+
 
 
 .right-box {
-  width: 65%;
+  width: 50%;
   margin-right: 7%;
   float: right;
   height: 50%; /* 또는 원하는 높이로 설정 */
@@ -396,33 +402,33 @@ color:mediumaquamarine;
   width: 100%;
 }
 
-.dick button{
+.close1 button{
   background:mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.dick button:hover{
+.close1 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
 
-.pussy button{
+.close2 button{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.pussy button:hover{
+.close2 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.sex button{
+.close3 button{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.sex button:hover{
+.close3 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;

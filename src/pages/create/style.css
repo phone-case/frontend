@@ -1,11 +1,29 @@
 body { /* 빈공간 없앰 */
   margin: 0; 
   padding: 0; 
+  
+}
+
+.create-container {
+  display: flex;
+
+}
+
+.create-left {
+  flex: 1;
+  padding: 20px;
+
+}
+
+.create-right {
+  flex: 1;
+  padding: 20px;
+
 }
 
 .mid {
   display: flex;
-  flex-direction: row; /* 가로 정렬을 위해 flex 방향을 수정합니다. */
+  flex-direction: flex; /* 가로 정렬을 위해 flex 방향을 수정합니다. */
   align-items: center;
   justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
   height: 100vh;
@@ -17,7 +35,7 @@ body { /* 빈공간 없앰 */
   float: left;
   margin-left: 6%;
   margin-top: 2%;
-  border: 3px solid blue;
+  border: 3px solid #ccc;
 }
 
 .image-box {
@@ -43,12 +61,63 @@ body { /* 빈공간 없앰 */
   margin: auto;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; /* 버튼 사이에 간격을 주고 싶다면 이 부분을 조절하세요. */
+}
+.button-container button{
+  margin: 0 10px;;
+  padding: 10px 20px;
+  font-size: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+}
+.button-container button:hover{
+  background: mediumaquamarine;
+  color:#fff;
+}
+.button-container button:before{
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -180px;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background-color: #fff;
+  animation: shiny-btn1 3s ease-in-out infinite;
+}
+.button-container button:active{
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+  -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+inset -4px -4px 6px 0 rgba(255,255,255,.2),
+inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+
+@-webkit-keyframes shiny-btn1 {
+  0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+  80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+  81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+  100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+  }
+
+hr{
+  width: 100%;
+  border: none;
+  border-top: 3px solid #ccc;
+  margin: 10px 0;
+}
+
 .right-box {
   width: 65%;
   margin-right: 7%;
   float: right;
   height: 50%; /* 또는 원하는 높이로 설정 */
-  border: 3px solid red;
+  border: 3px solid #ffffff;
 }
 .right-box form{
   width: 100%;
@@ -67,8 +136,29 @@ body { /* 빈공간 없앰 */
 }
 
 .button-box{
-  border: 3px solid blue;
-  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+
+}
+.button-box button{
+  border: 2px solid #ffffff;
+  font-size: 110px;
+  padding: 30px 60px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+
+.button-box button::before {
+content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+position: absolute;
+left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
+transform: translate(-50%, -50%);
+color:mediumaquamarine;
 }
 
 .text {
@@ -160,4 +250,11 @@ body { /* 빈공간 없앰 */
   background-color: #0056b3;
 }
 
+.modal button:disabled {
+  background-color: lightgray;
+  color: gray;
+}
 
+.modal button:disabled:hover {
+  cursor: default;
+}

@@ -82,7 +82,7 @@ function Design() {
       <div>
         <button onClick={() => handleButtonClick('갤럭시')}>갤럭시</button>
         <button onClick={() => handleButtonClick('아이폰')}>아이폰</button>
-        <button onClick={captureAndDownloadImage}>저장하기</button>
+        <button onClick={captureAndDownloadImage}>디자인 이미지 캡쳐</button>
 
       </div>
       <input

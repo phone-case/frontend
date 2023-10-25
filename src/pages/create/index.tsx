@@ -31,6 +31,9 @@ const Create: React.FC = () => {
   const [responseData, setResponseData] = useState<string[]>([]);
   const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
 
+  const [isLoading, setIsLoading] = useState(false);
+  
+
   
   useEffect(() => {
     if (contentEditableRef.current) {
@@ -164,6 +167,8 @@ const Create: React.FC = () => {
     if (contentEditableRef.current) {
       const text = contentEditableRef.current.innerText;
       setContent(text);
+
+      setIsLoading(true);
   
       try {
         // 텍스트 데이터를 서버로 전송
@@ -173,6 +178,7 @@ const Create: React.FC = () => {
           const data = response.data;
           console.log(data);
           setResponseData(data);
+          setIsLoading(false);
         } else {
           console.error('폼 데이터 제출에 실패했습니다.');
         }
@@ -272,6 +278,12 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
+            {isLoading ? (
+              <div className="loading-spinner">로딩 중...</div>
+            ) : (
+              <button type="submit" className='image-change'></button>
+            )}
+            {/* 
             {!imagePreview ? (
             <div>
               <button type="submit" className='noimage'></button>
@@ -279,6 +291,7 @@ const Create: React.FC = () => {
             ) : (
               <button type="submit" className='image-change'></button>
             )}
+            */}
             </div>
           </form>
           {responseData && responseData.length > 0 &&(
@@ -297,17 +310,22 @@ const Create: React.FC = () => {
       </div>
 
       {isImageClickModalOpen && (
-        <div className="image-list">
-          {responseData.map((url, index) => (
-            <button onClick={() => handleImageClick(url)}>
-              <img
-                key={index}
-                src={url}
-                alt={`Image ${index + 1}`}
-              />
-            </button>
-          ))}
-          <button onClick={closeImageClickModal}>닫기</button>
+        <div className='image-modal'>
+          <div className="image-list">
+            {responseData.map((url, index) => (
+              <button onClick={() => handleImageClick(url)}>
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Image ${index + 1}`}
+                />
+              </button>
+            ))}
+            <br />
+            <div className='image-close-button'>
+              <button onClick={closeImageClickModal}><span>닫기</span></button>
+            </div>
+          </div>
         </div>
       )}
 
@@ -319,9 +337,9 @@ const Create: React.FC = () => {
             &nbsp;
             <button onClick={openServerLoadModal}><span>서버에서 불러오기</span></button>
             <br /> <br />
-          <div className='dick'>
-            <button onClick={closeImageModal}><span>닫기</span></button>
-          </div>
+            <div className='dick'>
+              <button onClick={closeImageModal}><span>닫기</span></button>
+            </div>
           </div>
         </div>
       )}
@@ -331,9 +349,9 @@ const Create: React.FC = () => {
           <div className="modal-content">
             <h2>내PC에서 불러오기</h2>
             <input type="file" accept="image/*" onChange={handleImageChange} />
-          <div className='pussy'>
-            <button onClick={closePcLoadModal}>닫기</button>
-          </div>
+            <div className='pussy'>
+              <button onClick={closePcLoadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -359,9 +377,9 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>입력하신 이름의 이미지가 있습니다.</p>}
             {isIdTaken === false && <p>입력하신 이름의 이미지가 없습니다.</p>}
-          <div className='sex'>
-            <button onClick={closeServerLoadModal}>닫기</button>
-          </div>
+            <div className='sex'>
+              <button onClick={closeServerLoadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}

@@ -351,7 +351,7 @@ color:mediumaquamarine;
 .modal button {
   border: none;
   margin: 0 10px;
-  padding: 10px 20px;
+  padding: 0px 20px;
   font-size: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -434,33 +434,63 @@ color:mediumaquamarine;
 .close1 button{
   background:mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 .close1 button:hover{
   background: mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 
 .close2 button{
   background: mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 .close2 button:hover{
   background: mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 .close3 button{
   background: mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 .close3 button:hover{
   background: mediumaquamarine;
   color: white;
-  padding: 5px 20px;
+  padding: 0px 20px;
+}
+.close4 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close4 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close5 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close5 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close6 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close6 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
 }
 
 /* 모달 팝업 스타일 */
@@ -512,6 +542,6 @@ color:mediumaquamarine;
   color: #ffffff; /* 닫기 버튼의 텍스트 색을 조절하세요 */
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
 }

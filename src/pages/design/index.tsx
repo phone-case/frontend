@@ -5,6 +5,7 @@ import html2canvas from 'html2canvas';
 import './style.css';
 
 function Design() {
+  
   // 이미지 파일을 저장
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 

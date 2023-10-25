@@ -9,7 +9,6 @@ body { /* 빈공간 없앰 */
   align-items: center;
   justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
   height: 100vh;
-  
 }
 
 .left-box{
@@ -45,17 +44,14 @@ body { /* 빈공간 없앰 */
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  position: fixed;
-  left:  0;
-  bottom: 0;
-  margin-bottom: 6%;
-  margin-left: 14%;
-  transform: translateX(50%);
+  position: absolute;
+  margin-top: 5px;
 
+  
 }
-.button-container button{
+.button-container button {
   margin: 0 10px;
   padding: 10px 20px;
   font-size: 15px;
@@ -63,7 +59,6 @@ body { /* 빈공간 없앰 */
   transition: all 0.3s ease;
   border-radius: 20px;
   border: none;
-
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -71,10 +66,11 @@ body { /* 빈공간 없앰 */
   position: relative;
   color: #fff;
   background-color: #222;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
 }
+
 .button-container button span {
-  position: relative; 
+  position: relative;
   z-index: 1;
 }
 
@@ -92,19 +88,30 @@ body { /* 빈공간 없앰 */
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
 
-.button-container button:hover:after {
+/* 활성화 상태일 때 hover 효과 유지 */
+.button-container button:not(:disabled):hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.button-container button:disabled {
+  background-color: #CCCCCC;
+  color: #999999;
+  cursor: not-allowed;
 }
 
 
 
 .right-box {
-  width: 65%;
+  width: 50%;
   margin-right: 7%;
   float: right;
   height: 50%; /* 또는 원하는 높이로 설정 */
-  border: 3px solid #ffffff;
+  border: 3px solid white;
+
+  display: flex; /* 혹은 다른 레이아웃 속성을 사용하여 자식 요소들을 나란히 배치합니다. */
+  flex-direction: column; /* 자식 요소들을 수직으로 배치합니다. */
+  align-items: center; /* 자식 요소들을 수평 중앙으로 정렬합니다. */
 }
 .right-box form{
   width: 100%;
@@ -112,6 +119,7 @@ body { /* 빈공간 없앰 */
 }
 .chat-box {
   width: 60%;
+  flex: 1;
   display: flex;
   flex-direction: column; /* 내용을 수직으로 정렬 */
   justify-content: center; /* 수직 가운데 정렬 */
@@ -122,12 +130,14 @@ body { /* 빈공간 없앰 */
   float: right;
 }
 
+
 .button-box{
   display: flex;
   justify-content: center;
   align-items: center;
   height:100%;
 
+  flex-direction: column; /* 버튼을 세로로 정렬 */
 }
 
 .button-box button{
@@ -137,6 +147,7 @@ body { /* 빈공간 없앰 */
   position: relative;
   background-color: white;
   cursor: pointer;
+  margin-top: 200px;
 }
 
 
@@ -157,6 +168,7 @@ color:black;
 color:mediumaquamarine;
 }
 
+
 .image-change{
   border: 2px solid #ffffff;
   font-size: 110px;
@@ -175,6 +187,7 @@ top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
 transform: translate(-50%, -50%);
 color:mediumaquamarine;
 }
+
 
 .text {
   width: 100%;
@@ -217,6 +230,28 @@ color:mediumaquamarine;
   content: "시작하세요...";
   color: #ccc;
 }
+@media screen and (max-width: 768px) {
+  .text {
+    font-size: 18px;
+    max-height: 50%; /* 화면이 좁아질 때 최대 높이를 설정 */
+    overflow: auto; /* 스크롤 표시를 활성화하여 내용이 넘치면 스크롤됩니다. */
+  }
+}
+.choice button{
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 200px;
+}
+
+.choice button:hover {
+  background-color: #04a591;
+}
+
 .register-button {
   position: fixed;
   bottom: 15%;
@@ -278,7 +313,7 @@ color:mediumaquamarine;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 10;
+  z-index: 1000;
 }
 
 .modal-content {
@@ -396,99 +431,34 @@ color:mediumaquamarine;
   width: 100%;
 }
 
-.dick button{
+.close1 button{
   background:mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.dick button:hover{
+.close1 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
 
-.pussy button{
+.close2 button{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.pussy button:hover{
+.close2 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.sex button{
+.close3 button{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
 }
-.sex button:hover{
+.close3 button:hover{
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
-}
-
-/* 모달 팝업 스타일 */
-.image-modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 10;
-}
-
-.image-list{
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  width: 80%;
-  max-width: 800px; /* 모달 최대 너비 조절 */
-  text-align: center;
-  border: none;
-}
-/* 이미지 버튼 스타일 */
-.image-list button {
-  border: none;
-  background: none;
-  margin: 10px;
-  cursor: pointer;
-}
-
-/* 이미지 스타일 */
-.image-list img {
-  max-width: 100%;
-  max-height: 200px; /* 이미지의 최대 높이를 조절하세요 */
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* 닫기 버튼 스타일 */
-.image-close-button button {
-  justify-content: center;
-  margin: 10px;
-  background-color: #03c8a8; /* 닫기 버튼의 배경색을 조절하세요 */
-  color: #ffffff; /* 닫기 버튼의 텍스트 색을 조절하세요 */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* CSS 스타일 */
-.loading-spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

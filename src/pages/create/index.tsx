@@ -394,7 +394,9 @@ const Create: React.FC = () => {
             &nbsp;
             <button onClick={openServerUploadModal}>서버에 저장하기</button>
             <br /> <br />
-            <button onClick={closeUploadModal}>닫기</button>
+            <div className='close4'>
+              <button onClick={closeUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -411,7 +413,9 @@ const Create: React.FC = () => {
             /> &nbsp;
             <button onClick={handleDownload}>이미지 저장하기</button>
             <br /><br />
-            <button onClick={closePcUploadModal}>닫기</button>
+            <div className='close5'>
+              <button onClick={closePcUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -437,7 +441,9 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>이미 사용 중인 이름입니다.</p>}
             {isIdTaken === false && <p>사용 가능한 이름입니다.</p>}
-            <button onClick={closeServerUploadModal}>닫기</button>
+            <div className='close6'>
+              <button onClick={closeServerUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}

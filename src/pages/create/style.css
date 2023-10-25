@@ -147,7 +147,7 @@ body { /* 빈공간 없앰 */
   position: relative;
   background-color: white;
   cursor: pointer;
-  margin-top: 200px;
+  
 }
 
 
@@ -165,7 +165,7 @@ color:black;
   left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
   top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
   transform: translate(-50%, -50%);
-color:mediumaquamarine;
+  color:mediumaquamarine;
 }
 
 
@@ -227,7 +227,7 @@ color:mediumaquamarine;
 }
 
 .text[contenteditable="true"]:empty:before {
-  content: "시작하세요...";
+  content: "입력하세요";
   color: #ccc;
 }
 @media screen and (max-width: 768px) {
@@ -237,6 +237,10 @@ color:mediumaquamarine;
     overflow: auto; /* 스크롤 표시를 활성화하여 내용이 넘치면 스크롤됩니다. */
   }
 }
+.choice{
+  position: absolute;
+  top: 70%;
+}
 .choice button{
   border: none;
   background-color: black;
@@ -245,7 +249,6 @@ color:mediumaquamarine;
   font-size: 15px;
   border-radius: 20px;
   cursor: pointer;
-  margin-top: 200px;
 }
 
 .choice button:hover {
@@ -483,7 +486,7 @@ color:mediumaquamarine;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   width: 80%;
-  max-width: 800px; /* 모달 최대 너비 조절 */
+  max-width: fit-content; /* 모달 최대 너비 조절 */
   text-align: center;
   border: none;
 }

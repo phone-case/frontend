@@ -149,6 +149,8 @@ const Create: React.FC = () => {
           setImagePreview(null);
           setIsIdTaken(null);
           setImage(null);
+          setResponseData([]);
+          //!!
         } else {
           console.error('Error uploading image');
         }
@@ -173,6 +175,34 @@ const Create: React.FC = () => {
       try {
         // 텍스트 데이터를 서버로 전송
         const response = await axios.post('/api/submit_text', { content: text });
+  
+        if (response.status === 200) {
+          const data = response.data;
+          console.log(data);
+          setResponseData(data);
+          setIsLoading(false);
+        } else {
+          console.error('폼 데이터 제출에 실패했습니다.');
+        }
+      } catch (error) {
+        console.error('오류 발생:', error);
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const handleTextImageSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    if (contentEditableRef.current) {
+      const text = contentEditableRef.current.innerText;
+      setContent(text);
+      setResponseData([]);
+      setIsImageClickModalOpen(false);
+      setIsLoading(true);
+      try {
+        // 텍스트 데이터를 서버로 전송
+        const response = await axios.post('/api/create_text', { content: text });
   
         if (response.status === 200) {
           const data = response.data;
@@ -297,7 +327,7 @@ const Create: React.FC = () => {
               <button type="submit" className='image-change'></button>
             )}*/}
               <div className='choice'>
-                {responseData && responseData.length == 0 &&(
+                {responseData && responseData.length > 0 &&(
                   <button type='button' onClick={openImageClickModal}>이미지 선택하기</button>
                 )}
               </div>
@@ -326,6 +356,7 @@ const Create: React.FC = () => {
             <br />
             <div className='image-close-button'>
               <button onClick={closeImageClickModal}><span>닫기</span></button>
+              <button onClick={handleTextImageSubmit}><span>이미지 생성하기</span></button>
             </div>
           </div>
         </div>

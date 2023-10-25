@@ -298,7 +298,7 @@ const Create: React.FC = () => {
             )}*/}
               <div className='choice'>
                 {responseData && responseData.length == 0 &&(
-                  <button onClick={openImageClickModal}>이미지 선택하기</button>
+                  <button type='button' onClick={openImageClickModal}>이미지 선택하기</button>
                 )}
               </div>
             </div>

@@ -251,7 +251,7 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
-              <button type="submit">전송</button>
+              <button type="submit"></button>
             </div>
           </form>
         </div>

@@ -1,21 +1,53 @@
+.design-mid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 높이 만큼 설정하여 화면 중앙에 정렬합니다 */
+
+  border: 3px solid black;
+}
+
+.design-box {
+  width: 900px; /* 원하는 크기로 설정, 예를 들면 200px로 설정 */
+  height: 900px; /* 가로와 세로 크기를 동일하게 설정하여 정사각형 모양으로 만듭니다 */
+  background-color: lightgray; /* 배경색을 원하는 색상으로 설정 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  border: 3px solid blue;
+}
+
+.design-img-box {
+  width: 90%; /* 100%로 설정하여 부모 크기에 맞게 설정 */
+  height: 90%;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid green;
+}
+
+
 .select-img{
   position: relative;
   width: 100%;
   height: 100%;
-
 } 
 
 .select-img img{
-
   width: 100%;
   height: 100%;
-
 } 
 
-.drag-handle{
+/* 이미지 선택하면 파란색뜨는 그거 */
+.drag-handle{     
   position: absolute;
   width: 20px;
   height: 20px;
   background-color: aqua;
   cursor: move;
 }
+
+

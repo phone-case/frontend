@@ -184,6 +184,7 @@ const Create: React.FC = () => {
         }
       } catch (error) {
         console.error('오류 발생:', error);
+        setIsLoading(false);
       }
     }
   };
@@ -266,6 +267,10 @@ const Create: React.FC = () => {
           <div className='image-box'>
             {imagePreview && <img src={imagePreview} alt="Preview" />}
           </div>
+          <div className='button-container'>
+            <button onClick={openImageModal}><span>이미지 불러오기</span></button>
+            <button onClick={openUploadModal} disabled={!imagePreview}><span>이미지 저장하기</span></button>
+          </div>
         </div>
         <div className='right-box'>
           <form onSubmit={handleTextSubmit}>
@@ -290,17 +295,14 @@ const Create: React.FC = () => {
             </div>
             ) : (
               <button type="submit" className='image-change'></button>
-            )}
-            */}
+            )}*/}
+              <div className='choice'>
+                {responseData && responseData.length == 0 &&(
+                  <button onClick={openImageClickModal}>이미지 선택하기</button>
+                )}
+              </div>
             </div>
           </form>
-          {responseData && responseData.length > 0 &&(
-            <button onClick={openImageClickModal}>이미지 선택하기</button>
-          )}
-          <div className='button-container'>
-            <button onClick={openImageModal}><span>이미지 불러오기</span></button>
-            <button onClick={openUploadModal} disabled={!imagePreview}><span>이미지 저장하기</span></button>
-          </div>
         </div>
         <Link to="/design">
           <button type="button" className="register-button">
@@ -337,7 +339,7 @@ const Create: React.FC = () => {
             &nbsp;
             <button onClick={openServerLoadModal}><span>서버에서 불러오기</span></button>
             <br /> <br />
-            <div className='dick'>
+            <div className='close1'>
               <button onClick={closeImageModal}><span>닫기</span></button>
             </div>
           </div>
@@ -349,7 +351,7 @@ const Create: React.FC = () => {
           <div className="modal-content">
             <h2>내PC에서 불러오기</h2>
             <input type="file" accept="image/*" onChange={handleImageChange} />
-            <div className='pussy'>
+            <div className='close2'>
               <button onClick={closePcLoadModal}>닫기</button>
             </div>
           </div>
@@ -377,7 +379,7 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>입력하신 이름의 이미지가 있습니다.</p>}
             {isIdTaken === false && <p>입력하신 이름의 이미지가 없습니다.</p>}
-            <div className='sex'>
+            <div className='close3'>
               <button onClick={closeServerLoadModal}>닫기</button>
             </div>
           </div>

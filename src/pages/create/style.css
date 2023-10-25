@@ -278,7 +278,7 @@ color:mediumaquamarine;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
+  z-index: 10;
 }
 
 .modal-content {
@@ -426,4 +426,69 @@ color:mediumaquamarine;
   background: mediumaquamarine;
   color: white;
   padding: 5px 20px;
+}
+
+/* 모달 팝업 스타일 */
+.image-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.image-list{
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 80%;
+  max-width: 800px; /* 모달 최대 너비 조절 */
+  text-align: center;
+  border: none;
+}
+/* 이미지 버튼 스타일 */
+.image-list button {
+  border: none;
+  background: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* 이미지 스타일 */
+.image-list img {
+  max-width: 100%;
+  max-height: 200px; /* 이미지의 최대 높이를 조절하세요 */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 닫기 버튼 스타일 */
+.image-close-button button {
+  justify-content: center;
+  margin: 10px;
+  background-color: #03c8a8; /* 닫기 버튼의 배경색을 조절하세요 */
+  color: #ffffff; /* 닫기 버튼의 텍스트 색을 조절하세요 */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CSS 스타일 */
+.loading-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

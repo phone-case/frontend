@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Resizable } from 're-resizable';
 import Draggable from 'react-draggable';
+import html2canvas from 'html2canvas';
 import './style.css';
 
 function Design() {
@@ -56,12 +57,33 @@ function Design() {
     }
   };
 
-  
+  // 이미지 캡처 및 다운로드 함수
+  const captureAndDownloadImage = () => {
+    const designImgBox = document.querySelector('.design-img-box') as HTMLElement; // HTMLElement로 형식화
+
+    if (designImgBox) {
+      html2canvas(designImgBox).then((canvas) => {
+        // Canvas를 이미지로 변환
+        const imgDataUrl = canvas.toDataURL('image/png');
+
+        // 이미지를 다운로드할 링크 생성
+        const a = document.createElement('a');
+        a.href = imgDataUrl;
+        a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+
+        // 링크를 클릭하여 다운로드 실행
+        a.click();
+      });
+    }
+  };
+
   return (
     <div>
       <div>
         <button onClick={() => handleButtonClick('갤럭시')}>갤럭시</button>
         <button onClick={() => handleButtonClick('아이폰')}>아이폰</button>
+        <button onClick={captureAndDownloadImage}>디자인 이미지 캡쳐</button>
+
       </div>
       <input
         type="file"
@@ -90,7 +112,7 @@ function Design() {
                     topRight: false, 
                     bottomRight: true, 
                     bottomLeft: false, 
-                    topLeft: true,
+                    topLeft: false,
                   }}
                 >
                   <div className="select-img"

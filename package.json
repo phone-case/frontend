@@ -13,12 +13,10 @@
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.7",
     "@types/react-slick": "^0.23.10",
-<<<<<<< HEAD
-    "cropperjs": "^1.6.1",
-=======
+
     "html2canvas": "^1.4.1",
     "re-resizable": "^6.9.11",
->>>>>>> 00fcc4605bf7a85cb54d8024aa3d14fa91210b05
+
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",

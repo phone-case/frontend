@@ -112,13 +112,11 @@ function Design() {
               <div className='design-select-img'>
                 {selectedImage ? (
                   <Draggable
-
                     onDrag={handleDrag}
                     disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
                     onStop={handleMouseUp} // 마우스업 드래그 비활성화
                     onStart={handleMouseDown} //마우스 다운 드래그 활성환
                     grid={[10, 10]} //선택한 이미지 이속업!
-
                   >
                     <Resizable
                       enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활

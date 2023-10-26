@@ -21,6 +21,7 @@ function Design() {
   // 이미지 파일 경로 상태 추가
   const [backgroundImage, setBackgroundImage] = useState(''); 
 
+  const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
 
 
   // 이미지 선택 시 호출
@@ -52,12 +53,16 @@ function Design() {
   const handleButtonClick = (imageFileName: string) => {
     
     if (imageFileName === '갤럭시') {
-      setBackgroundImage('/img/test1.jpg'); 
+      setBackgroundImage('/img/test1.png'); 
+      setBackgroundImageCamera('/img/camera.png');
     } else if (imageFileName === '아이폰') {
       setBackgroundImage('/img/test2.jpg'); 
+      setBackgroundImageCamera('/img/camera.png');
     }
+
   };
 
+  
   // 이미지 캡처 및 다운로드 함수
   const captureAndDownloadImage = () => {
     const designImgBox = document.querySelector('.design-img-box') as HTMLElement; // HTMLElement로 형식화
@@ -95,41 +100,45 @@ function Design() {
 
       <div className="design-mid">
         <div className='design-box'>
-          <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})` }}>
+          <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`}}>
+          </div>
+          <div className='design-select-img'>
             {selectedImage ? (
-              <Draggable
-                bounds="parent"
-                onDrag={handleDrag}
-                disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
-                onStop={handleMouseUp} // 마우스업 드래그 비활성화
-                onStart={handleMouseDown} //마우스 다운 드래그 활성환
-                grid={[10, 10]} //선택한 이미지 이속업!
-              >
-                <Resizable
-                  enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
-                    top: false, 
-                    right: true, 
-                    bottom: false, 
-                    left: false,
-                    topRight: false, 
-                    bottomRight: true, 
-                    bottomLeft: false, 
-                    topLeft: false,
-                  }}
+                <Draggable
+                  bounds="parent"
+                  onDrag={handleDrag}
+                  disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
+                  onStop={handleMouseUp} // 마우스업 드래그 비활성화
+                  onStart={handleMouseDown} //마우스 다운 드래그 활성환
+                  grid={[10, 10]} //선택한 이미지 이속업!
                 >
-                  <div className="select-img"
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
+                  <Resizable
+                    enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
+                      top: false, 
+                      right: true, 
+                      bottom: false, 
+                      left: false,
+                      topRight: false, 
+                      bottomRight: true, 
+                      bottomLeft: false, 
+                      topLeft: false,
+                    }}
                   >
-                    <img
-                      src={URL.createObjectURL(selectedImage)}
-                      alt="선택한 그림"
-                    />
-                    <div className="drag-handle"/>
-                  </div>
-                </Resizable>
-              </Draggable>
-            ) : null}
+                    <div className="select-img"
+                      onMouseDown={handleMouseDown}
+                      onMouseUp={handleMouseUp}
+                    >
+                      <img
+                        src={URL.createObjectURL(selectedImage)}
+                        alt="선택한 그림"
+                      />
+                      <div className="drag-handle"/>
+                    </div>
+                  </Resizable>
+                </Draggable>
+              ) : null}
+          </div>
+          <div className='design-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`}}>
           </div>
         </div> 
       </div>

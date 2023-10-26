@@ -3,7 +3,7 @@
   position: fixed;
   z-index: 1;
   width: 100%;
-  background-color: #333;
+  background-color: #000505;
   color: white;
   padding: 0; /* 필요에 따라 패딩 조절 */
   margin: 0; 
@@ -22,27 +22,32 @@
   font-size: 24px;
   font-weight: bold;
   padding-top: 13px;
+  
 
-  position: absolute;
+  position: relative;
+  bottom: 5px;
   left: 20px;
 }
 
 
 .login-button {
+
   position: absolute;
-  top: 8px;
+  top: 12px;
   right: 20px;
   display: flex;
   align-items: center;
   /* background-color: aquamarine; */
+  transition: background-color 0.3s; /* 변환 애니메이션 추가 */
+  border-radius: 500%; /* 동그라미 모양으로 만들기 위한 경계 반경 설정 */
+  width: 40px; /* 너비를 높이와 동일하게 설정하여 동그라미 모양으로 만듭니다 */
+  height: 40px; /* 높이를 동그라미 모양으로 만듭니다 */
 }
 
-.logout{
-  background-color: mediumaquamarine;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 15px;
-  padding: 10px 15px;
+
+
+.login-button:hover {
+  background-color: #0893b3; /* 마우스 호버 시 색상 변경 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 마우스 호버 시 그림자 효과 추가 */
+  transform: translateY(-2px); /* 로그인 버튼을 위로 조금 튀어나오고 크기를 키우도록 설정 */
 }

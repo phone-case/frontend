@@ -168,7 +168,7 @@ const Create: React.FC = () => {
     if (contentEditableRef.current) {
       const text = contentEditableRef.current.innerText;
       setContent(text);
-
+      setResponseData([]);
       setIsLoading(true);
   
       try {
@@ -313,7 +313,7 @@ const Create: React.FC = () => {
             </div>
             <div className='button-box'>
             {isLoading ? (
-              <div className="loading-spinner">로딩 중...</div>
+              <div className="loading-spinner"><img className='loading_image' src="./img/loading.gif" alt="로딩" /></div>
             ) : (
               <button type="submit" className='image-change'></button>
             )}
@@ -348,14 +348,15 @@ const Create: React.FC = () => {
                 <img
                   key={index}
                   src={url}
-                  alt={`Image ${index + 1}`}
+                  alt=""
                 />
               </button>
             ))}
             <br />
             <div className='image-close-button'>
               <button onClick={closeImageClickModal}><span>닫기</span></button>
-              <button onClick={handleTextImageSubmit}><span>이미지 생성하기</span></button>
+              <button onClick={handleTextImageSubmit} className='create-image-button'><span>이미지 생성하기</span></button>
+              <div className="info-tooltip">약 1분 정도 소요 됩니다.</div>
             </div>
           </div>
         </div>

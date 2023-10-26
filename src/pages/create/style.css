@@ -548,3 +548,28 @@ color:mediumaquamarine;
   border-radius: 20px;
   cursor: pointer;
 }
+
+.loading-spinner{
+  position: absolute;
+  left: 49%;
+}
+
+.loading_image{
+  justify-content: center;
+  align-items: center;
+  width: 110%;
+  transform: scaleX(-1);
+}
+
+.info-tooltip {
+  display: none; /* 초기에 숨김 상태로 설정 */
+  position: absolute;
+  padding: 10px;
+  top: 60.8%;
+  left: 59%;
+  border-radius: 5px;
+}
+
+.create-image-button:hover + .info-tooltip {
+  display: block; /* 버튼 위로 마우스를 올리면 툴팁 표시 */
+}

@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-
-
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface UserContextType {
   userName: string | null;
@@ -30,9 +28,19 @@ interface UserProviderProps {
 export function UserProvider({ children }: UserProviderProps): JSX.Element {
   const [userName, setUserName] = useState<string | null>(null);
 
+  useEffect(() => {
+    // 페이지 로딩 시 로컬 스토리지에서 사용자 이름 복원
+    const storedUserName = localStorage.getItem('userName');
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+  }, []);
+
   const logout = () => {
     // 로그아웃 로직을 추가: 사용자 이름을 null로 설정
     setUserName(null);
+    // 로그아웃 시 로컬 스토리지에서 해당 정보를 제거
+    localStorage.removeItem('userName');
   };
 
   return (

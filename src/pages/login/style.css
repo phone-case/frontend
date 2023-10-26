@@ -63,7 +63,7 @@
   width: 75%;
 }
 
-.login-form button.register-button{
+.login-form button.signup-button{
   background-color: mediumaquamarine;
   color: #fff;
   border: none;
@@ -75,6 +75,6 @@
   width: 75%;
 }
 
-.login-form button.register-button:hover {
+.login-form button.signup-button:hover {
   background-color: black;
 }

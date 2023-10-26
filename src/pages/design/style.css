@@ -5,6 +5,7 @@
   height: 100vh; /* 화면 높이 만큼 설정하여 화면 중앙에 정렬합니다 */
 
   border: 3px solid black;
+  z-index: 0;
 }
 
 .design-box {
@@ -26,7 +27,7 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  z-index: 0;
+  z-index: 1;
 }
 
 
@@ -51,13 +52,13 @@
   background-position: center;
   background-repeat: no-repeat;
 
-  z-index: 2;
+  z-index: 3;
 }
 
 .design-select-img{
   width: 700px;
   height: 700px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 

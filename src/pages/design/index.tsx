@@ -23,6 +23,7 @@ function Design() {
 
   const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
 
+  const [backgroundWhite, setBackgroundWhite] = useState('');
 
   // 이미지 선택 시 호출
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,9 +56,11 @@ function Design() {
     if (imageFileName === '갤럭시') {
       setBackgroundImage('/img/test1.png'); 
       setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundWhite('/img/backWhite.png');
     } else if (imageFileName === '아이폰') {
       setBackgroundImage('/img/test2.jpg'); 
       setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundWhite('/img/backWhite.png');
     }
 
   };
@@ -98,7 +101,7 @@ function Design() {
         onChange={handleImageChange}
       />
 
-      <div className="design-mid">
+      <div className="design-mid" style={{ backgroundImage: `url(${backgroundWhite})`}}>
         <div className='scr'> {/* 이미지 저장임 스샷 하는 느낌 */}
           <div className='design-box'>
             <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`}}>

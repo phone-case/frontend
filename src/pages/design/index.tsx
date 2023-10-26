@@ -114,14 +114,14 @@ function Design() {
               >
                 <Resizable
                   enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
-                    top: false, 
+                    top: true, 
                     right: true, 
-                    bottom: false, 
-                    left: false,
-                    topRight: false, 
+                    bottom: true, 
+                    left: true,
+                    topRight: true, 
                     bottomRight: true, 
-                    bottomLeft: false, 
-                    topLeft: false,
+                    bottomLeft: true, 
+                    topLeft: true,
                   }}
                 >
                   <div className="select-img"

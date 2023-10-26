@@ -8,8 +8,8 @@
 }
 
 .design-box {
-  width: 900px; /* 원하는 크기로 설정, 예를 들면 200px로 설정 */
-  height: 900px; /* 가로와 세로 크기를 동일하게 설정하여 정사각형 모양으로 만듭니다 */
+  width: 700px; /* 원하는 크기로 설정, 예를 들면 200px로 설정 */
+  height: 700px; /* 가로와 세로 크기를 동일하게 설정하여 정사각형 모양으로 만듭니다 */
   background-color: lightgray; /* 배경색을 원하는 색상으로 설정 */
   display: flex;
   justify-content: center;

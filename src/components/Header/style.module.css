@@ -1,41 +1,45 @@
-
 .header {
   position: fixed;
   z-index: 1;
   width: 100%;
-  background-color: #333;
+  background-color: #007BFF; /* 파란색 배경 색상 */
   color: white;
-  padding: 0; /* 필요에 따라 패딩 조절 */
-  margin: 0; 
+  padding: 10px;
+  margin: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .black-nav {
   display: flex;
   width: 100%;
   color: white;
-  padding-left: 0;
-  height: 60px; /* 세로 크기 조절 */
-  
+  padding: 0 20px;
+  height: 60px;
+  align-items: center;
+  background-color: #333; /* 내비게이션 바 배경 색상 변경 */
 }
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  padding-top: 13px;
-
-  position: absolute;
-  left: 20px;
+  padding: 0;
+  margin: 0;
+  color: #FFD700; /* 로고 텍스트 색상 변경 (금색) */
 }
-
 
 .login-button {
-
-  position: absolute;
-  top: 8px;
-  right: 20px;
   display: flex;
   align-items: center;
-  /* background-color: aquamarine; */
+  margin-left: auto;
 }
 
+.login-button a {
+  text-decoration: none;
+  color: #007BFF; /* 로그인 버튼 텍스트 색상 변경 (파란색) */
+  margin-left: 10px;
+  padding: 8px 16px; /* 로그인 버튼 패딩 추가 */
+  background-color: white; /* 로그인 버튼 배경 색상 변경 */
+  border-radius: 4px; /* 로그인 버튼 둥근 모서리 추가 */
+}
 
+/* 추가적으로 스타일링하고 싶은 요소가 있다면 여기에 추가할 수 있습니다. */

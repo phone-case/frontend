@@ -103,42 +103,44 @@ function Design() {
           <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`}}>
           </div>
           <div className='design-select-img'>
-            {selectedImage ? (
-                <Draggable
-                  bounds="parent"
-                  onDrag={handleDrag}
-                  disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
-                  onStop={handleMouseUp} // 마우스업 드래그 비활성화
-                  onStart={handleMouseDown} //마우스 다운 드래그 활성환
-                  grid={[10, 10]} //선택한 이미지 이속업!
+          {selectedImage ? (
+              <Draggable
+                
+                onDrag={handleDrag}
+                disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
+                onStop={handleMouseUp} // 마우스업 드래그 비활성화
+                onStart={handleMouseDown} //마우스 다운 드래그 활성환
+                grid={[10, 10]} //선택한 이미지 이속업!
+              >
+                <Resizable
+                  enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
+                    top: false, 
+                    right: true, 
+                    bottom: false, 
+                    left: false,
+                    topRight: false, 
+                    bottomRight: true, 
+                    bottomLeft: false, 
+                    topLeft: false,
+                  }}
                 >
-                  <Resizable
-                    enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
-                      top: false, 
-                      right: true, 
-                      bottom: false, 
-                      left: false,
-                      topRight: false, 
-                      bottomRight: true, 
-                      bottomLeft: false, 
-                      topLeft: false,
-                    }}
+                  <div className="select-img"
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
                   >
-                    <div className="select-img"
-                      onMouseDown={handleMouseDown}
-                      onMouseUp={handleMouseUp}
-                    >
-                      <img
-                        src={URL.createObjectURL(selectedImage)}
-                        alt="선택한 그림"
-                      />
-                      <div className="drag-handle"/>
-                    </div>
-                  </Resizable>
-                </Draggable>
-              ) : null}
+                    <img
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="선택한 그림"
+                    />
+                    <div className="drag-handle"/>
+                  </div>
+                </Resizable>
+              </Draggable>
+            ) : null}
           </div>
-          <div className='design-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`}}>
+          <div className='design-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
+          </div>
+          <div className='design-backwhite'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
           </div>
         </div> 
       </div>

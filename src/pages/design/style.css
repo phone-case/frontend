@@ -3,11 +3,13 @@
   justify-content: center;
   align-items: center;
   height: 100vh; /* 화면 높이 만큼 설정하여 화면 중앙에 정렬합니다 */
-
-  border: 3px solid black;
-  z-index: 0;
 }
-
+.backWhite{
+  width: 1721px;
+  height: 758px;
+  position: absolute;
+  z-index: 4;
+}
 .design-box {
   width: 700px; /* 원하는 크기로 설정, 예를 들면 200px로 설정 */
   height: 700px; /* 가로와 세로 크기를 동일하게 설정하여 정사각형 모양으로 만듭니다 */

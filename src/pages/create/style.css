@@ -9,7 +9,6 @@ body { /* 빈공간 없앰 */
   align-items: center;
   justify-content: space-between; /* 왼쪽 박스와 오른쪽 박스 사이에 공간 생성 */
   height: 100vh;
-  
 }
 
 .left-box{
@@ -26,7 +25,7 @@ body { /* 빈공간 없앰 */
   display: flex;
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
-  position: relative;
+  position: relative;;
 }
 
 .image-box img {
@@ -45,61 +44,74 @@ body { /* 빈공간 없앰 */
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-top: 10px; /* 버튼 사이에 간격을 주고 싶다면 이 부분을 조절하세요. */
+  position: absolute;
+  margin-top: 5px;
+
+  
 }
-.button-container button{
-  margin: 0 10px;;
+.button-container button {
+  margin: 0 10px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 15px;
   overflow: hidden;
   transition: all 0.3s ease;
   border-radius: 20px;
-}
-.button-container button:hover{
-  background: mediumaquamarine;
-  color:#fff;
-}
-.button-container button:before{
-  position: absolute;
-  content: '';
-  display: inline-block;
-  top: -180px;
-  left: 0;
-  width: 30px;
-  height: 100%;
-  background-color: #fff;
-  animation: shiny-btn1 3s ease-in-out infinite;
-}
-.button-container button:active{
-  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
-  -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-inset -4px -4px 6px 0 rgba(255,255,255,.2),
-inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-}
-
-
-@-webkit-keyframes shiny-btn1 {
-  0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
-  80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
-  81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
-  100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
-  }
-
-hr{
-  width: 100%;
   border: none;
-  border-top: 3px solid #ccc;
-  margin: 10px 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  color: #fff;
+  background-color: #222;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
 }
+
+.button-container button span {
+  position: relative;
+  z-index: 1;
+}
+
+.button-container button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: mediumaquamarine;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+/* 활성화 상태일 때 hover 효과 유지 */
+.button-container button:not(:disabled):hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.button-container button:disabled {
+  background-color: #CCCCCC;
+  color: #999999;
+  cursor: not-allowed;
+}
+
+
 
 .right-box {
-  width: 65%;
+  width: 50%;
   margin-right: 7%;
   float: right;
   height: 50%; /* 또는 원하는 높이로 설정 */
-  border: 3px solid #ffffff;
+  border: 3px solid white;
+
+  display: flex; /* 혹은 다른 레이아웃 속성을 사용하여 자식 요소들을 나란히 배치합니다. */
+  flex-direction: column; /* 자식 요소들을 수직으로 배치합니다. */
+  align-items: center; /* 자식 요소들을 수평 중앙으로 정렬합니다. */
 }
 .right-box form{
   width: 100%;
@@ -107,6 +119,7 @@ hr{
 }
 .chat-box {
   width: 60%;
+  flex: 1;
   display: flex;
   flex-direction: column; /* 내용을 수직으로 정렬 */
   justify-content: center; /* 수직 가운데 정렬 */
@@ -117,14 +130,46 @@ hr{
   float: right;
 }
 
+
 .button-box{
   display: flex;
   justify-content: center;
   align-items: center;
   height:100%;
 
+  flex-direction: column; /* 버튼을 세로로 정렬 */
 }
+
 .button-box button{
+  border: 2px solid white;
+  font-size: 110px;
+  padding: 30px 60px;
+  position: relative;
+  background-color: white;
+  cursor: pointer;
+  
+}
+
+
+.button-box button:before {
+content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+position: absolute;
+left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
+transform: translate(-50%, -50%);
+color:black;
+}
+.button-box button:hover:after{
+  content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+  position: absolute;
+  left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
+  top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
+  transform: translate(-50%, -50%);
+  color:mediumaquamarine;
+}
+
+
+.image-change{
   border: 2px solid #ffffff;
   font-size: 110px;
   padding: 30px 60px;
@@ -134,14 +179,15 @@ hr{
 }
 
 
-.button-box button::before {
-content: '←'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
+.image-change::before {
+content: '＆'; /* 화살표 문자 (→) 또는 다른 원하는 문자로 대체 가능 */
 position: absolute;
 left: 50%; /* 가운데 정렬을 위해 왼쪽 위치를 50%로 설정 */
 top: 50%; /* 화살표를 수직 및 수평 중앙으로 정렬 */
 transform: translate(-50%, -50%);
 color:mediumaquamarine;
 }
+
 
 .text {
   width: 100%;
@@ -181,9 +227,84 @@ color:mediumaquamarine;
 }
 
 .text[contenteditable="true"]:empty:before {
-  content: "시작하세요...";
+  content: "입력하세요";
   color: #ccc;
 }
+@media screen and (max-width: 768px) {
+  .text {
+    font-size: 18px;
+    max-height: 50%; /* 화면이 좁아질 때 최대 높이를 설정 */
+    overflow: auto; /* 스크롤 표시를 활성화하여 내용이 넘치면 스크롤됩니다. */
+  }
+}
+.choice{
+  position: absolute;
+  top: 70%;
+}
+.choice button{
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.choice button:hover {
+  background-color: #04a591;
+}
+
+.register-button {
+  position: fixed;
+  bottom: 15%;
+  right: 0;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  overflow: hidden;
+  
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  color: #fff;
+  background-color: #222;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  
+}
+
+
+.register-button span {
+  position: relative; 
+  z-index: 1;
+}
+
+.register-button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 420%;
+  width: 120%;
+  background: mediumaquamarine;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.register-button:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
 
 .modal {
   display: flex;
@@ -206,6 +327,7 @@ color:mediumaquamarine;
   width: 80%;
   max-width: 400px; /* 모달 최대 너비 조절 */
   text-align: center;
+  border: none;
 }
 
 .modal h2 {
@@ -219,18 +341,6 @@ color:mediumaquamarine;
   margin-bottom: 20px;
 }
 
-.modal button {
-  background-color: #0074d9;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.modal button:hover {
-  background-color: #0056b3;
-}
 
 .modal button:disabled {
   background-color: lightgray;
@@ -239,4 +349,202 @@ color:mediumaquamarine;
 
 .modal button:disabled:hover {
   cursor: default;
+}
+
+.modal button {
+  border: none;
+  margin: 0 10px;
+  padding: 0px 20px;
+  font-size: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  background-color: #4dccc6;
+  background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
+  line-height: 42px;
+}
+.modal button:hover{
+  background-color: #89d8d3;
+  background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+}
+.modal button span {
+  border:none;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.modal button:before,
+.modal button:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.modal button:before {
+  height: 0%;
+  width: .1px;
+}
+.modal button:after {
+  width: 0%;
+  height: .1px;
+}
+.modal button:hover:before {
+  height: 100%;
+}
+.modal button:hover:after {
+  width: 100%;
+}
+.modal button span:before,
+.modal button span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.9),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  transition: all 0.3s ease;
+}
+.modal button span:before {
+  width: .1px;
+  height: 0%;
+}
+.modal button span:after {
+  width: 0%;
+  height: .1px;
+}
+.modal button span:hover:before {
+  height: 100%;
+}
+.modal button span:hover:after {
+  width: 100%;
+}
+
+.close1 button{
+  background:mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close1 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+
+.close2 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close2 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close3 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close3 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close4 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close4 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close5 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close5 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close6 button{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+.close6 button:hover{
+  background: mediumaquamarine;
+  color: white;
+  padding: 0px 20px;
+}
+
+/* 모달 팝업 스타일 */
+.image-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.image-list{
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 80%;
+  max-width: fit-content; /* 모달 최대 너비 조절 */
+  text-align: center;
+  border: none;
+}
+/* 이미지 버튼 스타일 */
+.image-list button {
+  border: none;
+  background: none;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* 이미지 스타일 */
+.image-list img {
+  max-width: 100%;
+  max-height: 200px; /* 이미지의 최대 높이를 조절하세요 */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 닫기 버튼 스타일 */
+.image-close-button button {
+  justify-content: center;
+  margin: 10px;
+  background-color: #03c8a8; /* 닫기 버튼의 배경색을 조절하세요 */
+  color: #ffffff; /* 닫기 버튼의 텍스트 색을 조절하세요 */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }

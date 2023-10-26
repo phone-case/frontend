@@ -15,6 +15,8 @@ const Create: React.FC = () => {
   const [isPcLoadModalOpen, setIsPcLoadModalOpen] = useState(false);
   const [isServerLoadModalOpen, setIsServerLoadModalOpen] = useState(false);
 
+  const [isImageClickModalOpen, setIsImageClickModalOpen] = useState(false);
+
   const [content, setContent] = useState<string>('');
 
   const [customFilename, setCustomFilename] = useState<string>('');
@@ -26,6 +28,12 @@ const Create: React.FC = () => {
   const contentEditableRef = useRef<HTMLDivElement>(null);
   const [isPlaceholderVisible, setPlaceholderVisible] = useState(false);
 
+  const [responseData, setResponseData] = useState<string[]>([]);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+
+  const [isLoading, setIsLoading] = useState(false);
+  
+
   
   useEffect(() => {
     if (contentEditableRef.current) {
@@ -33,13 +41,6 @@ const Create: React.FC = () => {
       setPlaceholderVisible(text === '');
     }
   }, []);
-
-  const handleInput = () => {
-    if (contentEditableRef.current) {
-      const text = contentEditableRef.current.innerText;
-      setPlaceholderVisible(text === '');
-    }
-  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
@@ -109,6 +110,15 @@ const Create: React.FC = () => {
     setIsServerLoadModalOpen(false);
   };
 
+  const openImageClickModal = () => {
+    setIsImageClickModalOpen(true);
+  };
+
+
+  const closeImageClickModal = () => {
+    setIsImageClickModalOpen(false);
+  };
+
   const handleDownload = () => {
     if (imagePreview) {
       const filename = customFilename || imageName; // Use custom filename if provided, else use the original image name
@@ -139,6 +149,8 @@ const Create: React.FC = () => {
           setImagePreview(null);
           setIsIdTaken(null);
           setImage(null);
+          setResponseData([]);
+          //!!
         } else {
           console.error('Error uploading image');
         }
@@ -157,19 +169,68 @@ const Create: React.FC = () => {
     if (contentEditableRef.current) {
       const text = contentEditableRef.current.innerText;
       setContent(text);
+
+      setIsLoading(true);
   
       try {
         // 텍스트 데이터를 서버로 전송
         const response = await axios.post('/api/submit_text', { content: text });
   
         if (response.status === 200) {
-          console.log(response.data.message); // 성공 메시지 또는 다른 응답 데이터 처리
+          const data = response.data;
+          console.log(data);
+          setResponseData(data);
+          setIsLoading(false);
         } else {
           console.error('폼 데이터 제출에 실패했습니다.');
         }
       } catch (error) {
         console.error('오류 발생:', error);
+        setIsLoading(false);
       }
+    }
+  };
+
+  const handleTextImageSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    if (contentEditableRef.current) {
+      const text = contentEditableRef.current.innerText;
+      setContent(text);
+      setResponseData([]);
+      setIsImageClickModalOpen(false);
+      setIsLoading(true);
+      try {
+        // 텍스트 데이터를 서버로 전송
+        const response = await axios.post('/api/create_text', { content: text });
+  
+        if (response.status === 200) {
+          const data = response.data;
+          console.log(data);
+          setResponseData(data);
+          setIsLoading(false);
+        } else {
+          console.error('폼 데이터 제출에 실패했습니다.');
+        }
+      } catch (error) {
+        console.error('오류 발생:', error);
+        setIsLoading(false);
+      }
+    }
+  };
+
+  const handleImageClick = async (imageUrl: string) => {
+    try {
+      const response = await axios.get(imageUrl, { responseType: 'blob' });
+      const blobUrl = URL.createObjectURL(response.data);
+      setImagePreview(blobUrl);
+
+      const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
+      const imageFile = new File([response.data], fileName, { type: response.data.type });
+      setImage(imageFile);
+
+    } catch (error) {
+      console.error('이미지 불러오기에 실패했습니다.', error);
     }
   };
 
@@ -233,12 +294,13 @@ const Create: React.FC = () => {
       </div>
       <div className='mid'>
         <div className='left-box'>
-        <div className='image-box'>
-          {imagePreview && <img src={imagePreview} alt="Preview" />}
-        </div>
-
-        <button onClick={openImageModal}>이미지 불러오기</button>
-        <button onClick={openUploadModal} disabled={!imagePreview}>이미지 저장하기</button>
+          <div className='image-box'>
+            {imagePreview && <img src={imagePreview} alt="Preview" />}
+          </div>
+          <div className='button-container'>
+            <button onClick={openImageModal}><span>이미지 불러오기</span></button>
+            <button onClick={openUploadModal} disabled={!imagePreview}><span>이미지 저장하기</span></button>
+          </div>
         </div>
         <div className='right-box'>
           <form onSubmit={handleTextSubmit}>
@@ -251,26 +313,66 @@ const Create: React.FC = () => {
               </div>
             </div>
             <div className='button-box'>
-              <button type="submit"></button>
+            {isLoading ? (
+              <div className="loading-spinner">로딩 중...</div>
+            ) : (
+              <button type="submit" className='image-change'></button>
+            )}
+            {/* 
+            {!imagePreview ? (
+            <div>
+              <button type="submit" className='noimage'></button>
+            </div>
+            ) : (
+              <button type="submit" className='image-change'></button>
+            )}*/}
+              <div className='choice'>
+                {responseData && responseData.length > 0 &&(
+                  <button type='button' onClick={openImageClickModal}>이미지 선택하기</button>
+                )}
+              </div>
             </div>
           </form>
         </div>
         <Link to="/design">
           <button type="button" className="register-button">
-            디자인하러 가기
+            <span>디자인하러 가기</span>
           </button>
         </Link>
       </div>
+
+      {isImageClickModalOpen && (
+        <div className='image-modal'>
+          <div className="image-list">
+            {responseData.map((url, index) => (
+              <button onClick={() => handleImageClick(url)}>
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Image ${index + 1}`}
+                />
+              </button>
+            ))}
+            <br />
+            <div className='image-close-button'>
+              <button onClick={closeImageClickModal}><span>닫기</span></button>
+              <button onClick={handleTextImageSubmit}><span>이미지 생성하기</span></button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {isImageModalOpen && (
         <div className="modal">
           <div className="modal-content">
             <h2>이미지 불러오기</h2>
-            <button onClick={openPcLoadModal}>내PC에서 불러오기</button>
+            <button onClick={openPcLoadModal}><span>내PC에서 불러오기</span></button>
             &nbsp;
-            <button onClick={openServerLoadModal}>서버에서 불러오기</button>
+            <button onClick={openServerLoadModal}><span>서버에서 불러오기</span></button>
             <br /> <br />
-            <button onClick={closeImageModal}>닫기</button>
+            <div className='close1'>
+              <button onClick={closeImageModal}><span>닫기</span></button>
+            </div>
           </div>
         </div>
       )}
@@ -280,7 +382,9 @@ const Create: React.FC = () => {
           <div className="modal-content">
             <h2>내PC에서 불러오기</h2>
             <input type="file" accept="image/*" onChange={handleImageChange} />
-            <button onClick={closePcLoadModal}>닫기</button>
+            <div className='close2'>
+              <button onClick={closePcLoadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -306,7 +410,9 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>입력하신 이름의 이미지가 있습니다.</p>}
             {isIdTaken === false && <p>입력하신 이름의 이미지가 없습니다.</p>}
-            <button onClick={closeServerLoadModal}>닫기</button>
+            <div className='close3'>
+              <button onClick={closeServerLoadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -319,7 +425,9 @@ const Create: React.FC = () => {
             &nbsp;
             <button onClick={openServerUploadModal}>서버에 저장하기</button>
             <br /> <br />
-            <button onClick={closeUploadModal}>닫기</button>
+            <div className='close4'>
+              <button onClick={closeUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -336,7 +444,9 @@ const Create: React.FC = () => {
             /> &nbsp;
             <button onClick={handleDownload}>이미지 저장하기</button>
             <br /><br />
-            <button onClick={closePcUploadModal}>닫기</button>
+            <div className='close5'>
+              <button onClick={closePcUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}
@@ -362,7 +472,9 @@ const Create: React.FC = () => {
             </p>
             {isIdTaken === true && <p>이미 사용 중인 이름입니다.</p>}
             {isIdTaken === false && <p>사용 가능한 이름입니다.</p>}
-            <button onClick={closeServerUploadModal}>닫기</button>
+            <div className='close6'>
+              <button onClick={closeServerUploadModal}>닫기</button>
+            </div>
           </div>
         </div>
       )}

@@ -1,6 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-
-
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface UserContextType {
   userName: string | null;
@@ -8,12 +6,7 @@ interface UserContextType {
   logout: () => void;
 }
 
-export const UserContext = createContext<UserContextType>({
-  userName: null,
-  setUserName: () => {},
-  logout: () => {},
-});
-
+export const UserContext = createContext<UserContextType | null>(null);
 
 export function useUser(): UserContextType {
   const context = useContext(UserContext);
@@ -24,14 +17,22 @@ export function useUser(): UserContextType {
 }
 
 interface UserProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
+  initialUserName: string | null;
 }
 
-export function UserProvider({ children }: UserProviderProps): JSX.Element {
-  const [userName, setUserName] = useState<string | null>(null);
+export function UserProvider({ children, initialUserName }: UserProviderProps) {
+  const [userName, setUserName] = useState<string | null>(initialUserName);
+
+  useEffect(() => {
+    if (userName) {
+      localStorage.setItem('userName', userName);
+    } else {
+      localStorage.removeItem('userName');
+    }
+  }, [userName]);
 
   const logout = () => {
-    // 로그아웃 로직을 추가: 사용자 이름을 null로 설정
     setUserName(null);
   };
 

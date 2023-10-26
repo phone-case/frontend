@@ -29,7 +29,6 @@ const Create: React.FC = () => {
   const [isPlaceholderVisible, setPlaceholderVisible] = useState(false);
 
   const [responseData, setResponseData] = useState<string[]>([]);
-  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
   

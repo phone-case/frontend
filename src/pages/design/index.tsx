@@ -54,10 +54,10 @@ function Design() {
     
     if (imageFileName === '갤럭시') {
       setBackgroundImage('/img/test1.png'); 
-      setBackgroundImageCamera('/img/camera.png');
+      setBackgroundImageCamera('/img/camera2.png');
     } else if (imageFileName === '아이폰') {
       setBackgroundImage('/img/test2.jpg'); 
-      setBackgroundImageCamera('/img/camera.png');
+      setBackgroundImageCamera('/img/camera2.png');
     }
 
   };
@@ -65,7 +65,7 @@ function Design() {
   
   // 이미지 캡처 및 다운로드 함수
   const captureAndDownloadImage = () => {
-    const designImgBox = document.querySelector('.design-img-box') as HTMLElement; // HTMLElement로 형식화
+    const designImgBox = document.querySelector('.design-box') as HTMLElement; // HTMLElement로 형식화
 
     if (designImgBox) {
       html2canvas(designImgBox).then((canvas) => {
@@ -132,7 +132,7 @@ function Design() {
                       src={URL.createObjectURL(selectedImage)}
                       alt="선택한 그림"
                     />
-                    <div className="drag-handle"/>
+                    
                   </div>
                 </Resizable>
               </Draggable>
@@ -140,8 +140,7 @@ function Design() {
           </div>
           <div className='design-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
           </div>
-          <div className='design-backwhite'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
-          </div>
+        
         </div> 
       </div>
     </div>

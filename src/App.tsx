@@ -19,8 +19,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/create" element={<CreateRoute />} />
-          <Route path="/design" element={<DesignRoute />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/design" element={<Design />} />
         </Routes>
       </Router>
     </UserProvider>
@@ -33,7 +33,7 @@ function CreateRoute() {
   if (userName) {
     return <Create />;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/create" replace />;
   }
 }
 
@@ -43,7 +43,7 @@ function DesignRoute() {
   if (userName) {
     return <Design />;
   } else {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/design" replace />;
   }
 }
 

@@ -9,7 +9,7 @@ const S3 = () => {
       <video autoPlay muted loop className={styles["slide-video"]}>
         <source src="./videos/test2.mp4" type="video/mp4" />
       </video>
-        <Link to="/create">
+        <Link to="/design">
               <button className={styles['create-button']}>
                 <span>디자인 하러가기</span>
               </button>

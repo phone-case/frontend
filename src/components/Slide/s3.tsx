@@ -1,18 +1,17 @@
 // s1.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import'./s3.css'
+import'./s2.css'
 
 const S3 = () => {
   return (
     <div className="slide-content">
-      <div className="slide-image"/>
       <video autoPlay muted loop className="slide-video">
         <source src="./videos/test2.mp4" type="video/mp4" />
       </video>
         <Link to="/create">
               <button className='create-button'>
-                create
+                <span>디자인 하러가기</span>
               </button>
         </Link>
     </div>

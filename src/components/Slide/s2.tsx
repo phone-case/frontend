@@ -5,10 +5,11 @@ import './s2.css';
 
 const S2 = () => {
   return (
-    <div className='s2-slider'>
-      <video autoPlay muted loop className="slide-video">
-        <source src="./videos/test.mp4" type="video/mp4" />
-      </video>
+    <div className="slide-content">
+      <div className="slide-image"/>
+        <video autoPlay muted loop className="slide-video">
+          <source src="./videos/test.mp4" type="video/mp4" />
+        </video>
       <Link to="/create">
         <button className='create-button'>
           <span>사진 만들러가기</span>

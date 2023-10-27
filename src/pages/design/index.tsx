@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { Resizable } from 're-resizable';
 import Draggable from 'react-draggable';
 import html2canvas from 'html2canvas';
+import Header from '../../components/Header/Header';
 import './style.css';
 
 function Design() {
@@ -88,19 +89,30 @@ function Design() {
 
   return (
     <div>
-      <div>
-        
-        <button onClick={() => handleButtonClick('갤럭시')}>갤럭시</button>
-        <button onClick={() => handleButtonClick('아이폰')}>아이폰</button>
-        <button onClick={captureAndDownloadImage}>저장하기</button>
-
+      <div className='head'>
+        <Header />
       </div>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-      />
-
+      <div className='top'>
+        <div className='design-button'>
+          <button onClick={() => handleButtonClick('갤럭시')}>Galaxy</button>
+          <button onClick={() => handleButtonClick('아이폰')}>Iphone</button>
+          <div className='save-button'>  
+          <button onClick={captureAndDownloadImage} disabled={!selectedImage}>
+            Save Image
+          </button>
+          </div>
+        </div>
+        <div className='upload-button'>
+          <label htmlFor='upload' className='change'>Upload Image</label>
+          <input
+            id='upload'
+            className='btn'
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </div>
+      </div>
       <div className="design-mid">
         <div className='backWhite' style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
         </div>
@@ -112,13 +124,11 @@ function Design() {
               <div className='design-select-img'>
                 {selectedImage ? (
                   <Draggable
-
                     onDrag={handleDrag}
                     disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
                     onStop={handleMouseUp} // 마우스업 드래그 비활성화
                     onStart={handleMouseDown} //마우스 다운 드래그 활성환
                     grid={[10, 10]} //선택한 이미지 이속업!
-
                   >
                     <Resizable
                       enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활

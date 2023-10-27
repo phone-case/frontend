@@ -1,12 +1,13 @@
 // s1.tsx
 import React from 'react';
+import './s2.css';
 
 const S2 = () => {
   return (
-    <div>
-      {/* 슬라이드 내용 */}
-      <img src="./img/phone2.jpg" alt="Slide 2" className="slide-image"/>
-
+    <div className='s2-slider'>
+      <video autoPlay muted loop className="slide-video">
+        <source src="./videos/test.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 };

@@ -1,66 +1,136 @@
+
+
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+}
+
+.design-button {
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.design-button button {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  border-radius: 20px;
+  padding: 5px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.design-button button:hover {
+  background-color: mediumaquamarine;
+  border: none;
+  color: white;
+}
+
+.save-button button {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+  border: 2px solid black;
+}
+.save-button button:hover {
+  background-color: mediumaquamarine;
+  border: none;
+  color: white;
+}
+.save-button button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+}
+
+.btn {
+  display: none;
+}
+
+.change {
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0px 10px;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.change:hover {
+  background-color: mediumaquamarine;
+  border: none;
+  color: white;
+}
+
 .design-mid {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh; /* 화면 높이 만큼 설정하여 화면 중앙에 정렬합니다 */
+  gap: 20px;
 }
-.backWhite{
+
+.backWhite {
   width: 1721px;
   height: 758px;
   position: absolute;
   z-index: 4;
 }
+
 .design-box {
-  width: 700px; /* 원하는 크기로 설정, 예를 들면 200px로 설정 */
-  height: 700px; /* 가로와 세로 크기를 동일하게 설정하여 정사각형 모양으로 만듭니다 */
-  background-color: lightgray; /* 배경색을 원하는 색상으로 설정 */
+  width: 700px;
+  height: 700px;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-
+  overflow: hidden;
 }
 
 .design-img-box {
-  width: 700px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
   position: absolute;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   z-index: 1;
 }
 
-
-.select-img{
-  position: relative;
+.select-img {
   width: 100%;
   height: 100%;
-} 
+}
 
-
-.select-img img{
+.select-img img {
   width: 100%;
   height: 100%;
-} 
+}
 
-/* 선택한 이미지가 케이스 밖으로 나가면 안보이게 하는 부분임 */
-.design-camera{
-  width: 700px;
-  height: 700px;
+.design-camera {
+  width: 100%;
+  height: 100%;
   position: absolute;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   z-index: 3;
 }
 
-.design-select-img{
-  width: 700px;
-  height: 700px;
+.design-select-img {
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 2;
 }
-

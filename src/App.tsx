@@ -31,9 +31,9 @@ function CreateRoute() {
   const { userName } = useUser();
 
   if (userName) {
-    return <Create />;
-  } else {
     return <Navigate to="/login" replace />;
+  } else {
+    return <Create />;
   }
 }
 
@@ -41,9 +41,9 @@ function DesignRoute() {
   const { userName } = useUser();
 
   if (userName) {
-    return <Design />;
-  } else {
     return <Navigate to="/login" replace />;
+  } else {
+    return <Design />;
   }
 }
 

@@ -1,0 +1,11 @@
+
+.slide-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.s2-slider {
+    background-color: black;
+    position: relative;
+  }

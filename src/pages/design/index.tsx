@@ -6,6 +6,13 @@ import Header from '../../components/Header/Header';
 import './style.css';
 
 function Design() {
+  const [imageName, setImageName] = useState<string>('');
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [isPcLoadModalOpen, setIsPcLoadModalOpen] = useState(false);
+  const [isServerLoadModalOpen, setIsServerLoadModalOpen] = useState(false);
+  const [isServerLoadButtonEnabled, setIsServerLoadButtonEnabled] = useState<boolean>(false);
+  const [isIdTaken, setIsIdTaken] = useState<boolean | null>(null);
+
   
   // 이미지 파일을 저장
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -66,6 +73,79 @@ function Design() {
 
   };
 
+  const openImageModal = () => {
+    setIsImageModalOpen(true);
+  };
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false);
+  };
+
+  const openPcLoadModal = () => {
+    setIsPcLoadModalOpen(true);
+  };
+
+  const closePcLoadModal = () => {
+    setIsPcLoadModalOpen(false);
+  };
+
+  const openServerLoadModal = () => {
+    setIsServerLoadModalOpen(true);
+  };
+
+  const closeServerLoadModal = () => {
+    setIsServerLoadModalOpen(false);
+  };
+
+  const checkImageName = async (imageName: string) => {
+    try {
+      const response = await fetch(`/api/check_imagename/${imageName}`);
+      const data = await response.json();
+  
+      if (!data.isTaken) {
+        setIsIdTaken(false); // 이미지 이름 사용 가능
+        setIsServerLoadButtonEnabled(false);
+      } else {
+        setIsIdTaken(true); // 이미지 이름 중복
+        setIsServerLoadButtonEnabled(true);
+      }
+    } catch (error) {
+      console.error('Error checking image name');
+    }
+  };
+
+  const getImageFromServer = async () => {
+    try {
+      const response = await fetch('/api/get_image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageName }),
+      });
+  
+      if (response.ok) {
+        const blob = await response.blob();
+  
+        // 이미지 URL로 미리보기 업데이트
+  
+        // 이미지 blob을 상태에 저장 (image 상태는 File 객체여야 함)
+        // File 객체를 만들 때는 File 생성자를 사용
+        const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
+        const imageFile = new File([blob], fileName, { type: blob.type });
+        setSelectedImage(imageFile);
+  
+        setIsServerLoadModalOpen(false);
+        setIsImageModalOpen(false);
+        setIsIdTaken(null);
+      } else {
+        console.error('Failed to fetch image from the server.');
+      }
+    } catch (error) {
+      console.error('Error fetching image:', error);
+    }
+  };
+
   
   // 이미지 캡처 및 다운로드 함수
   const captureAndDownloadImage = () => {
@@ -103,14 +183,7 @@ function Design() {
           </div>
         </div>
         <div className='upload-button'>
-          <label htmlFor='upload' className='change'>Upload Image</label>
-          <input
-            id='upload'
-            className='btn'
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <button onClick={openImageModal}><span>이미지 불러오기</span></button>
         </div>
       </div>
       <div className="design-mid">
@@ -160,6 +233,60 @@ function Design() {
               </div>
             </div> 
           </div>
+          {isImageModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>이미지 불러오기</h2>
+            <button onClick={openPcLoadModal}><span>내PC에서 불러오기</span></button>
+            &nbsp;
+            <button onClick={openServerLoadModal}><span>서버에서 불러오기</span></button>
+            <br /> <br />
+            <div className='close1'>
+              <button onClick={closeImageModal}><span>닫기</span></button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isPcLoadModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>내PC에서 불러오기</h2>
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <div className='close2'>
+              <button onClick={closePcLoadModal}>닫기</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isServerLoadModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>서버에서 불러오기</h2>
+            <input
+              type="text"
+              placeholder="image name"
+              value={imageName}
+              onChange={(e) => setImageName(e.target.value)}
+            /> &nbsp;
+            <button onClick={() => checkImageName(imageName)}>이름 확인</button>
+            <p>
+              <button
+                disabled={!isServerLoadButtonEnabled}
+                onClick={getImageFromServer}
+              >
+                이미지 불러오기
+              </button>
+            </p>
+            {isIdTaken === true && <p>입력하신 이름의 이미지가 있습니다.</p>}
+            {isIdTaken === false && <p>입력하신 이름의 이미지가 없습니다.</p>}
+            <div className='close3'>
+              <button onClick={closeServerLoadModal}>닫기</button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </div>
   );

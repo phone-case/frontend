@@ -33,7 +33,7 @@ function CreateRoute() {
   if (userName) {
     return <Create />;
   } else {
-    return <Navigate to="/create" replace />;
+    return <Navigate to="/login" replace />;
   }
 }
 
@@ -43,7 +43,7 @@ function DesignRoute() {
   if (userName) {
     return <Design />;
   } else {
-    return <Navigate to="/design" replace />;
+    return <Navigate to="/login" replace />;
   }
 }
 

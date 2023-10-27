@@ -1,8 +1,7 @@
 // s1.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './s2.css';
-
+import'./s3.css'
 
 const S3 = () => {
   return (

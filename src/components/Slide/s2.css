@@ -1,11 +1,37 @@
-
-.slide-video {
+/* s2.css */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+  
+  .s2-slider {
+    position: absolute;
+    width: 90vw; /* 화면 너비 기준 */
+    height: 90vh; /* 화면 높이 기준 */
+    top: 5%;
+    left: 35%;
+    background-color: black;
+  }
+  
+  .slide-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-  
-.s2-slider {
-    background-color: black;
-    position: relative;
   }
+  
+  .create-button {
+    position: absolute;
+    bottom: 6%; /* 원하는 위치로 조정 */
+    left: 85%; /* 중앙 정렬을 위한 가로 위치 조정 */
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    z-index: 1;
+    color: white;
+    border-radius: 50px;
+  }
+  
+  .create-button span {
+    font-size: 100%;
+  }
+  

@@ -9,7 +9,6 @@ const S1 = () => {
         <div className="s1-background">
           <S0 /> 
         </div>
-        
       </div>
   );
 };

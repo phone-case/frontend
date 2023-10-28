@@ -26,9 +26,9 @@ const S0 = () => {
     speed: 500,       // 슬라이드 전환 속도
     slidesToShow: 4,  // 화면에 보여질 슬라이드 수
     slidesToScroll: 4, // 슬라이드를 넘길 때 이동할 슬라이드 수
-    dots: true,
+    dots: false,        //밑에 점 활성화
     
-    arrows: false, //옆으로 이동하는 화살표 표시 여부임
+    arrows: true, //옆으로 이동하는 화살표 표시 여부임
     
   };
 

@@ -36,11 +36,13 @@
   color: black;
   border: 2px solid black;
 }
+
 .save-button button:hover {
   background-color: mediumaquamarine;
   border: none;
   color: white;
 }
+
 .save-button button:disabled {
   background-color: #ccc;
   cursor: not-allowed;

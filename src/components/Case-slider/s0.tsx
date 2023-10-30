@@ -39,7 +39,6 @@ const S0 = () => {
           {slides.map((slide) => (
             <div key={slide.id} className="s0-slide-content">
               <img src={slide.image} alt={`Slide ${slide.id}`} className="s0-slide-image" />
-              <p>{slide.content}</p>
             </div>
           ))}
         </Slider>

@@ -38,6 +38,8 @@ function Design() {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setSelectedImage(selectedFile);
+      setIsPcLoadModalOpen(false);
+      setIsImageModalOpen(false);
     }
   };
 

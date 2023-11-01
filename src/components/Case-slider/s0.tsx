@@ -8,14 +8,14 @@ import Slider from 'react-slick';
 const S0 = () => {
   // 슬라이드에 표시할 내용과 이미지 경로
   const slides = [
-    { id: 1, content: 'Slide 1 Content', image: './img/slide1.png' },
-    { id: 2, content: 'Slide 2 Content', image: './img/slide2.png' },
-    { id: 3, content: 'Slide 3 Content', image: './img/slide3.png' },
-    { id: 4, content: 'Slide 4 Content', image: './img/slide4.png' },
-    { id: 5, content: 'Slide 5 Content', image: './img/slide5.png' },
-    { id: 6, content: 'Slide 6 Content', image: './img/slide6.png' },
-    { id: 7, content: 'Slide 7 Content', image: './img/slide7.png' },
-    { id: 8, content: 'Slide 8 Content', image: './img/slide8.png' },
+    { id: 1, image: './img/slide1.png' },
+    { id: 2, image: './img/slide2.png' },
+    { id: 3, image: './img/slide3.png' },
+    { id: 4, image: './img/slide4.png' },
+    { id: 5, image: './img/slide5.png' },
+    { id: 6, image: './img/slide6.png' },
+    { id: 7, image: './img/slide7.png' },
+    { id: 8, image: './img/slide8.png' },
 
   ];
 
@@ -39,7 +39,6 @@ const S0 = () => {
           {slides.map((slide) => (
             <div key={slide.id} className="s0-slide-content">
               <img src={slide.image} alt={`Slide ${slide.id}`} className="s0-slide-image" />
-              <p>{slide.content}</p>
             </div>
           ))}
         </Slider>

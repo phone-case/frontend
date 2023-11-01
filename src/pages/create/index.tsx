@@ -132,34 +132,41 @@ const Create: React.FC = () => {
 
   const handleImageSubmit = async () => {
     if (image) {
-      
-      const formData = new FormData();
-      formData.append('image', image);
-      formData.append('imageName', imageName);
+      if (contentEditableRef.current) {
+        const text = contentEditableRef.current.innerText;
+        setContent(text);
+        
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('imageName', imageName);
+        formData.append('imageText', text);
 
-      try {
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+          });
 
-        if (response.ok) {
-          console.log('Image uploaded successfully');
-          // 이미지 업로드 후 이미지 미리보기 초기화
-          setImagePreview(null);
-          setIsIdTaken(null);
-          setImage(null);
-          setResponseData([]);
-          //!!
-        } else {
-          console.error('Error uploading image');
+          if (response.ok) {
+            console.log('Image uploaded successfully');
+            // 이미지 업로드 후 이미지 미리보기 초기화
+            setImagePreview(null);
+            setIsIdTaken(null);
+            setImage(null);
+            setResponseData([]);
+            contentEditableRef.current.innerText = "";
+            //!!
+          } else {
+            console.error('Error uploading image');
+          }
+        } catch (error) {
+          console.error('Error:', error);
         }
-      } catch (error) {
-        console.error('Error:', error);
       }
     }
     setIsServerUploadModalOpen(false);
     setIsUploadModalOpen(false);
+
 
   };
 
@@ -264,16 +271,25 @@ const Create: React.FC = () => {
       });
   
       if (response.ok) {
-        const blob = await response.blob();
+        const data = await response.json();
   
-        // 이미지 URL로 미리보기 업데이트
-        setImagePreview(URL.createObjectURL(blob));
+        const imageBase64 = data.image_data;
   
-        // 이미지 blob을 상태에 저장 (image 상태는 File 객체여야 함)
-        // File 객체를 만들 때는 File 생성자를 사용
-        const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
-        const imageFile = new File([blob], fileName, { type: blob.type });
-        setImage(imageFile);
+        // Decode Base64 image data to a Blob
+        const imageBlob = await fetch(`data:image/jpeg;base64,${imageBase64}`).then((res) => res.blob());
+  
+        const fileName = 'your_filename_here.jpg'; // Adjust the file name and extension
+        const imageFile = new File([imageBlob], fileName, { type: imageBlob.type });
+  
+        setImage(imageFile); // Set the image in your component state
+  
+        const textData = data.text_data; // Access the text data from the response
+
+        if (contentEditableRef.current !== null && contentEditableRef.current !== undefined) {
+          contentEditableRef.current.innerText = textData;
+        } else {
+          console.error('contentEditableRef is undefined or null');
+        }
   
         setIsServerLoadModalOpen(false);
         setIsImageModalOpen(false);

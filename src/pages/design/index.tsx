@@ -127,15 +127,17 @@ function Design() {
       });
   
       if (response.ok) {
-        const blob = await response.blob();
+        const data = await response.json();
   
-        // 이미지 URL로 미리보기 업데이트
+        const imageBase64 = data.image_data;
   
-        // 이미지 blob을 상태에 저장 (image 상태는 File 객체여야 함)
-        // File 객체를 만들 때는 File 생성자를 사용
-        const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
-        const imageFile = new File([blob], fileName, { type: blob.type });
-        setSelectedImage(imageFile);
+        // Decode Base64 image data to a Blob
+        const imageBlob = await fetch(`data:image/jpeg;base64,${imageBase64}`).then((res) => res.blob());
+  
+        const fileName = 'your_filename_here.jpg'; // Adjust the file name and extension
+        const imageFile = new File([imageBlob], fileName, { type: imageBlob.type });
+  
+        setSelectedImage(imageFile); // Set the image in your component state
   
         setIsServerLoadModalOpen(false);
         setIsImageModalOpen(false);

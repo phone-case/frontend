@@ -38,6 +38,8 @@ function Design() {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setSelectedImage(selectedFile);
+      setIsPcLoadModalOpen(false);
+      setIsImageModalOpen(false);
     }
   };
 
@@ -66,8 +68,8 @@ function Design() {
       setBackgroundImageCamera('/img/camera2.png');
       setBackgroundWhite('/img/backWhite.png');
     } else if (imageFileName === '아이폰') {
-      setBackgroundImage('/img/test2.jpg'); 
-      setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundImage('/img/test2.png'); 
+      setBackgroundImageCamera('/img/test2camera.png');
       setBackgroundWhite('/img/backWhite.png');
     }
 

@@ -128,16 +128,23 @@ function Design() {
   
       if (response.ok) {
         const data = await response.json();
-  
         const imageBase64 = data.image_data;
   
-        // Decode Base64 image data to a Blob
-        const imageBlob = await fetch(`data:image/jpeg;base64,${imageBase64}`).then((res) => res.blob());
+        // Create a Blob from the base64 image data
+        const byteCharacters = atob(imageBase64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/jpeg' });
   
-        const fileName = 'your_filename_here.jpg'; // Adjust the file name and extension
-        const imageFile = new File([imageBlob], fileName, { type: imageBlob.type });
+        // Create a File object from the Blob
+        const fileName = 'your_filename_here.jpg'; // Set the desired file name
+        const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
   
-        setSelectedImage(imageFile); // Set the image in your component state
+        // Update your state with the image File
+        setSelectedImage(imageFile);
   
         setIsServerLoadModalOpen(false);
         setIsImageModalOpen(false);

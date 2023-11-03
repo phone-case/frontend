@@ -127,14 +127,23 @@ function Design() {
       });
   
       if (response.ok) {
-        const blob = await response.blob();
+        const data = await response.json();
+        const imageBase64 = data.image_data;
   
-        // 이미지 URL로 미리보기 업데이트
+        // Create a Blob from the base64 image data
+        const byteCharacters = atob(imageBase64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/jpeg' });
   
-        // 이미지 blob을 상태에 저장 (image 상태는 File 객체여야 함)
-        // File 객체를 만들 때는 File 생성자를 사용
-        const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
-        const imageFile = new File([blob], fileName, { type: blob.type });
+        // Create a File object from the Blob
+        const fileName = 'your_filename_here.jpg'; // Set the desired file name
+        const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
+  
+        // Update your state with the image File
         setSelectedImage(imageFile);
   
         setIsServerLoadModalOpen(false);

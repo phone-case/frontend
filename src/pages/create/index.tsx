@@ -31,6 +31,7 @@ const Create: React.FC = () => {
   const [responseData, setResponseData] = useState<string[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
+
   
 
   
@@ -131,34 +132,41 @@ const Create: React.FC = () => {
 
   const handleImageSubmit = async () => {
     if (image) {
-      
-      const formData = new FormData();
-      formData.append('image', image);
-      formData.append('imageName', imageName);
+      if (contentEditableRef.current) {
+        const text = contentEditableRef.current.innerText;
+        setContent(text);
+        
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('imageName', imageName);
+        formData.append('imageText', text);
 
-      try {
-        const response = await fetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+          });
 
-        if (response.ok) {
-          console.log('Image uploaded successfully');
-          // 이미지 업로드 후 이미지 미리보기 초기화
-          setImagePreview(null);
-          setIsIdTaken(null);
-          setImage(null);
-          setResponseData([]);
-          //!!
-        } else {
-          console.error('Error uploading image');
+          if (response.ok) {
+            console.log('Image uploaded successfully');
+            // 이미지 업로드 후 이미지 미리보기 초기화
+            setImagePreview(null);
+            setIsIdTaken(null);
+            setImage(null);
+            setResponseData([]);
+            contentEditableRef.current.innerText = "";
+            //!!
+          } else {
+            console.error('Error uploading image');
+          }
+        } catch (error) {
+          console.error('Error:', error);
         }
-      } catch (error) {
-        console.error('Error:', error);
       }
     }
     setIsServerUploadModalOpen(false);
     setIsUploadModalOpen(false);
+
 
   };
 
@@ -168,7 +176,7 @@ const Create: React.FC = () => {
     if (contentEditableRef.current) {
       const text = contentEditableRef.current.innerText;
       setContent(text);
-
+      setResponseData([]);
       setIsLoading(true);
   
       try {
@@ -263,16 +271,35 @@ const Create: React.FC = () => {
       });
   
       if (response.ok) {
-        const blob = await response.blob();
+        const data = await response.json();
+        const imageBase64 = data.image_data;
+        const textData = data.text_data;
   
-        // 이미지 URL로 미리보기 업데이트
+        // Create a Blob from the base64 image data
+        const byteCharacters = atob(imageBase64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: 'image/jpeg' });
+  
+        // Display the image
         setImagePreview(URL.createObjectURL(blob));
   
-        // 이미지 blob을 상태에 저장 (image 상태는 File 객체여야 함)
-        // File 객체를 만들 때는 File 생성자를 사용
-        const fileName = 'your_filename_here.png'; // 원하는 파일 이름 설정
-        const imageFile = new File([blob], fileName, { type: blob.type });
+        // Create a File object from the Blob
+        const fileName = 'your_filename_here.jpg'; // Set the desired file name
+        const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
+  
+        // Update your state with the image File
         setImage(imageFile);
+  
+        // Access the text data from the response and update the content
+        if (contentEditableRef.current) {
+          contentEditableRef.current.innerText = textData;
+        } else {
+          console.error('contentEditableRef is undefined');
+        }
   
         setIsServerLoadModalOpen(false);
         setIsImageModalOpen(false);
@@ -313,7 +340,7 @@ const Create: React.FC = () => {
             </div>
             <div className='button-box'>
             {isLoading ? (
-              <div className="loading-spinner">로딩 중...</div>
+              <div className="loading-spinner"><img className='loading_image' src="./img/loading.gif" alt="로딩" /></div>
             ) : (
               <button type="submit" className='image-change'></button>
             )}
@@ -348,14 +375,15 @@ const Create: React.FC = () => {
                 <img
                   key={index}
                   src={url}
-                  alt={`Image ${index + 1}`}
+                  alt=""
                 />
               </button>
             ))}
             <br />
             <div className='image-close-button'>
               <button onClick={closeImageClickModal}><span>닫기</span></button>
-              <button onClick={handleTextImageSubmit}><span>이미지 생성하기</span></button>
+              <button onClick={handleTextImageSubmit} className='create-image-button'><span>이미지 생성하기</span></button>
+              <div className="info-tooltip">약 1분 정도 소요 됩니다.</div>
             </div>
           </div>
         </div>

@@ -12,7 +12,7 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('/api/get_name', {
         method: 'POST',
@@ -21,7 +21,7 @@ function Login() {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         if (data.name === null) {
@@ -29,9 +29,11 @@ function Login() {
           alert('아이디 또는 비밀번호가 다릅니다.');
         } else {
           setUserName(data.name);
+          // 로그인 성공 시 사용자 이름을 로컬 스토리지에 저장
+          localStorage.setItem('userName', data.name);
           console.log('서버에서 받은 이름:', data.name);
           navigate('/'); // 로그인 성공 시 메인 페이지로 이동
-          alert(data.name+'님 환영합니다');
+          alert(data.name + '님 환영합니다');
         }
       } else {
         console.error('서버 응답 오류');

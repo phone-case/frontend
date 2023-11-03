@@ -1,7 +1,26 @@
 body { /* 빈공간 없앰 */
   margin: 0; 
   padding: 0; 
+  
 }
+
+.create-container {
+  display: flex;
+
+}
+
+.create-left {
+  flex: 1;
+  padding: 20px;
+
+}
+
+.create-right {
+  flex: 1;
+  padding: 20px;
+
+}
+
 
 .mid {
   display: flex;
@@ -17,6 +36,7 @@ body { /* 빈공간 없앰 */
   margin-left: 6%;
   margin-top: 2%;
   border: 3px solid #ccc;
+
 }
 
 .image-box {
@@ -47,10 +67,11 @@ body { /* 빈공간 없앰 */
   justify-content: center;
   align-items: center;
   position: absolute;
-  margin-top: 5px;
+  margin-top: 10px;
 
   
 }
+
 .button-container button {
   margin: 0 10px;
   padding: 10px 20px;
@@ -64,6 +85,8 @@ body { /* 빈공간 없앰 */
   text-transform: uppercase;
   outline: none;
   position: relative;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   background-color: #222;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
@@ -547,4 +570,29 @@ color:mediumaquamarine;
   border: none;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.loading-spinner{
+  position: absolute;
+  left: 49%;
+}
+
+.loading_image{
+  justify-content: center;
+  align-items: center;
+  width: 110%;
+  transform: scaleX(-1);
+}
+
+.info-tooltip {
+  display: none; /* 초기에 숨김 상태로 설정 */
+  position: absolute;
+  padding: 10px;
+  top: 62.5%;
+  left: 58%;
+  border-radius: 5px;
+}
+
+.create-image-button:hover + .info-tooltip {
+  display: block; /* 버튼 위로 마우스를 올리면 툴팁 표시 */
 }

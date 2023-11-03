@@ -1,1 +1,149 @@
- 
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+}
+
+.design-button {
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  position: relative;
+}
+
+.design-button button {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+  border-radius: 20px;
+  padding: 5px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.design-button button:hover {
+  background-color: mediumaquamarine;
+  border: 2px solid white;
+  color: white;
+}
+
+.save-button button {
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+  border: 2px solid black;
+}
+
+.save-button button:hover {
+  background-color: mediumaquamarine;
+  border: 2px solid white;
+  color: white;
+}
+
+.save-button button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.upload-button {
+  display: flex;
+  flex-direction: flex;
+  align-items: center;
+}
+.upload-button button{
+  background-color: white;
+  color:black;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 5px 30px;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s;
+}
+.upload-button button:hover{
+  border: 2px solid white;
+  background-color: mediumaquamarine;
+}
+
+.btn {
+  display: none;
+}
+
+.change {
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0px 10px;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+.change:hover {
+  background-color: mediumaquamarine;
+  border: none;
+  color: white;
+}
+
+.design-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.backWhite {
+  width: 1721px;
+  height: 758px;
+  position: absolute;
+  z-index: 4;
+}
+
+.design-box {
+  width: 700px;
+  height: 700px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.design-img-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.select-img {
+  width: 100%;
+  height: 100%;
+}
+
+.select-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.design-camera {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+
+.design-select-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}

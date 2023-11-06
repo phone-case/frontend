@@ -42,6 +42,11 @@
   background-color: dodgerblue;
   padding: 10px;
   border: none;
+  font-size: 90%;
+  cursor: pointer;
+
+  width: 200px;
+  height: 50px;
 }
 
 .create-button :hover{

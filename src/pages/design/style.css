@@ -1,3 +1,11 @@
+.all{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
 .head {
   position: fixed;
   top: 0;
@@ -142,8 +150,8 @@
 }
 
 .design-select-img {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   position: absolute;
   z-index: 2;
 }

@@ -149,9 +149,19 @@
   z-index: 3;
 }
 
+
 .design-select-img {
   width: 50%;
   height: 50%;
   position: absolute;
   z-index: 2;
+}
+
+.custom-handle {
+  width: 20px;
+  height: 20px;
+  background-color: mediumaquamarine;
+  cursor: pointer;
+  z-index: 9 ; 
+  cursor: pointer;
 }

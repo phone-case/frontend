@@ -225,9 +225,6 @@ function Design() {
                         bottomLeft: true, 
                         topLeft: true,
                       }}
-                      handleClasses={{
-                          left: 'custom-handle'
-                        }}
                     >
                       <div className="select-img"
                         onMouseDown={handleMouseDown}

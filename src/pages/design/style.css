@@ -157,11 +157,3 @@
   z-index: 2;
 }
 
-.custom-handle {
-  width: 20px;
-  height: 20px;
-  background-color: mediumaquamarine;
-  cursor: pointer;
-  z-index: 9 ; 
-  cursor: pointer;
-}

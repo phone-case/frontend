@@ -228,13 +228,15 @@ function Design() {
                     >
                       <div className="select-img"
                         onMouseDown={handleMouseDown}
-                        onMouseUp={handleMouseUp}
-                      >
-                        <img
-                          src={URL.createObjectURL(selectedImage)}
-                          alt="선택한 그림"
-                        />
-                        
+                        onMouseUp={handleMouseUp} >
+
+                          <img
+                            src={URL.createObjectURL(selectedImage)}
+                            alt="선택한 그림"
+                          />
+                          <div className="bor-image" style={{ position: 'absolute',top: 0, left: 0 , zIndex: 30  }}>
+                            <img src="/img/bor.png" alt="bor" />
+                          </div>
                       </div>
                     </Resizable>
                   </Draggable>

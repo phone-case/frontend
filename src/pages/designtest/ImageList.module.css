@@ -1,0 +1,26 @@
+/* ImageList.module.css */
+.imageList {
+    margin-top: 20px;
+    margin-right: 1%;
+    text-align: right;
+  }
+  
+  .imageList h2 {
+    font-size: 18px;
+  }
+  
+  .imageList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .imageList li {
+    margin-bottom: 10px;
+  }
+  
+  .imageList img {
+    width: 100px;
+    height: auto;
+  }
+  

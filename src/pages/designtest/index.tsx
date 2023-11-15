@@ -76,7 +76,7 @@ const App: React.FC = () => {
     setShowHandles(!showHandles);
   };
 
-  
+
   // 버튼 클릭 시 해당 이미지 파일 경로를 설정
   const handleButtonClick = (imageFileName: string) => {
     
@@ -89,7 +89,6 @@ const App: React.FC = () => {
       setBackgroundImageCamera('/img/test2camera.png');
       setBackgroundWhite('/img/backWhite.png');
     }
-
   };
 
 
@@ -143,7 +142,7 @@ const captureAndDownloadImage = () => {
 
         </div>
           {/* 선택한 이미지 */}
-        <div className='sselect-img'>
+        <div className='sselect-img'style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
           <DndProvider backend={HTML5Backend}>
             <div>
               <button onClick={toggleHandles}>Toggle Handles</button>

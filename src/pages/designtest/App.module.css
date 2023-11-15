@@ -8,14 +8,4 @@
   height: 80%;
   border: 3px solid black;
   overflow: hidden;
-  pointer-events: none;
-}
-
-.top{
-  position: relative;
-  z-index: 30;
-}
-
-.camera{
-  z-index: 400;
 }

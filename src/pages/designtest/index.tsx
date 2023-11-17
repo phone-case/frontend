@@ -1,11 +1,11 @@
 // App.tsx
-import React, { useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, { useState, useRef } from 'react';
 import DraggableResizableImage from './DraggableResizableImage';
 import ImageUploader from './ImageUploader';
 import ImageList from './ImageList';
+import Header from '../../components/Header/Header';
 import styles from './App.module.css';
+import html2canvas from 'html2canvas';
 
 interface ImageProps {
   id: number;
@@ -20,6 +20,7 @@ interface ImageProps {
 const App: React.FC = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [showHandles, setShowHandles] = useState(true);
+  const appRef = useRef<HTMLDivElement>(null);
 
   const handleImageUpload = (newImages: File[]) => {
     const updatedImages = newImages.map((file, index) => ({
@@ -65,13 +66,62 @@ const App: React.FC = () => {
     setShowHandles(!showHandles);
   };
 
+  const captureContent = () => {
+    if(!showHandles){
+
+      const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
+
+      if (designImgBox) {
+        html2canvas(designImgBox).then((canvas) => {
+          // Canvas를 이미지로 변환
+          const imgDataUrl = canvas.toDataURL('image/png');
+
+          // 이미지를 다운로드할 링크 생성
+          const a = document.createElement('a');
+          a.href = imgDataUrl;
+          a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+          // 링크를 클릭하여 다운로드 실행
+          a.click();
+
+        });
+      }
+    }
+
+    else if(showHandles){
+      setShowHandles(!showHandles);
+      const delay = 300;
+      setTimeout(() => {
+        const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
+
+        if (designImgBox) {
+          html2canvas(designImgBox).then((canvas) => {
+            // Canvas를 이미지로 변환
+            const imgDataUrl = canvas.toDataURL('image/png');
+
+            // 이미지를 다운로드할 링크 생성
+            const a = document.createElement('a');
+            a.href = imgDataUrl;
+            a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+            // 링크를 클릭하여 다운로드 실행
+            a.click();
+
+            setShowHandles(!showHandles);
+
+          });
+        }
+      }, delay);
+    }
+  };
+
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div>
-        <button onClick={toggleHandles}>Toggle Handles</button>
+    <div>
+      <Header />
+      <div className={styles.button_div}>
+        <button onClick={toggleHandles}>이미지 핸들</button>
+        <button onClick={captureContent}>이미지 저장</button>
+        <ImageUploader onImageUpload={handleImageUpload} />
       </div>
-      <ImageUploader onImageUpload={handleImageUpload} />
-      <div className={styles.app}>
+      <div className={styles.app} ref={appRef}>
         {images.map((image) => (
           <DraggableResizableImage
             key={image.id}
@@ -91,9 +141,9 @@ const App: React.FC = () => {
       <ImageList
         images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}
         onImageOrderChange={handleImageOrderChange}
-        onDeleteImage={handleDeleteImage} // Pass the function here
+        onDeleteImage={handleDeleteImage}
       />
-    </DndProvider>
+    </div>
   );
 };
 

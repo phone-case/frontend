@@ -105,7 +105,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+    <div>
       <button onClick={openImageModal}><span>이미지 불러오기</span></button>
       {isImageModalOpen && (
         <div className="modal">

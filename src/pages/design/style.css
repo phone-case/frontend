@@ -160,3 +160,13 @@ body, html {
 
 }
 
+.reblack{
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 6;
+}

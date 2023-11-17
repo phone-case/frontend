@@ -1,6 +1,6 @@
 /* App.module.css */
 .app {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -8,5 +8,16 @@
   height: 80%;
   border: 3px solid black;
   overflow: hidden;
+
 }
 
+.case{
+  width: 700px;
+  height: 700px;
+  z-index: 100;
+  position: absolute;
+}
+
+.sselect-img{
+  z-index: -1;
+}

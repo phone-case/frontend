@@ -81,7 +81,7 @@ const App: React.FC = () => {
   const handleButtonClick = (imageFileName: string) => {
     
     if (imageFileName === '갤럭시') {
-      setBackgroundImage('/img/test1.png'); 
+      setBackgroundImage('/img/test22.png'); 
       setBackgroundImageCamera('/img/camera2.png');
       setBackgroundWhite('/img/backWhite.png');
     } else if (imageFileName === '아이폰') {
@@ -131,10 +131,10 @@ const captureAndDownloadImage = () => {
           </div>
         </div>
       </div>
-
-      <div className='scr'>   {/* 스샷 박스 */}
+          {/* 스샷 박스 */}
+      <div className='scr'>   
           {/* 케이스 */}
-        <div className='case'>
+        <div className='case' style={{ backgroundImage: `url(${backgroundImage})`}}>
 
         </div>
           {/* 카메라 */}
@@ -142,7 +142,7 @@ const captureAndDownloadImage = () => {
 
         </div>
           {/* 선택한 이미지 */}
-        <div className='sselect-img'style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
+        <div className='sselect-img'>
           <DndProvider backend={HTML5Backend}>
             <div>
               <button onClick={toggleHandles}>Toggle Handles</button>

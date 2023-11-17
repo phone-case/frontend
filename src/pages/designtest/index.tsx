@@ -121,23 +121,27 @@ const App: React.FC = () => {
         <button onClick={captureContent}>이미지 저장</button>
         <ImageUploader onImageUpload={handleImageUpload} />
       </div>
-      <div className={styles.app} ref={appRef}>
-        {images.map((image) => (
-          <DraggableResizableImage
-            key={image.id}
-            id={image.id}
-            src={image.src}
-            alt={image.alt}
-            zIndex={image.zIndex}
-            width={image.width}
-            height={image.height}
-            position={image.position}
-            onImageMove={handleImageMove}
-            onImageResize={handleImageResize}
-            showHandles={showHandles}
-          />
-        ))}
+
+      <div className='mid'>
+        <div className={styles.app} ref={appRef}>
+          {images.map((image) => (
+            <DraggableResizableImage
+              key={image.id}
+              id={image.id}
+              src={image.src}
+              alt={image.alt}
+              zIndex={image.zIndex}
+              width={image.width}
+              height={image.height}
+              position={image.position}
+              onImageMove={handleImageMove}
+              onImageResize={handleImageResize}
+              showHandles={showHandles}
+            />
+          ))}
+        </div>
       </div>
+      
       <ImageList
         images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}
         onImageOrderChange={handleImageOrderChange}

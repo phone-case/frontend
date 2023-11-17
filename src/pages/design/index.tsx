@@ -249,14 +249,14 @@ const captureAndDownloadImage = () => {
                     grid={[2.5, 2.5]} //선택한 이미지 이속업!
                   >
                     <Resizable
-                      enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
+                      enable={{           // 우측, 아래, 우측아래 부분 끌어서 크기 조절 나머지는 비활
                         top: false, 
                         right: true, 
                         bottom: true, 
                         left: true,
                         topRight: false, 
                         bottomRight: true, 
-                        bottomLeft: true, 
+                        bottomLeft: false, 
                         topLeft: false,
                       }}
                     >

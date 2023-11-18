@@ -113,10 +113,28 @@ const App: React.FC = () => {
     }
   };
 
+    
+  // 버튼 클릭 시 해당 이미지 파일 경로를 설정
+  const handleButtonClick = (imageFileName: string) => {
+    
+    if (imageFileName === '갤럭시') {
+      setBackgroundImage('/img/test1.png'); 
+      setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundWhite('/img/backWhite.png');
+    } else if (imageFileName === '아이폰') {
+      setBackgroundImage('/img/test2.png'); 
+      setBackgroundImageCamera('/img/test2camera.png');
+      setBackgroundWhite('/img/backWhite.png');
+    }
+
+  };
+  
   return (
     <div>
       <Header />
       <div className={styles.button_div}>
+        <button onClick={() => handleButtonClick('갤럭시')}>Galaxy</button>
+        <button onClick={() => handleButtonClick('아이폰')}>Iphone</button>
         <button onClick={toggleHandles}>이미지 핸들</button>
         <button onClick={captureContent}>이미지 저장</button>
         <ImageUploader onImageUpload={handleImageUpload} />

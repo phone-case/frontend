@@ -31,6 +31,8 @@ const App: React.FC = () => {
     
     const [backgroundreblack,setBackgroundreblack] = useState('');
 
+    const [backgroundnone,setBackgroundnone] = useState('');
+
     
   const handleImageUpload = (newImages: File[]) => {
     const updatedImages = newImages.map((file, index) => ({
@@ -101,7 +103,7 @@ const App: React.FC = () => {
       setShowHandles(!showHandles);
       const delay = 300;
       setTimeout(() => {
-        const designImgBox = document.querySelector(`.scr`) as HTMLElement;
+        const designImgBox = document.querySelector(`.${styles.scr}`) as HTMLElement;
 
         if (designImgBox) {
           html2canvas(designImgBox).then((canvas) => {
@@ -130,7 +132,8 @@ const App: React.FC = () => {
       setBackgroundImage('/img/test1.png'); 
       setBackgroundImageCamera('/img/rewhite.png');
       setBackgroundWhite('/img/backWhite.png');
-      setBackgroundreblack('/img/reblack.png')
+      setBackgroundreblack('/img/reblack.png');
+      setBackgroundnone('/img/noneback.png')
 
     } else if (imageFileName === '아이폰') {
       setBackgroundImage('/img/test2.png'); 
@@ -154,32 +157,37 @@ const App: React.FC = () => {
       </div>
 
       <div className={styles.mid}>
+        {/* 주변  */}
         <div className={styles.backWhite} style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
         </div>
-        <div className={styles.reblack}style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
+        {/* 검정투명경계박스 */}
+        <div className={styles.reblack} style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
         </div>
+        {/* 스샷 박스 */}
         <div className={styles.scr}>
           <div className={styles.designbox}>
+            {/* 케이스 */}
             <div className={styles.designimgbox} style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
             </div>
-
-            <div className={styles.app} ref={appRef}>
-            {images.map((image) => (
-              <DraggableResizableImage
-                key={image.id}
-                id={image.id}
-                src={image.src}
-                alt={image.alt}
-                zIndex={image.zIndex}
-                width={image.width}
-                height={image.height}
-                position={image.position}
-                onImageMove={handleImageMove}
-                onImageResize={handleImageResize}
-                showHandles={showHandles}
-              />
-            ))}
+            {/* 업로드 이미지 */}
+            <div className={styles.app} ref={appRef} style={{ backgroundImage: `url(${backgroundnone})`}}>
+              {images.map((image) => (
+                <DraggableResizableImage
+                  key={image.id}
+                  id={image.id}
+                  src={image.src}
+                  alt={image.alt}
+                  zIndex={image.zIndex}
+                  width={image.width}
+                  height={image.height}
+                  position={image.position}
+                  onImageMove={handleImageMove}
+                  onImageResize={handleImageResize}
+                  showHandles={showHandles}
+                />
+              ))}
             </div>
+            {/* 케이스 바깥 하얀색으로 감싸주는거 */}
             <div className={styles.designcamera}style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
             </div>
           </div>

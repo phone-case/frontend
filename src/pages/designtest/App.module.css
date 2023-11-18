@@ -7,7 +7,7 @@
   height: 85%;
   border: 3px solid black;
   overflow: hidden;
-  z-index: 2;
+  z-index: 5;
 }
 
 .button_div{
@@ -52,15 +52,6 @@
   z-index: 1;
 }
 
-.selectimg {
-  width: 100%;
-  height: 100%;
-}
-
-.selectimg img {
-  width: 100%;
-  height: 100%;
-}
 
 .designcamera {
   width: 100%;
@@ -72,12 +63,6 @@
   z-index: 3;
 }
 
-
-.designselectimg {
-  width: 50%;
-  height: 50%;
-  position: absolute;
-}
 
 .reblack{
   width: 700px;

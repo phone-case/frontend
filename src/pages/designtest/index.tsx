@@ -22,6 +22,16 @@ const App: React.FC = () => {
   const [showHandles, setShowHandles] = useState(true);
   const appRef = useRef<HTMLDivElement>(null);
 
+    // 이미지 파일 경로 상태 추가
+    const [backgroundImage, setBackgroundImage] = useState(''); 
+
+    const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
+  
+    const [backgroundWhite, setBackgroundWhite] = useState('');
+    
+    const [backgroundreblack,setBackgroundreblack] = useState('');
+
+    
   const handleImageUpload = (newImages: File[]) => {
     const updatedImages = newImages.map((file, index) => ({
       id: images.length + index + 1,

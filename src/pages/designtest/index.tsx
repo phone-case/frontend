@@ -81,7 +81,7 @@ const App: React.FC = () => {
   const captureContent = () => {
     if(!showHandles){
 
-      const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
+      const designImgBox = document.querySelector(`.${styles.scr}`) as HTMLElement;
 
       if (designImgBox) {
         html2canvas(designImgBox).then((canvas) => {

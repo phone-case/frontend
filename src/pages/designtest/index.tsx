@@ -101,7 +101,7 @@ const App: React.FC = () => {
       setShowHandles(!showHandles);
       const delay = 300;
       setTimeout(() => {
-        const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
+        const designImgBox = document.querySelector(`.scr`) as HTMLElement;
 
         if (designImgBox) {
           html2canvas(designImgBox).then((canvas) => {
@@ -154,22 +154,33 @@ const App: React.FC = () => {
       </div>
 
       <div className='mid'>
-        <div className={styles.app} ref={appRef}>
-          {images.map((image) => (
-            <DraggableResizableImage
-              key={image.id}
-              id={image.id}
-              src={image.src}
-              alt={image.alt}
-              zIndex={image.zIndex}
-              width={image.width}
-              height={image.height}
-              position={image.position}
-              onImageMove={handleImageMove}
-              onImageResize={handleImageResize}
-              showHandles={showHandles}
-            />
-          ))}
+        <div className='backWhite' style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
+        </div>
+        <div className='scr'>
+          <div className='design-box'>
+            <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
+            </div>
+
+            <div className={styles.app} ref={appRef}>
+            {images.map((image) => (
+              <DraggableResizableImage
+                key={image.id}
+                id={image.id}
+                src={image.src}
+                alt={image.alt}
+                zIndex={image.zIndex}
+                width={image.width}
+                height={image.height}
+                position={image.position}
+                onImageMove={handleImageMove}
+                onImageResize={handleImageResize}
+                showHandles={showHandles}
+              />
+            ))}
+            </div>
+            <div className='design-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
+            </div>
+          </div>
         </div>
       </div>
       

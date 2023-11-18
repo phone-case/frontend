@@ -153,14 +153,14 @@ const App: React.FC = () => {
         <ImageUploader onImageUpload={handleImageUpload} />
       </div>
 
-      <div className='midtest'>
-        <div className='testbackWhite' style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
+      <div className={styles.mid}>
+        <div className={styles.backWhite} style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
         </div>
-        <div className='reblack'style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
+        <div className={styles.reblack}style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
         </div>
-        <div className='scrtest'>
-          <div className='designtest-box'>
-            <div className='designtest-img-box' style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
+        <div className={styles.scr}>
+          <div className={styles.designbox}>
+            <div className={styles.designimgbox} style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
             </div>
 
             <div className={styles.app} ref={appRef}>
@@ -180,7 +180,7 @@ const App: React.FC = () => {
               />
             ))}
             </div>
-            <div className='designtest-camera'style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
+            <div className={styles.designcamera}style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
             </div>
           </div>
         </div>

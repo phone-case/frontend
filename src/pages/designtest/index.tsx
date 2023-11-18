@@ -156,6 +156,8 @@ const App: React.FC = () => {
       <div className='mid'>
         <div className='backWhite' style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
         </div>
+        <div className='reblack'style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
+        </div>
         <div className='scr'>
           <div className='design-box'>
             <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>

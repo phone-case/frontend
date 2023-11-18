@@ -253,7 +253,7 @@ const captureAndDownloadImage = () => {
                         top: false, 
                         right: true, 
                         bottom: true, 
-                        left: true,
+                        left: false,
                         topRight: false, 
                         bottomRight: true, 
                         bottomLeft: false, 
@@ -263,7 +263,6 @@ const captureAndDownloadImage = () => {
                       <div className="select-img"
                         onMouseDown={handleMouseDown}
                         onMouseUp={handleMouseUp} >
-
                           <img
                             src={URL.createObjectURL(selectedImage)}
                             alt="선택한 그림"

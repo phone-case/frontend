@@ -139,8 +139,6 @@ const App: React.FC = () => {
       setBackgroundImage('/img/test2.png'); 
       setBackgroundImageCamera('/img/test2camera.png');
       setBackgroundWhite('/img/backWhite.png');
-      
-      
     }
 
   };

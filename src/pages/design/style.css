@@ -157,16 +157,6 @@ body, html {
   width: 50%;
   height: 50%;
   position: absolute;
-
+  z-index: 2;
 }
 
-.reblack{
-  width: 700px;
-  height: 700px;
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: absolute;
-  z-index: 6;
-}

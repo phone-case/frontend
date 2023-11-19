@@ -1,23 +1,95 @@
-/* App.module.css */
+/*App.module.css*/
+
 .app {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  position: fixed;
+  top: 85px;
+  left: 30%;
+  width: 40%;
   border: 3px solid black;
   overflow: hidden;
-
+  height: calc(40vw * 1);
 }
 
-.case{
-  width: 700px;
-  height: 700px;
-  z-index: 100;
+.imageContainer {
+  position: relative;
+}
+
+.ploneCase {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; /* Ensure it's above other elements in .app */
 }
 
-.sselect-img{
-  z-index: -1;
+.draggableResizableImage {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.button_div {
+  padding-top: 90px;
+}
+
+.button_div>button{
+  position: fixed;
+
+  width: 6%;
+  height: calc(6vw * 1);
+  border-radius: 30px;
+  border: 2px solid mediumaquamarine;
+  background-color: transparent;
+}
+
+.button1{
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.button_div>button:hover{
+  box-shadow: 5px 5px 5px mediumaquamarine;
+  cursor: pointer;
+}
+
+.button2{
+  margin-top: 3%;
+  margin-left: 15%;
+}
+
+.button3{
+  margin-top: 13%;
+  margin-left: 5%;
+}
+
+.button4{
+  margin-top: 13%;
+  margin-left: 15%;
+}
+
+.button6{
+  margin-top: 29%;
+  margin-left: 15%;
+}
+
+.button5{
+  position: fixed;
+
+  width: 6%;
+  height: calc(6vw * 1);
+  border-radius: 30px;
+  border: 3px solid mediumaquamarine;
+  background-color: transparent;
+
+  margin-top: 29%;
+  margin-left: 5%;
+}
+
+.button5:hover{
+  box-shadow: 5px 5px 5px mediumaquamarine;
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

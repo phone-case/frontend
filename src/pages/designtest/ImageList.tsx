@@ -39,14 +39,17 @@ const ImageList: React.FC<ImageListProps> = ({ images, onImageOrderChange, onDel
           <div key={image.id} className={styles.draggableImage}>
             <img src={image.src} alt={image.alt} />
             <br/>
-            <button onClick={() => handleMoveDown(index)} disabled={index === 0}>
-              Up
+            <button className={styles.button1} onClick={() => handleMoveDown(index)} disabled={index === 0}>
+              <img src='/img/u.png' alt='sam'
+              style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
             </button>
-            <button onClick={() => handleMoveUp(index)} disabled={index === images.length - 1}>
-              Down
+            <button className={styles.button1} onClick={() => handleMoveUp(index)} disabled={index === images.length - 1}>
+              <img src='/img/d.png' alt='sam'
+              style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
             </button>
-            <button onClick={() => handleDelete(image.id)} className={styles.deleteButton}>
-              Delete
+            <button className={styles.button1} onClick={() => handleDelete(image.id)}>
+              <img src='/img/del.png' alt='sam'
+              style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
             </button>
           </div>
         ))}

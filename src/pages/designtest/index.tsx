@@ -17,20 +17,48 @@ interface ImageProps {
   position?: { x: number; y: number };
 }
 
+interface PloneCaseImage {
+  src: string;
+  someOtherVariable: string; // Add the type of your other variable
+}
+
 const App: React.FC = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [showHandles, setShowHandles] = useState(true);
   const appRef = useRef<HTMLDivElement>(null);
+  const [ploneCaseImage, setPloneCaseImage] = useState<PloneCaseImage>({
+    src: "/img/test1.png",
+    someOtherVariable: "plone1", // Set a default value for your other variable
+  });
 
-  const handleImageUpload = (newImages: File[]) => {
-    const updatedImages = newImages.map((file, index) => ({
-      id: images.length + index + 1,
-      src: URL.createObjectURL(file),
-      alt: file.name,
-      zIndex: images.length + index + 1,
-      width: 200,
-      height: 150,
-    }));
+  const handleImageUpload = async (newImages: File[]) => {
+    const updatedImagesPromises = newImages.map(async (file, index) => {
+      return new Promise<ImageProps>((resolve) => {
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          if (e.target && e.target.result) {
+            const img = new Image();
+            img.src = e.target.result.toString();
+  
+            img.onload = () => {
+              resolve({
+                id: images.length + index + 1,
+                src: URL.createObjectURL(file),
+                alt: file.name,
+                zIndex: images.length + index + 1,
+                width: img.width/3,
+                height: img.height/3,
+              });
+            };
+          }
+        };
+  
+        reader.readAsDataURL(file);
+      });
+    });
+  
+    const updatedImages = await Promise.all(updatedImagesPromises);
     setImages((prevImages) => [...prevImages, ...updatedImages]);
   };
 
@@ -62,15 +90,16 @@ const App: React.FC = () => {
     setImages(updatedImages);
   };
 
-  const toggleHandles = () => {
-    setShowHandles(!showHandles);
-  };
-
   const captureContent = () => {
     // Toggle handles off
     setShowHandles(false);
   
-    const delay = 300;
+    // Remove border from the appRef element
+    if (appRef.current) {
+      appRef.current.style.border = '3px solid transparent';
+    }
+  
+    const delay = 100;
   
     setTimeout(() => {
       const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
@@ -89,20 +118,105 @@ const App: React.FC = () => {
   
           // Toggle handles back on after capturing
           setShowHandles(true);
+  
+          // Show border again for the appRef element
+          if (appRef.current) {
+            appRef.current.style.border = '3px solid black';
+          }
         });
       }
     }, delay);
+  };
+
+  const handleImageChange = (newSrc: string, newVariable: string) => {
+    setPloneCaseImage({
+      src: newSrc,
+      someOtherVariable: newVariable,
+    });
+  };
+
+  const handleOtherVariableAction = () => {
+    if (ploneCaseImage.someOtherVariable === "plone1") {
+      setPloneCaseImage({
+        src: "/img/test1-k.png",
+        someOtherVariable: "plone1-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone1-on") {
+      setPloneCaseImage({
+        src: "/img/test1.png",
+        someOtherVariable: "plone1",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2") {
+      setPloneCaseImage({
+        src: "/img/test2-t.png",
+        someOtherVariable: "plone2-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2-on") {
+      setPloneCaseImage({
+        src: "/img/test2.png",
+        someOtherVariable: "plone2",
+      });
+    }
+  };
+
+  const handleOtherVariableAction2 = () => {
+    if (ploneCaseImage.someOtherVariable === "plone1") {
+      setPloneCaseImage({
+        src: "/img/test1-s.png",
+        someOtherVariable: "plone1-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone1-on") {
+      setPloneCaseImage({
+        src: "/img/test1.png",
+        someOtherVariable: "plone1",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2") {
+      setPloneCaseImage({
+        src: "/img/test2-s.png",
+        someOtherVariable: "plone2-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2-on") {
+      setPloneCaseImage({
+        src: "/img/test2.png",
+        someOtherVariable: "plone2",
+      });
+    }
   };
 
   return (
     <div>
       <Header />
       <div className={styles.button_div}>
-        <button onClick={toggleHandles}>이미지 핸들</button>
-        <button onClick={captureContent}>이미지 저장</button>
-        <ImageUploader onImageUpload={handleImageUpload} />
+        <button className={styles.button1} onClick={() => handleImageChange("/img/test1.png", "plone1")}>
+          <img src='/img/galaxy.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <button className={styles.button2} onClick={() => handleImageChange("/img/test2.png", "plone2")}>
+          <img src='/img/iplone.png' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <br />
+        <button className={styles.button3} onClick={handleOtherVariableAction}>
+          <img src='/img/t.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <button className={styles.button4} onClick={handleOtherVariableAction2}>
+          <img src='/img/s.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <br />
+        <button className={styles.button6} onClick={captureContent}>
+          <img src='/img/p.png' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <ImageUploader  onImageUpload={handleImageUpload} />
+        
       </div>
       <div className={styles.app} ref={appRef}>
+        <div className={styles.ploneCase} style={{ pointerEvents: 'none' }}>
+          <img src={ploneCaseImage.src} alt="Plone Case" 
+          style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+        </div>
         {images.map((image) => (
           <div key={image.id} className={styles.imageContainer}>
             <DraggableResizableImage
@@ -120,10 +234,7 @@ const App: React.FC = () => {
             />
           </div>
         ))}
-        <div className={styles.ploneCase}>
-          <img src="/img/camera2.png" alt="Plone Case" 
-          style={{ maxWidth: '100%', maxHeight: '100%' }}/>
-        </div>
+        
       </div>
       <ImageList
         images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}

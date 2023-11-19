@@ -1,6 +1,6 @@
 // ImageUploader.tsx
 import React, { useState } from 'react';
-
+import styles from './App.module.css';
 interface ImageUploaderProps {
   onImageUpload: (images: File[]) => void;
 }
@@ -106,7 +106,10 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageUpload }) => {
 
   return (
     <div>
-      <button onClick={openImageModal}><span>이미지 불러오기</span></button>
+      <button className={styles.button5} onClick={openImageModal} >
+        <img src='/img/c.png' alt='sam'
+        style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+      </button>
       {isImageModalOpen && (
         <div className="modal">
           <div className="modal-content">

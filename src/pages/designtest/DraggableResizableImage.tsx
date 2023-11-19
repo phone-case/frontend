@@ -74,7 +74,6 @@ const DraggableResizableImage: React.FC<DraggableResizableImageProps> = ({
         width={width}
         height={height}
         minConstraints={[50, 50]}
-        maxConstraints={[window.innerWidth * 0.8, window.innerHeight * 0.8]}
         onResize={handleResize}
         resizeHandles={showHandles ? ['se', 'sw', 'ne', 'nw', 'e', 'n', 's', 'w']:[]}
         draggableOpts={{ grid: [1, 1] }}

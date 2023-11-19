@@ -81,7 +81,7 @@ const App: React.FC = () => {
   const captureContent = () => {
     if(!showHandles){
 
-      const designImgBox = document.querySelector(`.${styles.scr}`) as HTMLElement;
+      const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
 
       if (designImgBox) {
         html2canvas(designImgBox).then((canvas) => {
@@ -103,7 +103,7 @@ const App: React.FC = () => {
       setShowHandles(!showHandles);
       const delay = 300;
       setTimeout(() => {
-        const designImgBox = document.querySelector(`.${styles.scr}`) as HTMLElement;
+        const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
 
         if (designImgBox) {
           html2canvas(designImgBox).then((canvas) => {

@@ -24,7 +24,16 @@ const S1 = () => {
     '우주하마',
     '화산',
     '치킨',
-    '우주하늘',
+    '하늘',
+    '콜라',
+    '노트북',
+    '빨대',
+    '고양이',
+    '강아지',
+    '책',
+    '시계',
+    '공백',
+    
   ];
 
   const getRandomColor = () => {
@@ -40,11 +49,11 @@ const S1 = () => {
     const randomIndex = Math.floor(Math.random() * predefinedTexts.length);
     const newText: TextInfo = {
       text: predefinedTexts[randomIndex],
-      size: Math.floor(Math.random() * 20 + 10) + 'px',
+      size: Math.floor(Math.random() * 20 + 70) + 'px', //폰트 사이즈
       color: getRandomColor(),
       top: Math.floor(Math.random() * 80) + 'vh',
-      left: '100vw',
-      speed: Math.random() * 0.5 + 0.5,
+      left: '90vw',
+      speed: Math.random() * 0.4 + 0.1,     //빠르기
       delay: Math.random() * 3,
     };
 
@@ -58,7 +67,7 @@ const S1 = () => {
       color: getRandomColor(),
       top: Math.floor(Math.random() * 80) + 'vh',
       left: '100vw',
-      speed: Math.random() * 0.5 + 0.1,
+      speed: Math.random() * 0.1 + 0.1,
       delay: Math.random() * 3,
     }));
 
@@ -94,7 +103,7 @@ const S1 = () => {
     generateText();
 
     // 일정한 간격(예: 5초)으로 generateText 함수 호출
-    const intervalId = setInterval(generateText, 500);
+    const intervalId = setInterval(generateText, 100);
 
     // 컴포넌트가 언마운트되면 clearInterval을 호출하여 간격을 정리
     return () => clearInterval(intervalId);

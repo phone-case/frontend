@@ -21,6 +21,9 @@ const App: React.FC = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [showHandles, setShowHandles] = useState(true);
   const appRef = useRef<HTMLDivElement>(null);
+  const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
+
+
 
   const handleImageUpload = (newImages: File[]) => {
     const updatedImages = newImages.map((file, index) => ({
@@ -28,8 +31,8 @@ const App: React.FC = () => {
       src: URL.createObjectURL(file),
       alt: file.name,
       zIndex: images.length + index + 1,
-      width: 200,
-      height: 150,
+      width: 300,
+      height: 300,
     }));
     setImages((prevImages) => [...prevImages, ...updatedImages]);
   };
@@ -94,10 +97,25 @@ const App: React.FC = () => {
     }, delay);
   };
 
+    // 버튼 클릭 시 해당 이미지 파일 경로를 설정
+    const handleButtonClick = (imageFileName: string) => {
+    
+      if (imageFileName === '갤럭시') {
+        setBackgroundImageCamera('/img/camera2.png');
+
+      } else if (imageFileName === '아이폰') {
+        setBackgroundImageCamera('/img/test2camera.png');
+      }
+  
+    };
+  
+    
   return (
     <div>
       <Header />
       <div className={styles.button_div}>
+        <button onClick={() => handleButtonClick('갤럭시')}>Galaxy</button>
+        <button onClick={() => handleButtonClick('아이폰')}>Iphone</button>
         <button onClick={toggleHandles}>이미지 핸들</button>
         <button onClick={captureContent}>이미지 저장</button>
         <ImageUploader onImageUpload={handleImageUpload} />
@@ -120,9 +138,7 @@ const App: React.FC = () => {
             />
           </div>
         ))}
-        <div className={styles.ploneCase}>
-          <img src="/img/camera2.png" alt="Plone Case" 
-          style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+        <div className={styles.ploneCase}style={{ backgroundImage: `url(${backgroundImageCamera})`}}>
         </div>
       </div>
       <ImageList

@@ -13,6 +13,8 @@ function Design() {
   const [isServerLoadButtonEnabled, setIsServerLoadButtonEnabled] = useState<boolean>(false);
   const [isIdTaken, setIsIdTaken] = useState<boolean | null>(null);
 
+  const [selectImgZIndex, setSelectImgZIndex] = useState(5);
+
   
   // 이미지 파일을 저장
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -32,6 +34,8 @@ function Design() {
   const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
 
   const [backgroundWhite, setBackgroundWhite] = useState('');
+  
+  const [backgroundreblack,setBackgroundreblack] = useState('');
 
   // 이미지 선택 시 호출
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,12 +69,16 @@ function Design() {
     
     if (imageFileName === '갤럭시') {
       setBackgroundImage('/img/test1.png'); 
-      setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundImageCamera('/img/rewhite.png');
       setBackgroundWhite('/img/backWhite.png');
+      setBackgroundreblack('/img/reblack.png')
+
     } else if (imageFileName === '아이폰') {
       setBackgroundImage('/img/test2.png'); 
       setBackgroundImageCamera('/img/test2camera.png');
       setBackgroundWhite('/img/backWhite.png');
+      
+      
     }
 
   };
@@ -158,25 +166,49 @@ function Design() {
   };
 
   
-  // 이미지 캡처 및 다운로드 함수
-  const captureAndDownloadImage = () => {
-    const designImgBox = document.querySelector('.scr') as HTMLElement; // HTMLElement로 형식화
+// 이미지 캡처 및 다운로드 함수
+const captureAndDownloadImage = () => {
+  const designSelectImg = document.querySelector('.design-select-img') as HTMLElement; // HTMLElement로 형식화
 
-    if (designImgBox) {
-      html2canvas(designImgBox).then((canvas) => {
-        // Canvas를 이미지로 변환
-        const imgDataUrl = canvas.toDataURL('image/png');
+  // 현재 .design-select-img의 z-index 값 저장
+  const originalZIndex = designSelectImg.style.zIndex;
 
-        // 이미지를 다운로드할 링크 생성
-        const a = document.createElement('a');
-        a.href = imgDataUrl;
-        a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+  // .design-select-img의 z-index를 2로 변경
+  setSelectImgZIndex(2);
 
-        // 링크를 클릭하여 다운로드 실행
-        a.click();
-      });
-    }
+  const restoreOriginalZIndex = () => {
+    // .design-select-img의 z-index를 원래 값으로 복원
+    setSelectImgZIndex(parseInt(originalZIndex, 10));
   };
+
+  const designImgBox = document.querySelector('.scr') as HTMLElement; // HTMLElement로 형식화
+
+  if (designImgBox) {
+    html2canvas(designImgBox, {
+      onclone: (doc) => {
+        const selectImgClone = doc.querySelector('.design-select-img') as HTMLElement; // HTMLElement로 형식화
+        if (selectImgClone) {
+          selectImgClone.style.zIndex = '2';
+        }
+      },
+    }).then((canvas) => {
+      // Canvas를 이미지로 변환
+      const imgDataUrl = canvas.toDataURL('image/png');
+
+      // 이미지를 다운로드할 링크 생성
+      const a = document.createElement('a');
+      a.href = imgDataUrl;
+      a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+
+      // 링크를 클릭하여 다운로드 실행
+      a.click();
+
+      // 캡처 후 .design-select-img의 z-index를 원래 값으로 복원
+      restoreOriginalZIndex();
+    });
+  }
+};
+
 
   return (
     <div className='all'>
@@ -200,41 +232,41 @@ function Design() {
       <div className="design-mid">
         <div className='backWhite' style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
         </div>
-        
+        <div className='reblack'style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
+        </div>
+
         <div className='scr'> {/* 이미지 저장임 스샷 하는 느낌 */}
             <div className='design-box'>
               <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
               </div>
-              <div className='design-select-img'>
+              <div className='design-select-img' style={{ zIndex: selectImgZIndex }}>
                 {selectedImage ? (
                   <Draggable
                     onDrag={handleDrag}
                     disabled={!isDraggingEnabled} // 드래그 활/비활 상태 설정
                     onStop={handleMouseUp} // 마우스업 드래그 비활성화
                     onStart={handleMouseDown} //마우스 다운 드래그 활성환
-                    grid={[10, 10]} //선택한 이미지 이속업!
+                    grid={[2.5, 2.5]} //선택한 이미지 이속업!
                   >
                     <Resizable
-                      enable={{           // 우측, 우측아래 부분 끌어서 크기 조절 나머지는 비활
-                        top: true, 
+                      enable={{           // 우측, 아래, 우측아래 부분 끌어서 크기 조절 나머지는 비활
+                        top: false, 
                         right: true, 
                         bottom: true, 
-                        left: true,
-                        topRight: true, 
+                        left: false,
+                        topRight: false, 
                         bottomRight: true, 
-                        bottomLeft: true, 
-                        topLeft: true,
+                        bottomLeft: false, 
+                        topLeft: false,
                       }}
                     >
                       <div className="select-img"
                         onMouseDown={handleMouseDown}
-                        onMouseUp={handleMouseUp}
-                      >
-                        <img
-                          src={URL.createObjectURL(selectedImage)}
-                          alt="선택한 그림"
-                        />
-                        
+                        onMouseUp={handleMouseUp} >
+                          <img
+                            src={URL.createObjectURL(selectedImage)}
+                            alt="선택한 그림"
+                          />
                       </div>
                     </Resizable>
                   </Draggable>

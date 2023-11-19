@@ -1,3 +1,7 @@
+body, html {
+  resize: none;
+}
+
 .all{
   top: 0;
   left: 0;

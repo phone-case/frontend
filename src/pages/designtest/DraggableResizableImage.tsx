@@ -16,6 +16,7 @@ interface DraggableResizableImageProps {
   onImageMove: (id: number, newPosition: { x: number; y: number }) => void;
   onImageResize: (id: number, width: number, height: number) => void;
   showHandles: boolean; // Added this line
+  className?: string;
 }
 
 const DraggableResizableImage: React.FC<DraggableResizableImageProps> = ({
@@ -28,10 +29,14 @@ const DraggableResizableImage: React.FC<DraggableResizableImageProps> = ({
   position,
   onImageMove,
   onImageResize,
-  showHandles, // Added this line
+  showHandles,
+  className,
 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+  
+  const containerCenterX = window.innerWidth / 7;
+  const containerCenterY = window.innerHeight / 4;
 
   const handleStart = (e: any, data: any) => {
     if (data.handle === 'se') {
@@ -61,7 +66,7 @@ const DraggableResizableImage: React.FC<DraggableResizableImageProps> = ({
       onStart={handleStart}
       onStop={handleStop}
       onDrag={handleDrag}
-      position={position || { x: 0, y: 0 }}
+      position={position || { x: containerCenterX, y:  containerCenterY}}
       cancel=".react-resizable-handle"
       scale={1}
     >
@@ -71,7 +76,7 @@ const DraggableResizableImage: React.FC<DraggableResizableImageProps> = ({
         minConstraints={[50, 50]}
         maxConstraints={[window.innerWidth * 0.8, window.innerHeight * 0.8]}
         onResize={handleResize}
-        resizeHandles={showHandles ? ['se', 'sw', 'ne', 'nw', 'e', 'n', 's', 'w'] : []}
+        resizeHandles={showHandles ? ['se', 'sw', 'ne', 'nw', 'e', 'n', 's', 'w']:[]}
         draggableOpts={{ grid: [1, 1] }}
         className={styles.draggableResizableImage}
       >

@@ -67,50 +67,31 @@ const App: React.FC = () => {
   };
 
   const captureContent = () => {
-    if(!showHandles){
-
+    // Toggle handles off
+    setShowHandles(false);
+  
+    const delay = 300;
+  
+    setTimeout(() => {
       const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
-
+  
       if (designImgBox) {
         html2canvas(designImgBox).then((canvas) => {
           // Canvas를 이미지로 변환
           const imgDataUrl = canvas.toDataURL('image/png');
-
+  
           // 이미지를 다운로드할 링크 생성
           const a = document.createElement('a');
           a.href = imgDataUrl;
           a.download = 'design_image.png'; // 다운로드 파일 이름 지정
           // 링크를 클릭하여 다운로드 실행
           a.click();
-
+  
+          // Toggle handles back on after capturing
+          setShowHandles(true);
         });
       }
-    }
-
-    else if(showHandles){
-      setShowHandles(!showHandles);
-      const delay = 300;
-      setTimeout(() => {
-        const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
-
-        if (designImgBox) {
-          html2canvas(designImgBox).then((canvas) => {
-            // Canvas를 이미지로 변환
-            const imgDataUrl = canvas.toDataURL('image/png');
-
-            // 이미지를 다운로드할 링크 생성
-            const a = document.createElement('a');
-            a.href = imgDataUrl;
-            a.download = 'design_image.png'; // 다운로드 파일 이름 지정
-            // 링크를 클릭하여 다운로드 실행
-            a.click();
-
-            setShowHandles(!showHandles);
-
-          });
-        }
-      }, delay);
-    }
+    }, delay);
   };
 
   return (
@@ -123,20 +104,26 @@ const App: React.FC = () => {
       </div>
       <div className={styles.app} ref={appRef}>
         {images.map((image) => (
-          <DraggableResizableImage
-            key={image.id}
-            id={image.id}
-            src={image.src}
-            alt={image.alt}
-            zIndex={image.zIndex}
-            width={image.width}
-            height={image.height}
-            position={image.position}
-            onImageMove={handleImageMove}
-            onImageResize={handleImageResize}
-            showHandles={showHandles}
-          />
+          <div key={image.id} className={styles.imageContainer}>
+            <DraggableResizableImage
+              className={styles.draggableResizableImage}
+              id={image.id}
+              src={image.src}
+              alt={image.alt}
+              zIndex={image.zIndex}
+              width={image.width}
+              height={image.height}
+              position={image.position}
+              onImageMove={handleImageMove}
+              onImageResize={handleImageResize}
+              showHandles={showHandles}
+            />
+          </div>
         ))}
+        <div className={styles.ploneCase}>
+          <img src="/img/camera2.png" alt="Plone Case" 
+          style={{ maxWidth: '100%', maxHeight: '100%' }}/>
+        </div>
       </div>
       <ImageList
         images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}

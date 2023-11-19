@@ -7,8 +7,7 @@ import Main from './pages/main/index';
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
 import Create from './pages/create/index';
-import Design from './pages/design/index';
-import Designtest from './pages/designtest/index';
+import Design from './pages/designtest/index';
 
 function App() {
   const storedUserName = localStorage.getItem('userName');
@@ -22,7 +21,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/create" element={<CreateRoute />} />
           <Route path="/design" element={<DesignRoute />} />
-          <Route path="/designtest" element={<Designtest />} />
         </Routes>
       </Router>
     </UserProvider>

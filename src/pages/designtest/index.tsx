@@ -116,7 +116,7 @@ const App: React.FC = () => {
           // 링크를 클릭하여 다운로드 실행
           a.click();
   
-          // Toggle handles back on after capturing
+          // Toggle handles back on after capturing1
           setShowHandles(true);
   
           // Show border again for the appRef element

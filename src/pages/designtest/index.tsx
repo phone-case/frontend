@@ -17,32 +17,48 @@ interface ImageProps {
   position?: { x: number; y: number };
 }
 
+interface PloneCaseImage {
+  src: string;
+  someOtherVariable: string; // Add the type of your other variable
+}
+
 const App: React.FC = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [showHandles, setShowHandles] = useState(true);
   const appRef = useRef<HTMLDivElement>(null);
+  const [ploneCaseImage, setPloneCaseImage] = useState<PloneCaseImage>({
+    src: "/img/test1.png",
+    someOtherVariable: "plone1", // Set a default value for your other variable
+  });
 
-    // 이미지 파일 경로 상태 추가
-    const [backgroundImage, setBackgroundImage] = useState(''); 
-
-    const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
+  const handleImageUpload = async (newImages: File[]) => {
+    const updatedImagesPromises = newImages.map(async (file, index) => {
+      return new Promise<ImageProps>((resolve) => {
+        const reader = new FileReader();
   
-    const [backgroundWhite, setBackgroundWhite] = useState('');
-    
-    const [backgroundreblack,setBackgroundreblack] = useState('');
-
-    const [backgroundnone,setBackgroundnone] = useState('');
-
-    
-  const handleImageUpload = (newImages: File[]) => {
-    const updatedImages = newImages.map((file, index) => ({
-      id: images.length + index + 1,
-      src: URL.createObjectURL(file),
-      alt: file.name,
-      zIndex: images.length + index + 1,
-      width: 200,
-      height: 150,
-    }));
+        reader.onload = (e) => {
+          if (e.target && e.target.result) {
+            const img = new Image();
+            img.src = e.target.result.toString();
+  
+            img.onload = () => {
+              resolve({
+                id: images.length + index + 1,
+                src: URL.createObjectURL(file),
+                alt: file.name,
+                zIndex: images.length + index + 1,
+                width: img.width/3,
+                height: img.height/3,
+              });
+            };
+          }
+        };
+  
+        reader.readAsDataURL(file);
+      });
+    });
+  
+    const updatedImages = await Promise.all(updatedImagesPromises);
     setImages((prevImages) => [...prevImages, ...updatedImages]);
   };
 
@@ -74,124 +90,152 @@ const App: React.FC = () => {
     setImages(updatedImages);
   };
 
-  const toggleHandles = () => {
-    setShowHandles(!showHandles);
-  };
-
   const captureContent = () => {
-    if(!showHandles){
-
+    // Toggle handles off
+    setShowHandles(false);
+  
+    // Remove border from the appRef element
+    if (appRef.current) {
+      appRef.current.style.border = '3px solid transparent';
+    }
+  
+    const delay = 100;
+  
+    setTimeout(() => {
       const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
-
+  
       if (designImgBox) {
         html2canvas(designImgBox).then((canvas) => {
           // Canvas를 이미지로 변환
           const imgDataUrl = canvas.toDataURL('image/png');
-
+  
           // 이미지를 다운로드할 링크 생성
           const a = document.createElement('a');
           a.href = imgDataUrl;
           a.download = 'design_image.png'; // 다운로드 파일 이름 지정
           // 링크를 클릭하여 다운로드 실행
           a.click();
-
+  
+          // Toggle handles back on after capturing
+          setShowHandles(true);
+  
+          // Show border again for the appRef element
+          if (appRef.current) {
+            appRef.current.style.border = '3px solid black';
+          }
         });
       }
-    }
+    }, delay);
+  };
 
-    else if(showHandles){
-      setShowHandles(!showHandles);
-      const delay = 300;
-      setTimeout(() => {
-        const designImgBox = document.querySelector(`.${styles.app}`) as HTMLElement;
+  const handleImageChange = (newSrc: string, newVariable: string) => {
+    setPloneCaseImage({
+      src: newSrc,
+      someOtherVariable: newVariable,
+    });
+  };
 
-        if (designImgBox) {
-          html2canvas(designImgBox).then((canvas) => {
-            // Canvas를 이미지로 변환
-            const imgDataUrl = canvas.toDataURL('image/png');
-
-            // 이미지를 다운로드할 링크 생성
-            const a = document.createElement('a');
-            a.href = imgDataUrl;
-            a.download = 'design_image.png'; // 다운로드 파일 이름 지정
-            // 링크를 클릭하여 다운로드 실행
-            a.click();
-
-            setShowHandles(!showHandles);
-
-          });
-        }
-      }, delay);
+  const handleOtherVariableAction = () => {
+    if (ploneCaseImage.someOtherVariable === "plone1") {
+      setPloneCaseImage({
+        src: "/img/test1-k.png",
+        someOtherVariable: "plone1-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone1-on") {
+      setPloneCaseImage({
+        src: "/img/test1.png",
+        someOtherVariable: "plone1",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2") {
+      setPloneCaseImage({
+        src: "/img/test2-t.png",
+        someOtherVariable: "plone2-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2-on") {
+      setPloneCaseImage({
+        src: "/img/test2.png",
+        someOtherVariable: "plone2",
+      });
     }
   };
 
-  // 버튼 클릭 시 해당 이미지 파일 경로를 설정
-  const handleButtonClick = (imageFileName: string) => {
-    
-    if (imageFileName === '갤럭시') {
-      setBackgroundImage('/img/test1.png'); 
-      setBackgroundImageCamera('/img/rewhite.png');
-      setBackgroundWhite('/img/backWhite.png');
-      setBackgroundreblack('/img/reblack.png');
-      setBackgroundnone('/img/noneback.png')
-
-    } else if (imageFileName === '아이폰') {
-      setBackgroundImage('/img/test2.png'); 
-      setBackgroundImageCamera('/img/test2camera.png');
-      setBackgroundWhite('/img/backWhite.png');
+  const handleOtherVariableAction2 = () => {
+    if (ploneCaseImage.someOtherVariable === "plone1") {
+      setPloneCaseImage({
+        src: "/img/test1-s.png",
+        someOtherVariable: "plone1-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone1-on") {
+      setPloneCaseImage({
+        src: "/img/test1.png",
+        someOtherVariable: "plone1",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2") {
+      setPloneCaseImage({
+        src: "/img/test2-s.png",
+        someOtherVariable: "plone2-on",
+      });
+    } else if (ploneCaseImage.someOtherVariable === "plone2-on") {
+      setPloneCaseImage({
+        src: "/img/test2.png",
+        someOtherVariable: "plone2",
+      });
     }
-
   };
-  
+
   return (
     <div>
       <Header />
       <div className={styles.button_div}>
-        <button onClick={() => handleButtonClick('갤럭시')}>Galaxy</button>
-        <button onClick={() => handleButtonClick('아이폰')}>Iphone</button>
-        <button onClick={toggleHandles}>이미지 핸들</button>
-        <button onClick={captureContent}>이미지 저장</button>
-        <ImageUploader onImageUpload={handleImageUpload} />
+        <button className={styles.button1} onClick={() => handleImageChange("/img/test1.png", "plone1")}>
+          <img src='/img/galaxy.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <button className={styles.button2} onClick={() => handleImageChange("/img/test2.png", "plone2")}>
+          <img src='/img/iplone.png' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <br />
+        <button className={styles.button3} onClick={handleOtherVariableAction}>
+          <img src='/img/t.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <button className={styles.button4} onClick={handleOtherVariableAction2}>
+          <img src='/img/s.jpg' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <br />
+        <button className={styles.button6} onClick={captureContent}>
+          <img src='/img/p.png' alt='sam'
+          style={{ maxWidth: '100%', maxHeight: '100%' }}></img>
+        </button>
+        <ImageUploader  onImageUpload={handleImageUpload} />
+        
       </div>
-
-      <div className={styles.mid}>
-        {/* 주변  */}
-        <div className={styles.backWhite} style={{ backgroundImage: `url(${backgroundWhite})`,pointerEvents: 'none'}}>
+      <div className={styles.app} ref={appRef}>
+        <div className={styles.ploneCase} style={{ pointerEvents: 'none' }}>
+          <img src={ploneCaseImage.src} alt="Plone Case" 
+          style={{ maxWidth: '100%', maxHeight: '100%' }}/>
         </div>
-        {/* 검정투명경계박스 */}
-        <div className={styles.reblack} style={{ backgroundImage: `url(${backgroundreblack})`,pointerEvents: 'none'}}>
-        </div>
-        {/* 스샷 박스 */}
-        <div className={styles.scr}>
-          <div className={styles.designbox}>
-            {/* 케이스 */}
-            <div className={styles.designimgbox} style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
-            </div>
-            {/* 업로드 이미지 */}
-            <div className={styles.app} ref={appRef} style={{ backgroundImage: `url(${backgroundnone})`}}>
-              {images.map((image) => (
-                <DraggableResizableImage
-                  key={image.id}
-                  id={image.id}
-                  src={image.src}
-                  alt={image.alt}
-                  zIndex={image.zIndex}
-                  width={image.width}
-                  height={image.height}
-                  position={image.position}
-                  onImageMove={handleImageMove}
-                  onImageResize={handleImageResize}
-                  showHandles={showHandles}
-                />
-              ))}
-            </div>
-            {/* 케이스 바깥 하얀색으로 감싸주는거 */}
-            <div className={styles.designcamera}style={{ backgroundImage: `url(${backgroundImageCamera})`,pointerEvents: 'none'}}>
-            </div>
+        {images.map((image) => (
+          <div key={image.id} className={styles.imageContainer}>
+            <DraggableResizableImage
+              className={styles.draggableResizableImage}
+              id={image.id}
+              src={image.src}
+              alt={image.alt}
+              zIndex={image.zIndex}
+              width={image.width}
+              height={image.height}
+              position={image.position}
+              onImageMove={handleImageMove}
+              onImageResize={handleImageResize}
+              showHandles={showHandles}
+            />
           </div>
-        </div>
+        ))}
+        
       </div>
-      
       <ImageList
         images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}
         onImageOrderChange={handleImageOrderChange}

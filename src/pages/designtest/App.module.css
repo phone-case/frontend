@@ -1,7 +1,6 @@
 /*App.module.css*/
 
 .app {
-<<<<<<< HEAD
   position: fixed;
   top: 85px;
   left: 30%;
@@ -22,8 +21,6 @@
   width: 100%;
   height: 100%;
   z-index: 999; /* Ensure it's above other elements in .app */
-  pointer-events: none;
-
 }
 
 .draggableResizableImage {
@@ -33,30 +30,6 @@
 
 .button_div {
   padding-top: 90px;
-<<<<<<< HEAD
-=======
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  border: 3px solid black;
-  overflow: hidden;
-
-}
-
-.case{
-  width: 700px;
-  height: 700px;
-  z-index: 100;
-  position: absolute;
-}
-
-.sselect-img{
-  z-index: -1;
->>>>>>> main
-=======
 }
 
 .button_div>button{
@@ -119,5 +92,4 @@
 
 body::-webkit-scrollbar {
   display: none;
->>>>>>> 596e3ff3fcdd1cdde01a1e1274d8ede017b64f37
 }

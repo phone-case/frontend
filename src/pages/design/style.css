@@ -153,25 +153,10 @@ body, html {
   z-index: 3;
 }
 
-
 .design-select-img {
   width: 50%;
   height: 50%;
   position: absolute;
-<<<<<<< HEAD
-}
-
-.reblack{
-  width: 700px;
-  height: 700px;
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: absolute;
-  z-index: 6;
-=======
   z-index: 2;
->>>>>>> 596e3ff3fcdd1cdde01a1e1274d8ede017b64f37
 }
 

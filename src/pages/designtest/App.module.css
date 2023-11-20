@@ -1,6 +1,7 @@
 /*App.module.css*/
 
 .app {
+<<<<<<< HEAD
   position: fixed;
   top: 70px;
   left: 30%;
@@ -33,4 +34,26 @@
 .button_div {
   border: 3px solid red;
   padding-top: 90px;
+=======
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border: 3px solid black;
+  overflow: hidden;
+
+}
+
+.case{
+  width: 700px;
+  height: 700px;
+  z-index: 100;
+  position: absolute;
+}
+
+.sselect-img{
+  z-index: -1;
+>>>>>>> main
 }

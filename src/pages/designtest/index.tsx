@@ -6,6 +6,12 @@ import ImageList from './ImageList';
 import Header from '../../components/Header/Header';
 import styles from './App.module.css';
 import html2canvas from 'html2canvas';
+<<<<<<< HEAD
+=======
+import Header from '../../components/Header/Header';
+
+
+>>>>>>> main
 
 interface ImageProps {
   id: number;
@@ -17,6 +23,7 @@ interface ImageProps {
   position?: { x: number; y: number };
 }
 
+
 const App: React.FC = () => {
   const [images, setImages] = useState<ImageProps[]>([]);
   const [showHandles, setShowHandles] = useState(true);
@@ -24,6 +31,12 @@ const App: React.FC = () => {
   const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
 
 
+
+  const [backgroundImage, setBackgroundImage] = useState('');
+  const [backgroundImageCamera, setBackgroundImageCamera] = useState('');
+  const [backgroundWhite, setBackgroundWhite] = useState('');
+
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const handleImageUpload = (newImages: File[]) => {
     const updatedImages = newImages.map((file, index) => ({
@@ -69,6 +82,7 @@ const App: React.FC = () => {
     setShowHandles(!showHandles);
   };
 
+<<<<<<< HEAD
   const captureContent = () => {
     // Toggle handles off
     setShowHandles(false);
@@ -146,6 +160,106 @@ const App: React.FC = () => {
         onImageOrderChange={handleImageOrderChange}
         onDeleteImage={handleDeleteImage}
       />
+=======
+
+  // 버튼 클릭 시 해당 이미지 파일 경로를 설정
+  const handleButtonClick = (imageFileName: string) => {
+    
+    if (imageFileName === '갤럭시') {
+      setBackgroundImage('/img/test22.png'); 
+      setBackgroundImageCamera('/img/camera2.png');
+      setBackgroundWhite('/img/backWhite.png');
+    } else if (imageFileName === '아이폰') {
+      setBackgroundImage('/img/test2.png'); 
+      setBackgroundImageCamera('/img/test2camera.png');
+      setBackgroundWhite('/img/backWhite.png');
+    }
+  };
+
+
+  // 이미지 캡처 및 다운로드 함수
+const captureAndDownloadImage = () => {
+  const designImgBox = document.querySelector('.scr') as HTMLElement; // HTMLElement로 형식화
+
+  if (designImgBox) {
+    html2canvas(designImgBox, {
+    }).then((canvas) => {
+      // Canvas를 이미지로 변환
+      const imgDataUrl = canvas.toDataURL('image/png');
+
+      // 이미지를 다운로드할 링크 생성
+      const a = document.createElement('a');
+      a.href = imgDataUrl;
+      a.download = 'design_image.png'; // 다운로드 파일 이름 지정
+
+      // 링크를 클릭하여 다운로드 실행
+      a.click();
+
+    });
+  }
+};
+
+
+  return (
+    <div className='all'>
+      {/* <div className='head'>
+        <Header />
+      </div> */}
+      <div className='ttop'>
+        <div className='ddesign-button'>
+          <button onClick={() => handleButtonClick('갤럭시')}>Galaxy</button>
+          <button onClick={() => handleButtonClick('아이폰')}>Iphone</button>
+          <div className='ssave-button'>  
+            <button onClick={captureAndDownloadImage} disabled={!selectedImage}>
+              Save Image
+            </button>
+          </div>
+        </div>
+      </div>
+          {/* 스샷 박스 */}
+      <div className='scr'>   
+          {/* 케이스 */}
+        <div className='case' style={{ backgroundImage: `url(${backgroundImage})`}}>
+
+        </div>
+          {/* 카메라 */}
+        <div className='camera'>
+
+        </div>
+          {/* 선택한 이미지 */}
+        <div className='sselect-img'>
+          <DndProvider backend={HTML5Backend}>
+            <div>
+              <button onClick={toggleHandles}>Toggle Handles</button>
+            </div>
+            <ImageUploader onImageUpload={handleImageUpload} />
+            <div className={styles.app}>
+              {images.map((image) => (
+                <DraggableResizableImage
+                  key={image.id}
+                  id={image.id}
+                  src={image.src}
+                  alt={image.alt}
+                  zIndex={image.zIndex}
+                  width={image.width}
+                  height={image.height}
+                  position={image.position}
+                  onImageMove={handleImageMove}
+                  onImageResize={handleImageResize}
+                  showHandles={showHandles}
+                />
+              ))}
+            </div>
+            <ImageList
+              images={images.map((image) => ({ id: image.id, src: image.src, alt: image.alt }))}
+              onImageOrderChange={handleImageOrderChange}
+              onDeleteImage={handleDeleteImage} // Pass the function here
+            />
+          </DndProvider>
+        </div>
+      </div>
+
+>>>>>>> main
     </div>
   );
 };

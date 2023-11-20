@@ -3,7 +3,7 @@
 .app {
 <<<<<<< HEAD
   position: fixed;
-  top: 70px;
+  top: 85px;
   left: 30%;
   width: 40%;
   border: 3px solid black;
@@ -32,8 +32,8 @@
 }
 
 .button_div {
-  border: 3px solid red;
   padding-top: 90px;
+<<<<<<< HEAD
 =======
   position: absolute;
   top: 50%;
@@ -56,4 +56,68 @@
 .sselect-img{
   z-index: -1;
 >>>>>>> main
+=======
+}
+
+.button_div>button{
+  position: fixed;
+
+  width: 6%;
+  height: calc(6vw * 1);
+  border-radius: 30px;
+  border: 2px solid mediumaquamarine;
+  background-color: transparent;
+}
+
+.button1{
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.button_div>button:hover{
+  box-shadow: 5px 5px 5px mediumaquamarine;
+  cursor: pointer;
+}
+
+.button2{
+  margin-top: 3%;
+  margin-left: 15%;
+}
+
+.button3{
+  margin-top: 13%;
+  margin-left: 5%;
+}
+
+.button4{
+  margin-top: 13%;
+  margin-left: 15%;
+}
+
+.button6{
+  margin-top: 29%;
+  margin-left: 15%;
+}
+
+.button5{
+  position: fixed;
+
+  width: 6%;
+  height: calc(6vw * 1);
+  border-radius: 30px;
+  border: 3px solid mediumaquamarine;
+  background-color: transparent;
+
+  margin-top: 29%;
+  margin-left: 5%;
+}
+
+.button5:hover{
+  box-shadow: 5px 5px 5px mediumaquamarine;
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+>>>>>>> 596e3ff3fcdd1cdde01a1e1274d8ede017b64f37
 }

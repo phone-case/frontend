@@ -3,7 +3,6 @@
   position: absolute;
   z-index: 1;
   cursor: grab;
-  border: 1px solid #ccc;
 }
 
 .resizableBox {

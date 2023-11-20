@@ -179,7 +179,7 @@ function Design() {
   };
 
   return (
-    <div>
+    <div className='all'>
       <div className='head'>
         <Header />
       </div>
@@ -203,7 +203,7 @@ function Design() {
         
         <div className='scr'> {/* 이미지 저장임 스샷 하는 느낌 */}
             <div className='design-box'>
-              <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`}}>
+              <div className='design-img-box' style={{ backgroundImage: `url(${backgroundImage})`,pointerEvents: 'none'}}>
               </div>
               <div className='design-select-img'>
                 {selectedImage ? (

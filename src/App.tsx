@@ -7,7 +7,7 @@ import Main from './pages/main/index';
 import Login from './pages/login/index';
 import Signup from './pages/signup/index';
 import Create from './pages/create/index';
-import Design from './pages/design/index';
+import Design from './pages/designtest/index';
 
 function App() {
   const storedUserName = localStorage.getItem('userName');

@@ -17,16 +17,18 @@
 
 
 .s0-slider{           
-  margin-top: 180px; /* 위쪽 여백 설정 클래스 네임 정해주고 해야할듯 */
+  margin-top: 160px; /* 위쪽 여백 설정 클래스 네임 정해주고 해야할듯 */
 
 }
 
 
 .s0-slider0-ww .slick-slider {
-  width: 100%; /* 슬라이더의 가로 너비를 100%로 설정 */
+  width: 95%; /* 슬라이더의 가로 너비 */
 }
 
-.s0-slide-content {
-  margin-right: 10px !important;
+.s0-slider0-ww img{
+  width: 80%;
+  height: 80%;
+  margin-left: 40px;
 }
 

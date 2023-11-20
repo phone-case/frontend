@@ -188,6 +188,7 @@ const Create: React.FC = () => {
           console.log(data);
           setResponseData(data);
           setIsLoading(false);
+          setIsImageClickModalOpen(true);
         } else {
           console.error('폼 데이터 제출에 실패했습니다.');
         }
@@ -216,6 +217,7 @@ const Create: React.FC = () => {
           console.log(data);
           setResponseData(data);
           setIsLoading(false);
+          setIsImageClickModalOpen(true);
         } else {
           console.error('폼 데이터 제출에 실패했습니다.');
         }
